@@ -25,6 +25,32 @@
       "reason": "An opening range built from a mostly empty window would be wrong data, not a signal."
     }
   ],
+  "amendments_continued": [
+    {
+      "changes": [
+        "F01, F04, F06, F07 displacement statistic is now z_k = (C_t - C_{t-k}) / (ATR14 * sqrt(k))",
+        "F07 impulse threshold 3.0 -> 1.5 so that F01, F06 and F07 use the same 1.5 (about 2.4 sigma_k) strength",
+        "F04 keeps the numeric strength-gap 3.0 but on the sqrt(k)-normalised strengths"
+      ],
+      "date": "2026-10-11",
+      "id": "A3",
+      "kind": "pre-evaluation spec-construction correction",
+      "motivation_disclosure": "signal frequency observed on DEVELOPMENT data; the decision rests on random-walk arithmetic, not on any profit or loss",
+      "performance_used": false,
+      "reason": "A DEV-window smoke test of F01 (code debugging only; its P&L is not used) showed 92 signals in two weeks. Cause: a k-bar displacement was divided by a ONE-bar ATR. Under a random walk ATR14 ~ 1.6 sigma_bar, so |disp/ATR| >= 1.5 over 4 bars is only ~1.2 sigma_k and fires on ~12% of bars: not an 'established move'. Thresholds must be stated in horizon-scaled volatility units."
+    },
+    {
+      "changes": [
+        "every arm is run twice: GOVERNED (all capital rules exactly as specified; result = what the EUR 500 account would have done) and RESEARCH (sizing equity fixed at the initial EUR 500, drawdown pause disabled, all other gates and the daily loss limit on)",
+        "evidence classification uses the RESEARCH run measured in R; GOVERNED results are reported alongside"
+      ],
+      "date": "2026-10-11",
+      "id": "A4",
+      "kind": "pre-evaluation evaluation-mode definition",
+      "performance_used": false,
+      "reason": "The 10% drawdown pause is a capital-protection control; applying it inside the statistical evaluation truncates the trade sample after the first bad stretch and makes edge estimates depend on path luck."
+    }
+  ],
   "capital_and_risk": {
     "averaging_down": false,
     "base_currency": "EUR",
@@ -57,7 +83,7 @@
     "ATR_n": "simple mean of the last n true ranges (needs n+1 contiguous bars), as in the FRONT-1 stop calculation",
     "TR": "max(H-L, |H-C_prev|, |L-C_prev|) on MID bars of the stated timeframe",
     "stop_distance": "stop_multiple * ATR_14 of the stated stop timeframe, applied to the actual entry fill price",
-    "z_move_k": "(C_t - C_{t-k}) / ATR_14 on the stated timeframe"
+    "z_move_k": "(C_t - C_{t-k}) / (ATR_14 * sqrt(k)) on the stated timeframe (A3)"
   },
   "costs": {
     "carry": "not modeled (positions never held across the 16:55 New York force-flat); stated limitation",

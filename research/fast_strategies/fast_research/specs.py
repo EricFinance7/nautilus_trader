@@ -114,10 +114,20 @@ HARNESS = {
          "reason": "An opening range built from a mostly empty window would be wrong data, not a signal.",
          "changes": ["F05 requires >= 24 of the 30 opening-range minutes to be valid, else NO_TRADE"], "performance_examined": False},
     ],
+    "amendments_continued": [
+        {"id": "A3", "date": "2026-10-11", "kind": "pre-evaluation spec-construction correction",
+         "reason": "A DEV-window smoke test of F01 (code debugging only; its P&L is not used) showed 92 signals in two weeks. Cause: a k-bar displacement was divided by a ONE-bar ATR. Under a random walk ATR14 ~ 1.6 sigma_bar, so |disp/ATR| >= 1.5 over 4 bars is only ~1.2 sigma_k and fires on ~12% of bars: not an 'established move'. Thresholds must be stated in horizon-scaled volatility units.",
+         "changes": ["F01, F04, F06, F07 displacement statistic is now z_k = (C_t - C_{t-k}) / (ATR14 * sqrt(k))", "F07 impulse threshold 3.0 -> 1.5 so that F01, F06 and F07 use the same 1.5 (about 2.4 sigma_k) strength", "F04 keeps the numeric strength-gap 3.0 but on the sqrt(k)-normalised strengths"],
+         "motivation_disclosure": "signal frequency observed on DEVELOPMENT data; the decision rests on random-walk arithmetic, not on any profit or loss", "performance_used": False},
+        {"id": "A4", "date": "2026-10-11", "kind": "pre-evaluation evaluation-mode definition",
+         "reason": "The 10% drawdown pause is a capital-protection control; applying it inside the statistical evaluation truncates the trade sample after the first bad stretch and makes edge estimates depend on path luck.",
+         "changes": ["every arm is run twice: GOVERNED (all capital rules exactly as specified; result = what the EUR 500 account would have done) and RESEARCH (sizing equity fixed at the initial EUR 500, drawdown pause disabled, all other gates and the daily loss limit on)", "evidence classification uses the RESEARCH run measured in R; GOVERNED results are reported alongside"],
+         "performance_used": False},
+    ],
     "common_definitions": {
         "TR": "max(H-L, |H-C_prev|, |L-C_prev|) on MID bars of the stated timeframe",
         "ATR_n": "simple mean of the last n true ranges (needs n+1 contiguous bars), as in the FRONT-1 stop calculation",
-        "z_move_k": "(C_t - C_{t-k}) / ATR_14 on the stated timeframe",
+        "z_move_k": "(C_t - C_{t-k}) / (ATR_14 * sqrt(k)) on the stated timeframe (A3)",
         "stop_distance": "stop_multiple * ATR_14 of the stated stop timeframe, applied to the actual entry fill price",
     },
 }
@@ -145,7 +155,7 @@ FAMILIES = {
         "missing_in_source": _COMMON_MISSING,
         "operationalization": {
             "signal_timeframe": "15m", "lookback_bars": 4, "move_threshold_atr": 1.5, "atr_n": 14,
-            "rule": "LONG if z_move_4 >= +1.5 AND the last completed 15m bar closed up; SHORT mirror. z_move_4 = (C_t - C_{t-4}) / ATR14(15m).",
+            "rule": "LONG if z_move_4 >= +1.5 AND the last completed 15m bar closed up; SHORT mirror. z_move_4 = (C_t - C_{t-4}) / (ATR14(15m) * sqrt(4)) (A3).",
             "entry": "market at next-open after bar completion", "stop_timeframe": "15m", "stop_multiple": 1.5,
             "exits": ["stop", "time exit at the first 15m boundary >= signal bar close + 60 min", "force_flat"],
             "max_holding_minutes": 60, "one_position_per_pair": True,
@@ -209,7 +219,7 @@ FAMILIES = {
         "missing_in_source": _COMMON_MISSING + ["strength measure", "direction (momentum vs reversal) of the relative position", "how a 'relative position' is built from the available pairs"],
         "operationalization": {
             "signal_timeframe": "15m", "lookback_bars": 4, "min_strength_gap_atr": 3.0, "atr_n": 14,
-            "rule": "For each pair p: m_p = (C_t - C_{t-4}) / ATR14_p. Non-USD currency strength s_c = +m_p where the currency is the BASE (EUR, GBP, AUD, NZD vs USD) and -m_p where it is the QUOTE (JPY, CHF, CAD in USDJPY, USDCHF, USDCAD). If max(s) - min(s) >= 3.0: BUY the strongest currency vs USD and SELL the weakest currency vs USD (USD-neutral relative position, two pair legs).",
+            "rule": "For each pair p: m_p = (C_t - C_{t-4}) / (ATR14_p * sqrt(4)) (A3). Non-USD currency strength s_c = +m_p where the currency is the BASE (EUR, GBP, AUD, NZD vs USD) and -m_p where it is the QUOTE (JPY, CHF, CAD in USDJPY, USDCHF, USDCAD). If max(s) - min(s) >= 3.0: BUY the strongest currency vs USD and SELL the weakest currency vs USD (USD-neutral relative position, two pair legs).",
             "entry": "both legs market at next-open; all-or-nothing (if either leg fails any gate neither is sent)",
             "leg_risk_fraction": 0.0025, "stop_timeframe": "15m", "stop_multiple": 1.5,
             "exits": ["either leg's stop closes only that leg's position (the other continues to its own exit)", "time exit of both legs at the first 15m boundary >= signal bar close + 60 min", "force_flat"],
@@ -253,7 +263,7 @@ FAMILIES = {
         "missing_in_source": _COMMON_MISSING + ["the fine-timeframe signal itself", "definition of coarse 'trend direction'"],
         "operationalization": {
             "fine_timeframe": "5m", "coarse_timeframe": "1h", "fine_lookback_bars": 6, "fine_threshold_atr": 1.5, "coarse_sma_bars": 12, "atr_n": 14,
-            "rule": "Fine trigger (as F01 but on 5m): LONG candidate if (C_t - C_{t-6}) / ATR14(5m) >= +1.5 and the last 5m bar closed up; SHORT mirror. Coarse trend: sign(C_1h - SMA12(1h closes)) from the last COMPLETED 1h bar. Trade only if coarse trend == trigger direction.",
+            "rule": "Fine trigger (as F01 but on 5m): LONG candidate if (C_t - C_{t-6}) / (ATR14(5m) * sqrt(6)) >= +1.5 (A3) and the last 5m bar closed up; SHORT mirror. Coarse trend: sign(C_1h - SMA12(1h closes)) from the last COMPLETED 1h bar. Trade only if coarse trend == trigger direction.",
             "entry": "market at next-open", "stop_timeframe": "5m", "stop_multiple": 1.5,
             "exits": ["stop", "time exit at the first 5m boundary >= signal bar close + 60 min", "force_flat"],
             "max_holding_minutes": 60, "one_position_per_pair": True,
@@ -273,8 +283,8 @@ FAMILIES = {
         },
         "missing_in_source": _COMMON_MISSING + ["whether the arm is momentum or reversal (the name lists both)", "impulse definition"],
         "operationalization": {
-            "signal_timeframe": "1m", "lookback_bars": 5, "impulse_threshold_atr": 3.0, "atr_n": 14,
-            "rule": "z_move_5 = (C_t - C_{t-5}) / ATR14(1m). MOMENTUM arm (official F07): LONG if z_move_5 >= +3.0 and the last 1m bar closed up; SHORT mirror. Pre-declared companion arm F07R (REVERSAL mirror): identical trigger, opposite direction; reported but not promotable on its own.",
+            "signal_timeframe": "1m", "lookback_bars": 5, "impulse_threshold_atr": 1.5, "atr_n": 14,
+            "rule": "z_move_5 = (C_t - C_{t-5}) / (ATR14(1m) * sqrt(5)) (A3). MOMENTUM arm (official F07): LONG if z_move_5 >= +1.5 and the last 1m bar closed up; SHORT mirror. Pre-declared companion arm F07R (REVERSAL mirror): identical trigger, opposite direction; reported but not promotable on its own.",
             "entry": "market at next-open", "stop_timeframe": "5m", "stop_multiple": 1.5,
             "exits": ["stop", "time exit at the first 1m boundary >= signal bar close + 15 min", "force_flat"],
             "max_holding_minutes": 15, "one_position_per_pair": True,

@@ -28,7 +28,7 @@
     "max_holding_minutes": 60,
     "move_threshold_atr": 1.5,
     "one_position_per_pair": true,
-    "rule": "LONG if z_move_4 >= +1.5 AND the last completed 15m bar closed up; SHORT mirror. z_move_4 = (C_t - C_{t-4}) / ATR14(15m).",
+    "rule": "LONG if z_move_4 >= +1.5 AND the last completed 15m bar closed up; SHORT mirror. z_move_4 = (C_t - C_{t-4}) / (ATR14(15m) * sqrt(4)) (A3).",
     "signal_timeframe": "15m",
     "stop_multiple": 1.5,
     "stop_timeframe": "15m"

@@ -40,6 +40,9 @@ def build_pair(root: Path, pair: str, start: dt.date, end: dt.date):
     frames, missing = [], []
     day = start
     while day <= end:
+        if day.weekday() == 5:   # Saturday: market closed, not acquired by design (every candle would be a zero-volume stale bar)
+            day += dt.timedelta(days=1)
+            continue
         b, a = _load_side(root, pair, "BID", day), _load_side(root, pair, "ASK", day)
         if b is None or a is None or len(b) == 0 or len(a) == 0:
             missing.append(day.isoformat())
@@ -85,7 +88,7 @@ def in_expected_session(ts: pd.Series) -> pd.Series:
 
 def qc_pair(df: pd.DataFrame, pair: str, missing_days: list, start: dt.date, end: dt.date) -> dict:
     pip = PIP[pair]
-    n_days_expected = (end - start).days + 1
+    n_days_expected = sum(1 for i in range((end - start).days + 1) if (start + dt.timedelta(days=i)).weekday() != 5)
     res = {"pair": pair, "rows": int(len(df)), "days_expected": n_days_expected, "days_missing": missing_days,
            "first_ts": str(df["ts"].iloc[0]) if len(df) else None, "last_ts": str(df["ts"].iloc[-1]) if len(df) else None}
     if not len(df):

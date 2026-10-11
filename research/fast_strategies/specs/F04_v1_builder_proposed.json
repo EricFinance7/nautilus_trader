@@ -31,7 +31,7 @@
     "max_holding_minutes": 60,
     "min_strength_gap_atr": 3.0,
     "one_position_per_pair": true,
-    "rule": "For each pair p: m_p = (C_t - C_{t-4}) / ATR14_p. Non-USD currency strength s_c = +m_p where the currency is the BASE (EUR, GBP, AUD, NZD vs USD) and -m_p where it is the QUOTE (JPY, CHF, CAD in USDJPY, USDCHF, USDCAD). If max(s) - min(s) >= 3.0: BUY the strongest currency vs USD and SELL the weakest currency vs USD (USD-neutral relative position, two pair legs).",
+    "rule": "For each pair p: m_p = (C_t - C_{t-4}) / (ATR14_p * sqrt(4)) (A3). Non-USD currency strength s_c = +m_p where the currency is the BASE (EUR, GBP, AUD, NZD vs USD) and -m_p where it is the QUOTE (JPY, CHF, CAD in USDJPY, USDCHF, USDCAD). If max(s) - min(s) >= 3.0: BUY the strongest currency vs USD and SELL the weakest currency vs USD (USD-neutral relative position, two pair legs).",
     "signal_timeframe": "15m",
     "stop_multiple": 1.5,
     "stop_timeframe": "15m"

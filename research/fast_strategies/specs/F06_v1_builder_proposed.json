@@ -32,7 +32,7 @@
     "fine_timeframe": "5m",
     "max_holding_minutes": 60,
     "one_position_per_pair": true,
-    "rule": "Fine trigger (as F01 but on 5m): LONG candidate if (C_t - C_{t-6}) / ATR14(5m) >= +1.5 and the last 5m bar closed up; SHORT mirror. Coarse trend: sign(C_1h - SMA12(1h closes)) from the last COMPLETED 1h bar. Trade only if coarse trend == trigger direction.",
+    "rule": "Fine trigger (as F01 but on 5m): LONG candidate if (C_t - C_{t-6}) / (ATR14(5m) * sqrt(6)) >= +1.5 (A3) and the last 5m bar closed up; SHORT mirror. Coarse trend: sign(C_1h - SMA12(1h closes)) from the last COMPLETED 1h bar. Trade only if coarse trend == trigger direction.",
     "stop_multiple": 1.5,
     "stop_timeframe": "5m"
   },

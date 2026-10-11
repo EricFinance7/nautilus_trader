@@ -25,11 +25,11 @@
       "time exit at the first 1m boundary >= signal bar close + 15 min",
       "force_flat"
     ],
-    "impulse_threshold_atr": 3.0,
+    "impulse_threshold_atr": 1.5,
     "lookback_bars": 5,
     "max_holding_minutes": 15,
     "one_position_per_pair": true,
-    "rule": "z_move_5 = (C_t - C_{t-5}) / ATR14(1m). MOMENTUM arm (official F07): LONG if z_move_5 >= +3.0 and the last 1m bar closed up; SHORT mirror. Pre-declared companion arm F07R (REVERSAL mirror): identical trigger, opposite direction; reported but not promotable on its own.",
+    "rule": "z_move_5 = (C_t - C_{t-5}) / (ATR14(1m) * sqrt(5)) (A3). MOMENTUM arm (official F07): LONG if z_move_5 >= +1.5 and the last 1m bar closed up; SHORT mirror. Pre-declared companion arm F07R (REVERSAL mirror): identical trigger, opposite direction; reported but not promotable on its own.",
     "signal_timeframe": "1m",
     "stop_multiple": 1.5,
     "stop_timeframe": "5m"
