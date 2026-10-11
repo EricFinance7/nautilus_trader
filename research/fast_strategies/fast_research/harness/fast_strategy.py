@@ -215,6 +215,8 @@ class FastStrategy(Strategy):
             if p is None:
                 return
             p["entry_px"], p["entry_ts"] = float(ev.last_px), ev.ts_event
+            q = self._quote(pair)
+            p["entry_spread"] = (float(q.ask_price) - float(q.bid_price)) if q is not None else p["spread_at_signal"]
             p["entry_comm_quote"] = money_value(ev.commission)
             self.open[pair] = p
             inst = self.cache.instrument(I.instrument_id(pair))
@@ -250,6 +252,12 @@ class FastStrategy(Strategy):
             exit_px, comm_exit, reason = eng_exit, comm_exit_engine, tr["exit_reason"]
             self.cancel_all_orders(I.instrument_id(pair))
         fx = self.eur_per_quote(pair[3:]) or tr["fx_entry"]
+        q = self._quote(pair)
+        exit_spread = (float(q.ask_price) - float(q.bid_price)) if q is not None else tr["entry_spread"]
+        # mid-equivalent prices: a long enters at the ask / exits at the bid, a short the reverse
+        entry_mid = tr["entry_px"] - d * tr["entry_spread"] / 2.0
+        exit_mid = exit_px + d * exit_spread / 2.0
+        gross_mid_eur = d * (exit_mid - entry_mid) * units * fx
         gross_q = d * (exit_px - tr["entry_px"]) * units
         net_q = gross_q - tr["entry_comm_quote"] - comm_exit
         eng_net_q = d * (eng_exit - tr["entry_px"]) * units - tr["entry_comm_quote"] - comm_exit_engine
@@ -260,8 +268,9 @@ class FastStrategy(Strategy):
             "family": self.family, "pair": pair, "dir": d, "units": units, "entry_ts_ns": tr["entry_ts"],
             "exit_ts_ns": ev.ts_event, "signal_close_ns": tr["signal_close"], "entry_px": tr["entry_px"],
             "exit_px": exit_px, "engine_exit_px": eng_exit, "exit_reason": reason, "signal": tr["intent"].reason,
-            "gross_eur": gross_eur, "net_eur": net_eur, "cost_eur": gross_eur - net_eur, "planned_risk_eur": tr["planned_risk_eur"],
-            "actual_risk_eur": tr["actual_risk_eur"], "r_net": r_mult, "spread_pips_at_signal": tr["spread_at_signal"] / pip,
+            "gross_eur": gross_mid_eur, "gross_fill_eur": gross_eur, "net_eur": net_eur, "cost_eur": gross_mid_eur - net_eur,
+            "spread_slippage_cost_eur": gross_mid_eur - gross_eur, "commission_eur": gross_eur - net_eur, "planned_risk_eur": tr["planned_risk_eur"],
+            "actual_risk_eur": tr["actual_risk_eur"], "stop_distance": tr["stop_distance"], "r_net": r_mult, "spread_pips_at_signal": tr["spread_at_signal"] / pip,
             "group": tr["group"], "meta": tr["intent"].meta,
         })
 
