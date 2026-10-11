@@ -1,0 +1,49 @@
+{
+  "family": "F04",
+  "gap_fill_decisions": [
+    "strength = ATR-normalised 1h displacement vs USD; momentum direction chosen because 'relative strength' conventionally means long strong / short weak (the registry does not state the direction)",
+    "relative position = two USD-pair legs, each 0.25% risk, so the pair-trade totals the standard 0.5%"
+  ],
+  "missing_in_source": [
+    "formula / entry condition",
+    "exit condition",
+    "stop-loss methodology",
+    "numeric thresholds and lookbacks",
+    "position-sizing rule (supplied by the EUR 500 capital model of this task)",
+    "session filters",
+    "single outcome horizon (registry lists candidate sets only)",
+    "cost model (supplied by the shared harness)",
+    "strength measure",
+    "direction (momentum vs reversal) of the relative position",
+    "how a 'relative position' is built from the available pairs"
+  ],
+  "name": "FAST -- Cross-Currency Relative Strength",
+  "operationalization": {
+    "atr_n": 14,
+    "entry": "both legs market at next-open; all-or-nothing (if either leg fails any gate neither is sent)",
+    "exits": [
+      "either leg's stop closes only that leg's position (the other continues to its own exit)",
+      "time exit of both legs at the first 15m boundary >= entry fill + 60 min",
+      "force_flat"
+    ],
+    "leg_risk_fraction": 0.0025,
+    "lookback_bars": 4,
+    "max_holding_minutes": 60,
+    "min_strength_gap_atr": 3.0,
+    "one_position_per_pair": true,
+    "rule": "For each pair p: m_p = (C_t - C_{t-4}) / ATR14_p. Non-USD currency strength s_c = +m_p where the currency is the BASE (EUR, GBP, AUD, NZD vs USD) and -m_p where it is the QUOTE (JPY, CHF, CAD in USDJPY, USDCHF, USDCAD). If max(s) - min(s) >= 3.0: BUY the strongest currency vs USD and SELL the weakest currency vs USD (USD-neutral relative position, two pair legs).",
+    "signal_timeframe": "15m",
+    "stop_multiple": 1.5,
+    "stop_timeframe": "15m"
+  },
+  "registry_version": "v0_concept",
+  "source_registry": {
+    "candidate_outcome_horizons": "TBD",
+    "intended_horizon": "15m-1h (multiple candidate horizons, none frozen)",
+    "note": "introduces currency-exposure netting considerations more directly than any other FAST family",
+    "original_signal_definition": "CONCEPT ONLY: rank currencies by short-horizon relative strength and take relative (not outright) positions. No formula frozen.",
+    "required_data": "1-minute canonical FX bars across the full candidate universe simultaneously (common-timestamp alignment)."
+  },
+  "spec_version": "v1_builder_proposed",
+  "strategy_id": "f04_cross_currency_relative_strength"
+}

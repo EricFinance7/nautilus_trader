@@ -1,0 +1,47 @@
+{
+  "family": "F01",
+  "gap_fill_decisions": [
+    "outcome horizon 60 min (member of the registry set) and 15m signal timeframe (derived from the 1m base)",
+    "'established move' = 4 completed 15m bars (1h) of net displacement >= 1.5 ATR; 1.5 chosen as the same multiple used by FRONT-1's frozen stop policy, not tuned",
+    "last-bar confirmation added so the signal is not taken on a bar that already reverses the move"
+  ],
+  "missing_in_source": [
+    "formula / entry condition",
+    "exit condition",
+    "stop-loss methodology",
+    "numeric thresholds and lookbacks",
+    "position-sizing rule (supplied by the EUR 500 capital model of this task)",
+    "session filters",
+    "single outcome horizon (registry lists candidate sets only)",
+    "cost model (supplied by the shared harness)"
+  ],
+  "name": "FAST -- Intraday Trend Continuation",
+  "operationalization": {
+    "atr_n": 14,
+    "entry": "market at next-open after bar completion",
+    "exits": [
+      "stop",
+      "time exit at the first 15m boundary >= entry fill + 60 min",
+      "force_flat"
+    ],
+    "lookback_bars": 4,
+    "max_holding_minutes": 60,
+    "move_threshold_atr": 1.5,
+    "one_position_per_pair": true,
+    "rule": "LONG if z_move_4 >= +1.5 AND the last completed 15m bar closed up; SHORT mirror. z_move_4 = (C_t - C_{t-4}) / ATR14(15m).",
+    "signal_timeframe": "15m",
+    "stop_multiple": 1.5,
+    "stop_timeframe": "15m"
+  },
+  "registry_version": "v0_concept",
+  "source_registry": {
+    "candidate_observation_frequency": "1m/5m base, decision frequency TBD",
+    "candidate_outcome_horizons": "5m/15m/30m/1h/2h/4h, subset chosen at preregistration",
+    "constraint": "must NOT reuse R05's methodology or parameters",
+    "intended_horizon": "5m-4h (multiple candidate horizons, none frozen)",
+    "original_signal_definition": "CONCEPT ONLY: an established short-horizon directional move continues over the near-term outcome horizon (momentum persistence at intraday scale). No formula frozen.",
+    "required_data": "1-minute canonical FX bars (recommended base frequency), derived 5m/15m/30m/1h."
+  },
+  "spec_version": "v1_builder_proposed",
+  "strategy_id": "f01_intraday_trend_continuation"
+}

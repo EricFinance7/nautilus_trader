@@ -1,0 +1,47 @@
+{
+  "family": "F07",
+  "gap_fill_decisions": [
+    "momentum arm is the registered F07; reversal arm pre-declared as F07R so both signs of the same trigger are reported (no post-hoc choice of sign)",
+    "stop scale uses ATR14 of 5m bars (about 3-4 pips) instead of 1m ATR (about 1 pip), which would sit inside the spread; outcome horizon 15 min (registry set)"
+  ],
+  "missing_in_source": [
+    "formula / entry condition",
+    "exit condition",
+    "stop-loss methodology",
+    "numeric thresholds and lookbacks",
+    "position-sizing rule (supplied by the EUR 500 capital model of this task)",
+    "session filters",
+    "single outcome horizon (registry lists candidate sets only)",
+    "cost model (supplied by the shared harness)",
+    "whether the arm is momentum or reversal (the name lists both)",
+    "impulse definition"
+  ],
+  "name": "FAST -- Short-Horizon Momentum / Reversal",
+  "operationalization": {
+    "atr_n": 14,
+    "entry": "market at next-open",
+    "exits": [
+      "stop",
+      "time exit at the first 1m boundary >= entry fill + 15 min",
+      "force_flat"
+    ],
+    "impulse_threshold_atr": 3.0,
+    "lookback_bars": 5,
+    "max_holding_minutes": 15,
+    "one_position_per_pair": true,
+    "rule": "z_move_5 = (C_t - C_{t-5}) / ATR14(1m). MOMENTUM arm (official F07): LONG if z_move_5 >= +3.0 and the last 1m bar closed up; SHORT mirror. Pre-declared companion arm F07R (REVERSAL mirror): identical trigger, opposite direction; reported but not promotable on its own.",
+    "signal_timeframe": "1m",
+    "stop_multiple": 1.5,
+    "stop_timeframe": "5m"
+  },
+  "registry_version": "v0_concept",
+  "source_registry": {
+    "candidate_outcome_horizons": "5m/15m",
+    "intended_horizon": "5m-15m (multiple candidate horizons, none frozen)",
+    "note": "most cost-sensitive of the seven families -- explicitly flagged as the one most likely to be rejected once a real cost model is applied",
+    "original_signal_definition": "CONCEPT ONLY: the shortest-horizon sibling of F01/F02 (e.g. 1m-5m lookback, 5m-15m outcome) -- kept as a distinct family rather than a parameter of F01/F02 because its cost sensitivity and data-quality requirements (Section 6/9) are qualitatively different at this timescale.",
+    "required_data": "1-minute canonical FX bars (least tolerance for any base-frequency coarser than 1-minute)."
+  },
+  "spec_version": "v1_builder_proposed",
+  "strategy_id": "f07_short_horizon_momentum_reversal"
+}

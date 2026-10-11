@@ -1,0 +1,49 @@
+{
+  "family": "F03",
+  "gap_fill_decisions": [
+    "compression = short-term range (ATR8, 2h) at most 70% of the 12h norm (ATR48); breakout = close beyond the prior 2h extreme",
+    "outcome horizon 2 h (member of the registry set)"
+  ],
+  "missing_in_source": [
+    "formula / entry condition",
+    "exit condition",
+    "stop-loss methodology",
+    "numeric thresholds and lookbacks",
+    "position-sizing rule (supplied by the EUR 500 capital model of this task)",
+    "session filters",
+    "single outcome horizon (registry lists candidate sets only)",
+    "cost model (supplied by the shared harness)",
+    "definition of 'compressed'",
+    "definition of 'expansion' / breakout trigger"
+  ],
+  "name": "FAST -- Volatility Breakout / Expansion",
+  "operationalization": {
+    "atr_n": 14,
+    "compression_long_atr": 48,
+    "compression_ratio_max": 0.7,
+    "compression_short_atr": 8,
+    "entry": "market at next-open",
+    "exits": [
+      "stop",
+      "time exit at the first 15m boundary >= entry fill + 120 min",
+      "force_flat"
+    ],
+    "max_holding_minutes": 120,
+    "one_position_per_pair": true,
+    "range_bars": 8,
+    "rule": "At the prior bar t-1, compressed if ATR8/ATR48 <= 0.7. At bar t: LONG if C_t > max(H over bars t-8..t-1); SHORT if C_t < min(L over bars t-8..t-1).",
+    "signal_timeframe": "15m",
+    "stop_multiple": 1.5,
+    "stop_timeframe": "15m"
+  },
+  "registry_version": "v0_concept",
+  "source_registry": {
+    "candidate_outcome_horizons": "15m/30m/1h/2h",
+    "intended_horizon": "15m-2h (multiple candidate horizons, none frozen)",
+    "note": "requires BAR_BASED range/ATR",
+    "original_signal_definition": "CONCEPT ONLY: a period of compressed range/volatility is followed by directional expansion. No formula frozen.",
+    "required_data": "1-minute canonical FX bars for range/ATR construction, derived coarser frequencies."
+  },
+  "spec_version": "v1_builder_proposed",
+  "strategy_id": "f03_volatility_breakout_expansion"
+}

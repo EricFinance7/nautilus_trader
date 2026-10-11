@@ -1,0 +1,50 @@
+{
+  "family": "F02",
+  "gap_fill_decisions": [
+    "local reference = 1h simple mean; 'extreme' = |z| >= 2.0 (standard); 'partial reversion' = back inside 0.5 sigma (about three quarters of the way back)",
+    "outcome horizon 30 min (member of the registry set)"
+  ],
+  "missing_in_source": [
+    "formula / entry condition",
+    "exit condition",
+    "stop-loss methodology",
+    "numeric thresholds and lookbacks",
+    "position-sizing rule (supplied by the EUR 500 capital model of this task)",
+    "session filters",
+    "single outcome horizon (registry lists candidate sets only)",
+    "cost model (supplied by the shared harness)",
+    "definition of the 'local reference level'",
+    "definition of 'extreme' and of 'partial' reversion"
+  ],
+  "name": "FAST -- Intraday Mean Reversion",
+  "operationalization": {
+    "atr_n": 14,
+    "dispersion": "population std of those 12 closes",
+    "entry": "market at next-open",
+    "entry_z": 2.0,
+    "exit_z": 0.5,
+    "exits": [
+      "stop",
+      "partial reversion: on a completed 5m bar with |z| <= 0.5 exit at next open",
+      "time exit at the first 5m boundary >= entry fill + 30 min",
+      "force_flat"
+    ],
+    "max_holding_minutes": 30,
+    "one_position_per_pair": true,
+    "reference": "SMA of the last 12 completed 5m closes (1h)",
+    "rule": "z = (C_t - SMA12) / std12. SHORT if z >= +2.0, LONG if z <= -2.0 (fade). Skip if std12 == 0.",
+    "signal_timeframe": "5m",
+    "stop_multiple": 1.5,
+    "stop_timeframe": "5m"
+  },
+  "registry_version": "v0_concept",
+  "source_registry": {
+    "candidate_outcome_horizons": "5m/15m/30m/1h",
+    "intended_horizon": "5m-1h (multiple candidate horizons, none frozen)",
+    "note": "the natural counterpart to F01",
+    "original_signal_definition": "CONCEPT ONLY: a short-horizon extreme deviation from a local reference level tends to partially revert. No formula frozen.",
+    "required_data": "1-minute canonical FX bars, derived coarser frequencies."
+  },
+  "spec_version": "v1_builder_proposed",
+  "strategy_id": "f02_intraday_mean_reversion"
+}

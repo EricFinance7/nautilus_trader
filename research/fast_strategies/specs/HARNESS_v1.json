@@ -1,0 +1,150 @@
+{
+  "capital_and_risk": {
+    "averaging_down": false,
+    "base_currency": "EUR",
+    "cost_gate": "reject if expected_round_trip_cost_eur / risk_eur > 0.20 (same ceiling as frozen FRONT-1 policy)",
+    "daily_boundary": "UTC midnight",
+    "daily_realized_loss_limit_fraction": 0.02,
+    "drawdown_basis": "peak-to-trough on realized equity; pause = no new entries for the rest of the run",
+    "drawdown_pause_fraction": 0.1,
+    "equity_used_for_sizing": "realized virtual equity only; the IBKR paper balance is never read",
+    "initial_risk_budget_eur": 2.5,
+    "initial_virtual_equity_eur": 500.0,
+    "leverage_model": {
+      "basis": "ESMA retail majors (30:1)",
+      "margin_init": "1/30",
+      "margin_maint": "1/60 (50% close-out of initial)",
+      "max_leverage": 30,
+      "no_hidden_leverage": true
+    },
+    "martingale": false,
+    "max_combined_open_risk_fraction": 0.015,
+    "max_simultaneous_positions": 3,
+    "min_order_units": 1000,
+    "min_units_rule": "if computed units < min_order_units the trade is REJECTED (never rounded up)",
+    "order_step_units": 1000,
+    "pyramiding": false,
+    "risk_per_trade_fraction": 0.005,
+    "sizing_formula": "units = floor_to_step( risk_eur / ((stop_distance + spread_now + slippage_allowance) * eur_per_quote_unit) )"
+  },
+  "common_definitions": {
+    "ATR_n": "simple mean of the last n true ranges (needs n+1 contiguous bars), as in the FRONT-1 stop calculation",
+    "TR": "max(H-L, |H-C_prev|, |L-C_prev|) on MID bars of the stated timeframe",
+    "stop_distance": "stop_multiple * ATR_14 of the stated stop timeframe, applied to the actual entry fill price",
+    "z_move_k": "(C_t - C_{t-k}) / ATR_14 on the stated timeframe"
+  },
+  "costs": {
+    "carry": "not modeled (positions never held across the 16:55 New York force-flat); stated limitation",
+    "commission_rate_note": "fraction of notional in quote currency; 0.000026 ~= USD 3 per 100k EUR notional at EURUSD ~1.17",
+    "evidence_scenario": "base",
+    "provenance": {
+      "commission": "BROKER_SCHEDULE (Pepperstone GmbH cTrader Razor: USD 3 per side per 100k, Sept 2026 fee schedule, vendor-published; broker NOT yet selected)",
+      "slippage": "CONSERVATIVE_ASSUMPTION",
+      "spread": "OBSERVED (Dukascopy bid/ask candle values)"
+    },
+    "scenarios": {
+      "adverse": {
+        "commission_rate_per_side": 4e-05,
+        "latency": "adverse",
+        "slippage_pips_market": 0.3,
+        "slippage_pips_stop": 0.6,
+        "spread_multiplier": 1.5
+      },
+      "base": {
+        "commission_rate_per_side": 2.6e-05,
+        "latency": "base",
+        "slippage_pips_market": 0.1,
+        "slippage_pips_stop": 0.3,
+        "spread_multiplier": 1.0
+      },
+      "optimistic": {
+        "commission_rate_per_side": 2.6e-05,
+        "latency": "base",
+        "slippage_pips_market": 0.0,
+        "slippage_pips_stop": 0.0,
+        "spread_multiplier": 1.0
+      }
+    }
+  },
+  "data": {
+    "base_series": "native 1-minute BID and ASK candles (bar-open, left-labeled, UTC)",
+    "provider": "dukascopy_datafeed_bi5_http",
+    "session_reset_gap_minutes": 60,
+    "session_reset_rule": "all indicator state resets when consecutive valid minutes are > 60 min apart (weekend / outage); no look-back spans a gap",
+    "signal_price": "MID OHLC = (bid+ask)/2 at each of open/high/low/close",
+    "tf_aggregation": "UTC-aligned, left-closed, left-labeled; a bar completes only when its final minute is received; empty buckets produce no bar",
+    "valid_minute_rule": "bid_volume > 0 or ask_volume > 0; zero-volume minutes carry no information and are never replayed or fabricated",
+    "window_end_utc": "2026-10-09",
+    "window_start_utc": "2026-04-01"
+  },
+  "evidence_rules": {
+    "INSUFFICIENT_DATA": "unique episodes (DEV+VAL+OOS) < 30 OR unique episodes in VALIDATION+OUT_OF_SAMPLE < 15",
+    "MIXED_EVIDENCE": "sufficient data that satisfies neither NEGATIVE_EVIDENCE nor PROMISING_RESEARCH",
+    "NEGATIVE_EVIDENCE": "sufficient data AND base-cost pooled VAL+OOS mean net R < 0 AND (bootstrap CI upper bound < 0 OR mean net R < 0 in all of DEV, VAL, OOS)",
+    "PROMISING_RESEARCH": "sufficient data AND base-cost mean net R > 0 in each of DEV, VAL and OOS AND pooled VAL+OOS bootstrap CI lower bound > 0 AND pooled VAL+OOS profit factor >= 1.2 AND positive mean net R in >= 4 of 7 pairs",
+    "SHADOW_FORWARD_ELIGIBLE": "PROMISING_RESEARCH AND adverse-cost pooled VAL+OOS mean net R > 0 AND max drawdown < 10% AND >= 100 unique episodes AND >= 30 unique episodes in OOS AND positive mean net R in >= 2 of 3 volatility terciles",
+    "bootstrap": {
+      "ci": 0.95,
+      "method": "episode-level (cluster) bootstrap",
+      "resamples": 5000,
+      "seed": 20261011
+    },
+    "episodes": "trades are grouped into independent episodes: a trade joins an open episode if its entry is within 60 min of the episode's latest entry AND shares a currency exposure with the same net direction; otherwise it starts a new episode",
+    "multiplicity": "eight strategy arms are tested (F01-F07 plus the pre-declared F07 reversal mirror); no multiple-testing correction is applied, which makes any positive finding weaker, not stronger",
+    "unit": "net result in R = net P&L (EUR) / planned risk (EUR); sizing path effects are removed",
+    "win_rate_target": "none; no target (including 85%) is forced"
+  },
+  "execution_timing": {
+    "decision": "on completion of the signal-timeframe bar",
+    "intrabar_path": "open -> extreme nearer the open -> other extreme -> close (Nautilus bar_adaptive_high_low_ordering heuristic), applied to bid and ask candles separately",
+    "latency_adverse_seconds": 62,
+    "latency_base_seconds": 2,
+    "non_stop_exits": "evaluated only on completed bars, executed as MARKET at the next open (never as resting limit orders)",
+    "note": "Base fill = first quote after decision+2s = the next minute's OPEN bid/ask. No same-bar-close fill is permitted. Adverse = one bar later.",
+    "order_type_entry": "MARKET",
+    "protective_stop": "native STOP_MARKET submitted immediately on entry fill (bid-triggered for longs, ask-triggered for shorts)",
+    "synthetic_quote_schedule_seconds_into_minute": {
+      "close": 59,
+      "first_extreme": 20,
+      "open": 1,
+      "second_extreme": 40
+    }
+  },
+  "harness_version": "fast_harness_v1",
+  "nautilus_trader": "2.0.0rc6",
+  "partitions": {
+    "DEVELOPMENT": [
+      "2026-04-01T00:00:00Z",
+      "2026-07-15T14:24:00Z"
+    ],
+    "OUT_OF_SAMPLE": [
+      "2026-08-23T00:00:00Z",
+      "2026-09-20T19:12:00Z"
+    ],
+    "RESERVED_FORWARD": [
+      "2026-09-20T19:12:00Z",
+      "2026-10-10T00:00:00Z"
+    ],
+    "VALIDATION": [
+      "2026-07-15T14:24:00Z",
+      "2026-08-23T00:00:00Z"
+    ],
+    "boundary_arithmetic": "192 days from 2026-04-01T00:00Z to 2026-10-10T00:00Z; cumulative fractions 0.55 / 0.75 / 0.90 -> +105.6 d / +144 d / +172.8 d",
+    "method": "55/20/15/10 calendar-fraction split, as in fast_fx_v2_partitions.json, fixed from the date range before any returns were computed",
+    "rule": "Code correctness may be debugged on DEVELOPMENT only. VALIDATION/OUT_OF_SAMPLE/RESERVED_FORWARD results are produced exactly once, after spec hashes are committed. No parameter may change after that without a new strategy_version."
+  },
+  "session_filters": {
+    "force_flat": "all positions closed at market at 16:55 America/New_York (also guarantees flat before the Friday close; no swap/rollover modeled)",
+    "no_new_entries": "from 16:30 to 19:00 America/New_York (rollover spread blow-outs; max observed 19.6-30 pip closes)",
+    "session_model": "classify_session (zoneinfo, DST-correct): ASIA / LONDON / NEW_YORK / LONDON_NEW_YORK_OVERLAP / ROLLOVER_LOW_LIQUIDITY / OTHER"
+  },
+  "universe": [
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY",
+    "USDCHF",
+    "AUDUSD",
+    "USDCAD",
+    "NZDUSD"
+  ]
+}

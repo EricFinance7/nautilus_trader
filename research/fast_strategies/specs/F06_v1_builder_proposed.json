@@ -1,0 +1,49 @@
+{
+  "family": "F06",
+  "gap_fill_decisions": [
+    "fine signal = the F01 continuation trigger at 5m (the registry gives no fine signal); trend = last completed 1h close vs its 12-hour mean",
+    "holding horizon 60 min is deliberately longer than the 30 min fine lookback (signal vs holding horizon kept distinct)"
+  ],
+  "missing_in_source": [
+    "formula / entry condition",
+    "exit condition",
+    "stop-loss methodology",
+    "numeric thresholds and lookbacks",
+    "position-sizing rule (supplied by the EUR 500 capital model of this task)",
+    "session filters",
+    "single outcome horizon (registry lists candidate sets only)",
+    "cost model (supplied by the shared harness)",
+    "the fine-timeframe signal itself",
+    "definition of coarse 'trend direction'"
+  ],
+  "name": "FAST -- Multi-Timeframe Trend Alignment",
+  "operationalization": {
+    "atr_n": 14,
+    "coarse_sma_bars": 12,
+    "coarse_timeframe": "1h",
+    "entry": "market at next-open",
+    "exits": [
+      "stop",
+      "time exit at the first 5m boundary >= entry fill + 60 min",
+      "force_flat"
+    ],
+    "fine_lookback_bars": 6,
+    "fine_threshold_atr": 1.5,
+    "fine_timeframe": "5m",
+    "max_holding_minutes": 60,
+    "one_position_per_pair": true,
+    "rule": "Fine trigger (as F01 but on 5m): LONG candidate if (C_t - C_{t-6}) / ATR14(5m) >= +1.5 and the last 5m bar closed up; SHORT mirror. Coarse trend: sign(C_1h - SMA12(1h closes)) from the last COMPLETED 1h bar. Trade only if coarse trend == trigger direction.",
+    "stop_multiple": 1.5,
+    "stop_timeframe": "5m"
+  },
+  "registry_version": "v0_concept",
+  "source_registry": {
+    "candidate_outcome_horizons": "TBD",
+    "intended_horizon": "15m-4h (multiple candidate horizons, none frozen)",
+    "note": "must keep the signal-vs-holding-horizon distinction explicit",
+    "original_signal_definition": "CONCEPT ONLY: a signal on a fine timeframe is filtered/confirmed by trend direction on a coarser derived timeframe (e.g. 5m signal aligned with 1h trend). No formula frozen.",
+    "required_data": "1-minute canonical FX bars, derived 5m/15m/30m/1h for the coarser confirmation layer."
+  },
+  "spec_version": "v1_builder_proposed",
+  "strategy_id": "f06_multi_timeframe_trend_alignment"
+}
