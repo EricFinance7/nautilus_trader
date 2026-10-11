@@ -1,0 +1,3360 @@
+{
+  "run_config": {
+    "start": "2026-04-01T00:00:00Z",
+    "end": "2026-09-20T19:12:00Z",
+    "families": [
+      "F01",
+      "F02",
+      "F03",
+      "F04",
+      "F05",
+      "F06",
+      "F07",
+      "F07R"
+    ],
+    "runs": [
+      [
+        "research",
+        "optimistic"
+      ],
+      [
+        "research",
+        "base"
+      ],
+      [
+        "research",
+        "adverse"
+      ],
+      [
+        "governed",
+        "base"
+      ]
+    ],
+    "harness_sha256": "fa548c139ef40aab5137131371cbb5b2224c689e7cd2a865a5c9718dbb3418be",
+    "config_hashes": {
+      "F01": "74e1db8dbf379849c3deb8377dd365ada74b4162e18b883fd2a53646c9aa729a",
+      "F02": "2321b557fe2c5f683df567128c81fa0157621bdc73b998a38ced36c2d3721343",
+      "F03": "0cbc94bfc8165a4e698bebcf216cfece534c8166b7616c225a51db1b885448f4",
+      "F04": "f2c918cead00fc8393b7f9327e639749aec6d1c4fab15d2b7cda3a07162f732d",
+      "F05": "ecd91f1d9c74b4bc3ee572db8935aba399b507ec37b831fec09814d45f4df4bf",
+      "F06": "9634dcb01aad65a6f07ac1c508c89c3fe09abf6f97130dc1448b4ab2bb0299e8",
+      "F07": "fe6ebd6dc6bc6ff8232952119b6e4ccd3b6c21b05c454fd36da298703f85a9f0",
+      "F07R": "fe6ebd6dc6bc6ff8232952119b6e4ccd3b6c21b05c454fd36da298703f85a9f0"
+    },
+    "note": "RESERVED_FORWARD (from 2026-09-20T19:12:00Z) is excluded from this evaluation."
+  },
+  "families": {
+    "F01": {
+      "config_hash": "74e1db8dbf379849c3deb8377dd365ada74b4162e18b883fd2a53646c9aa729a",
+      "harness_sha256": "fa548c139ef40aab5137131371cbb5b2224c689e7cd2a865a5c9718dbb3418be",
+      "nautilus_trader": "2.0.0rc6",
+      "classification": {
+        "classification": "NEGATIVE_EVIDENCE",
+        "criteria": {
+          "unique_episodes": {
+            "all": 393,
+            "val_plus_oos": 153,
+            "oos": 70
+          },
+          "mean_net_r_by_partition": {
+            "DEVELOPMENT": -0.20929320214616218,
+            "VALIDATION": -0.22819832963603404,
+            "OUT_OF_SAMPLE": -0.18198250481360417
+          },
+          "pooled_val_oos_mean_net_r": -0.20646122558819627,
+          "pooled_ci95": [
+            -0.34443601034796967,
+            -0.05383570624434926
+          ],
+          "pooled_profit_factor": 0.5670883059016786
+        },
+        "reason": "pooled VAL+OOS mean net R < 0 with CI upper < 0 or negative in every partition"
+      },
+      "partitions_base": {
+        "DEVELOPMENT": {
+          "n_trades": 472,
+          "unique_episodes": 240,
+          "trades_per_episode_mean": 1.9666666666666666,
+          "share_of_trades_in_multi_trade_episodes": 0.7648305084745762,
+          "gross_eur": -42.474450896662674,
+          "net_eur": -194.06411572342947,
+          "cost_eur": 151.5896648267668,
+          "spread_slippage_cost_eur": 94.70209271553684,
+          "commission_eur": 56.88757211122997,
+          "gross_return_pct_of_500": -8.494890179332534,
+          "net_return_pct_of_500": -38.81282314468589,
+          "mean_net_eur": -0.4111527875496387,
+          "mean_net_r": -0.20929320214616218,
+          "mean_net_r_ci95": [
+            -0.31753459674946305,
+            -0.09963885937952315
+          ],
+          "win_rate": 0.3326271186440678,
+          "avg_win_eur": 1.9969171485150476,
+          "avg_loss_eur": -1.6113654223501332,
+          "profit_factor_r": 0.6005369306487008,
+          "max_drawdown_eur": 206.44668949561202,
+          "max_drawdown_fraction": 0.4122086495759612,
+          "holding_minutes_mean": 41.77019774011299,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "FORCE_FLAT": 4,
+            "STOP": 229,
+            "STOP_REJECTED": 1,
+            "TIME_EXIT": 238
+          },
+          "any_position_fraction": 0.08194203317901234,
+          "position_minutes": 19715.533333333333,
+          "mean_concurrency": 0.12965286546015714
+        },
+        "VALIDATION": {
+          "n_trades": 125,
+          "unique_episodes": 83,
+          "trades_per_episode_mean": 1.5060240963855422,
+          "share_of_trades_in_multi_trade_episodes": 0.568,
+          "gross_eur": -17.147436529150532,
+          "net_eur": -59.18911380202056,
+          "cost_eur": 42.041677272870025,
+          "spread_slippage_cost_eur": 26.252794214577875,
+          "commission_eur": 15.788883058292148,
+          "gross_return_pct_of_500": -3.4294873058301065,
+          "net_return_pct_of_500": -11.83782276040411,
+          "mean_net_eur": -0.47351291041616456,
+          "mean_net_r": -0.22819832963603404,
+          "mean_net_r_ci95": [
+            -0.4219020705781701,
+            -0.0013834512896157716
+          ],
+          "win_rate": 0.344,
+          "avg_win_eur": 1.6774477084251278,
+          "avg_loss_eur": -1.601455673954891,
+          "profit_factor_r": 0.5400545054498754,
+          "max_drawdown_eur": 79.4070301816094,
+          "max_drawdown_fraction": 0.1588140603632188,
+          "holding_minutes_mean": 45.43786666666666,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "STOP": 56,
+            "TIME_EXIT": 69
+          },
+          "any_position_fraction": 0.07732988522376544,
+          "position_minutes": 5679.733333333334,
+          "mean_concurrency": 0.10271508487654321
+        },
+        "OUT_OF_SAMPLE": {
+          "n_trades": 111,
+          "unique_episodes": 70,
+          "trades_per_episode_mean": 1.5857142857142856,
+          "share_of_trades_in_multi_trade_episodes": 0.6126126126126126,
+          "gross_eur": -6.8617328702069615,
+          "net_eur": -38.93172476573215,
+          "cost_eur": 32.069991895525185,
+          "spread_slippage_cost_eur": 19.832810999463337,
+          "commission_eur": 12.237180896061853,
+          "gross_return_pct_of_500": -1.3723465740413925,
+          "net_return_pct_of_500": -7.786344953146429,
+          "mean_net_eur": -0.3507362591507401,
+          "mean_net_r": -0.18198250481360417,
+          "mean_net_r_ci95": [
+            -0.3762645916526702,
+            0.03769549999886591
+          ],
+          "win_rate": 0.34234234234234234,
+          "avg_win_eur": 1.6024949770653285,
+          "avg_loss_eur": -1.3674867656741732,
+          "profit_factor_r": 0.6002656813416615,
+          "max_drawdown_eur": 52.31650343259997,
+          "max_drawdown_fraction": 0.10426100394530548,
+          "holding_minutes_mean": 48.88003003003002,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "FORCE_FLAT": 2,
+            "STOP": 40,
+            "TIME_EXIT": 69
+          },
+          "any_position_fraction": 0.08885432741769547,
+          "position_minutes": 5425.683333333333,
+          "mean_concurrency": 0.1308276266718107
+        },
+        "VAL_PLUS_OOS": {
+          "n_trades": 236,
+          "unique_episodes": 153,
+          "trades_per_episode_mean": 1.542483660130719,
+          "share_of_trades_in_multi_trade_episodes": 0.5889830508474576,
+          "gross_eur": -24.009169399357493,
+          "net_eur": -98.1208385677527,
+          "cost_eur": 74.11166916839521,
+          "spread_slippage_cost_eur": 46.08560521404121,
+          "commission_eur": 28.026063954354,
+          "gross_return_pct_of_500": -4.801833879871499,
+          "net_return_pct_of_500": -19.62416771355054,
+          "mean_net_eur": -0.41576626511759623,
+          "mean_net_r": -0.20646122558819627,
+          "mean_net_r_ci95": [
+            -0.34443601034796967,
+            -0.05383570624434926
+          ],
+          "win_rate": 0.3432203389830508,
+          "avg_win_eur": 1.642284698651395,
+          "avg_loss_eur": -1.4912638655388109,
+          "profit_factor_r": 0.5670883059016786,
+          "max_drawdown_eur": 109.72161887560969,
+          "max_drawdown_fraction": 0.21944323775121938,
+          "holding_minutes_mean": 47.056850282485875,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "FORCE_FLAT": 2,
+            "STOP": 96,
+            "TIME_EXIT": 138
+          },
+          "any_position_fraction": 0.08226893187830688,
+          "position_minutes": 11105.416666666666,
+          "mean_concurrency": 0.114763317074515
+        },
+        "ALL_EVALUATED": {
+          "n_trades": 708,
+          "unique_episodes": 393,
+          "trades_per_episode_mean": 1.8015267175572518,
+          "share_of_trades_in_multi_trade_episodes": 0.7062146892655368,
+          "gross_eur": -66.48362029602016,
+          "net_eur": -292.1849542911822,
+          "cost_eur": 225.701333995162,
+          "spread_slippage_cost_eur": 140.78769792957803,
+          "commission_eur": 84.91363606558397,
+          "gross_return_pct_of_500": -13.296724059204033,
+          "net_return_pct_of_500": -58.436990858236435,
+          "mean_net_eur": -0.4126906134056246,
+          "mean_net_r": -0.2083492099601736,
+          "mean_net_r_ci95": [
+            -0.2956158501129609,
+            -0.11486413918729435
+          ],
+          "win_rate": 0.3361581920903955,
+          "avg_win_eur": 1.8762229113765776,
+          "avg_loss_eur": -1.5717574621251225,
+          "profit_factor_r": 0.5900750764907804,
+          "max_drawdown_eur": 304.6162962769255,
+          "max_drawdown_fraction": 0.6082222603516789,
+          "holding_minutes_mean": 43.532415254237286,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "FORCE_FLAT": 6,
+            "STOP": 325,
+            "STOP_REJECTED": 1,
+            "TIME_EXIT": 376
+          },
+          "any_position_fraction": 0.08206916045096022,
+          "position_minutes": 30820.95,
+          "mean_concurrency": 0.1238624855324074
+        }
+      },
+      "cost_sensitivity": {
+        "optimistic": {
+          "n_trades": 733,
+          "unique_episodes": 407,
+          "trades_per_episode_mean": 1.800982800982801,
+          "share_of_trades_in_multi_trade_episodes": 0.6971350613915416,
+          "gross_eur": -37.29573147307619,
+          "net_eur": -255.2703306483376,
+          "cost_eur": 217.9745991752614,
+          "spread_slippage_cost_eur": 124.3465922605993,
+          "commission_eur": 93.62800691466211,
+          "gross_return_pct_of_500": -7.459146294615238,
+          "net_return_pct_of_500": -51.05406612966752,
+          "mean_net_eur": -0.3482542027944578,
+          "mean_net_r": -0.16659448826525414,
+          "mean_net_r_ci95": [
+            -0.2573812793017013,
+            -0.07291317842083955
+          ],
+          "win_rate": 0.35743519781718963,
+          "avg_win_eur": 1.928422294070796,
+          "avg_loss_eur": -1.6146857148511382,
+          "profit_factor_r": 0.6630349046784285,
+          "max_drawdown_eur": 278.56991503502854,
+          "max_drawdown_fraction": 0.5514127589216696,
+          "holding_minutes_mean": 44.760527512505675,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "FORCE_FLAT": 6,
+            "STOP": 318,
+            "STOP_REJECTED": 1,
+            "TIME_EXIT": 408
+          },
+          "any_position_fraction": 0.08589550379372428,
+          "position_minutes": 32809.46666666667,
+          "mean_concurrency": 0.13185388803155007
+        },
+        "base": {
+          "n_trades": 708,
+          "unique_episodes": 393,
+          "trades_per_episode_mean": 1.8015267175572518,
+          "share_of_trades_in_multi_trade_episodes": 0.7062146892655368,
+          "gross_eur": -66.48362029602016,
+          "net_eur": -292.1849542911822,
+          "cost_eur": 225.701333995162,
+          "spread_slippage_cost_eur": 140.78769792957803,
+          "commission_eur": 84.91363606558397,
+          "gross_return_pct_of_500": -13.296724059204033,
+          "net_return_pct_of_500": -58.436990858236435,
+          "mean_net_eur": -0.4126906134056246,
+          "mean_net_r": -0.2083492099601736,
+          "mean_net_r_ci95": [
+            -0.2956158501129609,
+            -0.11486413918729435
+          ],
+          "win_rate": 0.3361581920903955,
+          "avg_win_eur": 1.8762229113765776,
+          "avg_loss_eur": -1.5717574621251225,
+          "profit_factor_r": 0.5900750764907804,
+          "max_drawdown_eur": 304.6162962769255,
+          "max_drawdown_fraction": 0.6082222603516789,
+          "holding_minutes_mean": 43.532415254237286,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "FORCE_FLAT": 6,
+            "STOP": 325,
+            "STOP_REJECTED": 1,
+            "TIME_EXIT": 376
+          },
+          "any_position_fraction": 0.08206916045096022,
+          "position_minutes": 30820.95,
+          "mean_concurrency": 0.1238624855324074
+        },
+        "adverse": {
+          "n_trades": 464,
+          "unique_episodes": 259,
+          "trades_per_episode_mean": 1.7915057915057915,
+          "share_of_trades_in_multi_trade_episodes": 0.6681034482758621,
+          "gross_eur": -23.021709904705762,
+          "net_eur": -190.6393402237094,
+          "cost_eur": 167.61763031900367,
+          "spread_slippage_cost_eur": 107.17517127712216,
+          "commission_eur": 60.44245904188149,
+          "gross_return_pct_of_500": -4.604341980941152,
+          "net_return_pct_of_500": -38.12786804474188,
+          "mean_net_eur": -0.4108606470338565,
+          "mean_net_r": -0.2280343668797181,
+          "mean_net_r_ci95": [
+            -0.3278238235838712,
+            -0.12761362373351826
+          ],
+          "win_rate": 0.3577586206896552,
+          "avg_win_eur": 1.4573833023955272,
+          "avg_loss_eur": -1.4515602967159962,
+          "profit_factor_r": 0.5379105155496062,
+          "max_drawdown_eur": 202.3888028951547,
+          "max_drawdown_fraction": 0.4008344445667967,
+          "holding_minutes_mean": 43.08175287356321,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "FORCE_FLAT": 5,
+            "STOP": 203,
+            "STOP_REJECTED": 2,
+            "TIME_EXIT": 254
+          },
+          "any_position_fraction": 0.05475923514660494,
+          "position_minutes": 19989.933333333334,
+          "mean_concurrency": 0.08033505872770919
+        }
+      },
+      "by_pair": {
+        "AUDUSD": {
+          "n": 111,
+          "mean_net_r": -0.15988468311899295,
+          "net_eur": -34.97935177753555,
+          "win_rate": 0.3963963963963964
+        },
+        "EURUSD": {
+          "n": 119,
+          "mean_net_r": -0.2079493016225984,
+          "net_eur": -50.09161923563469,
+          "win_rate": 0.3025210084033613
+        },
+        "GBPUSD": {
+          "n": 116,
+          "mean_net_r": -0.2871036765090778,
+          "net_eur": -62.655646611270505,
+          "win_rate": 0.27586206896551724
+        },
+        "NZDUSD": {
+          "n": 98,
+          "mean_net_r": -0.17748740128096796,
+          "net_eur": -35.50780959884589,
+          "win_rate": 0.3979591836734694
+        },
+        "USDCAD": {
+          "n": 49,
+          "mean_net_r": -0.2512059708650991,
+          "net_eur": -27.09725982847974,
+          "win_rate": 0.32653061224489793
+        },
+        "USDCHF": {
+          "n": 99,
+          "mean_net_r": -0.33667516439716705,
+          "net_eur": -66.03585441189452,
+          "win_rate": 0.30303030303030304
+        },
+        "USDJPY": {
+          "n": 116,
+          "mean_net_r": -0.07483058865696701,
+          "net_eur": -15.817412827521288,
+          "win_rate": 0.35344827586206895
+        }
+      },
+      "by_regime": {
+        "session": {
+          "ASIA": {
+            "n": 193,
+            "mean_net_r": -0.18259922724087974
+          },
+          "LONDON": {
+            "n": 193,
+            "mean_net_r": -0.18089378861415528
+          },
+          "LONDON_NEW_YORK_OVERLAP": {
+            "n": 198,
+            "mean_net_r": -0.2516193258886197
+          },
+          "NEW_YORK": {
+            "n": 64,
+            "mean_net_r": -0.20284084911152434
+          },
+          "OTHER": {
+            "n": 60,
+            "mean_net_r": -0.2425774620449481
+          }
+        },
+        "volatility_tercile": {
+          "low": {
+            "n": 236,
+            "mean_net_r": -0.27616859043161823
+          },
+          "mid": {
+            "n": 236,
+            "mean_net_r": -0.09601705909103736
+          },
+          "high": {
+            "n": 236,
+            "mean_net_r": -0.25286198035786506
+          }
+        }
+      },
+      "governed": {
+        "n_trades": 89,
+        "final_ledger_equity_eur": 446.1421447602263,
+        "engine_balance_eur": 442.49,
+        "ledger_minus_engine_eur": 3.763610465599497,
+        "paused_drawdown": true,
+        "max_drawdown_eur": 54.688416917660845,
+        "max_drawdown_fraction": 0.10919544672841691,
+        "net_eur": -53.8578552397738
+      },
+      "reject_counts_research_base": {
+        "MAX_POSITIONS": 279,
+        "COST_GATE": 346,
+        "SESSION_NO_ENTRY": 10,
+        "DAILY_LOSS_HALT": 187,
+        "BELOW_MIN_UNITS": 10,
+        "ENGINE_DENIED": 22
+      },
+      "tf_resets": {
+        "EURUSD": 24,
+        "GBPUSD": 24,
+        "USDJPY": 24,
+        "USDCHF": 24,
+        "AUDUSD": 24,
+        "USDCAD": 24,
+        "NZDUSD": 24
+      },
+      "seconds": 84.9
+    },
+    "F02": {
+      "config_hash": "2321b557fe2c5f683df567128c81fa0157621bdc73b998a38ced36c2d3721343",
+      "harness_sha256": "fa548c139ef40aab5137131371cbb5b2224c689e7cd2a865a5c9718dbb3418be",
+      "nautilus_trader": "2.0.0rc6",
+      "classification": {
+        "classification": "NEGATIVE_EVIDENCE",
+        "criteria": {
+          "unique_episodes": {
+            "all": 391,
+            "val_plus_oos": 35,
+            "oos": 14
+          },
+          "mean_net_r_by_partition": {
+            "DEVELOPMENT": -0.16918103492382047,
+            "VALIDATION": -0.20580599857735493,
+            "OUT_OF_SAMPLE": -0.20084652182047136
+          },
+          "pooled_val_oos_mean_net_r": -0.2038726432314512,
+          "pooled_ci95": [
+            -0.45418576783260006,
+            0.07917242867988311
+          ],
+          "pooled_profit_factor": 0.613455877184955
+        },
+        "reason": "pooled VAL+OOS mean net R < 0 with CI upper < 0 or negative in every partition"
+      },
+      "partitions_base": {
+        "DEVELOPMENT": {
+          "n_trades": 924,
+          "unique_episodes": 356,
+          "trades_per_episode_mean": 2.595505617977528,
+          "share_of_trades_in_multi_trade_episodes": 0.8225108225108225,
+          "gross_eur": 39.59805038913751,
+          "net_eur": -331.1437921003984,
+          "cost_eur": 370.74184248953594,
+          "spread_slippage_cost_eur": 220.05737849391213,
+          "commission_eur": 150.68446399562382,
+          "gross_return_pct_of_500": 7.919610077827502,
+          "net_return_pct_of_500": -66.22875842007969,
+          "mean_net_eur": -0.35838072738138355,
+          "mean_net_r": -0.16918103492382047,
+          "mean_net_r_ci95": [
+            -0.22921913345989772,
+            -0.10642287158613248
+          ],
+          "win_rate": 0.4653679653679654,
+          "avg_win_eur": 1.1572041255387375,
+          "avg_loss_eur": -1.677614506238979,
+          "profit_factor_r": 0.6002141433983135,
+          "max_drawdown_eur": 336.98479556826317,
+          "max_drawdown_fraction": 0.6686444247729653,
+          "holding_minutes_mean": 17.053968253968254,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "REVERSION_EXIT": 350,
+            "STOP": 354,
+            "TIME_EXIT": 220
+          },
+          "any_position_fraction": 0.07361790649551066,
+          "position_minutes": 15757.866666666667,
+          "mean_concurrency": 0.10362654320987655
+        },
+        "VALIDATION": {
+          "n_trades": 36,
+          "unique_episodes": 21,
+          "trades_per_episode_mean": 1.7142857142857142,
+          "share_of_trades_in_multi_trade_episodes": 0.6666666666666666,
+          "gross_eur": -7.894342716843937,
+          "net_eur": -15.183205998373266,
+          "cost_eur": 7.28886328152933,
+          "spread_slippage_cost_eur": 5.110770667292954,
+          "commission_eur": 2.178092614236375,
+          "gross_return_pct_of_500": -1.5788685433687875,
+          "net_return_pct_of_500": -3.036641199674653,
+          "mean_net_eur": -0.4217557221770352,
+          "mean_net_r": -0.20580599857735493,
+          "mean_net_r_ci95": [
+            -0.5283308159031573,
+            0.21647454991677226
+          ],
+          "win_rate": 0.3888888888888889,
+          "avg_win_eur": 1.3902968204845347,
+          "avg_loss_eur": -1.574880067507125,
+          "profit_factor_r": 0.6211879795306409,
+          "max_drawdown_eur": 25.721805231129224,
+          "max_drawdown_fraction": 0.05111526291986676,
+          "holding_minutes_mean": 14.416666666666666,
+          "holding_minutes_median": 10.0,
+          "exits": {
+            "REVERSION_EXIT": 7,
+            "STOP": 20,
+            "TIME_EXIT": 9
+          },
+          "any_position_fraction": 0.00853738667052469,
+          "position_minutes": 519.0,
+          "mean_concurrency": 0.009385850694444444
+        },
+        "OUT_OF_SAMPLE": {
+          "n_trades": 23,
+          "unique_episodes": 14,
+          "trades_per_episode_mean": 1.6428571428571428,
+          "share_of_trades_in_multi_trade_episodes": 0.6521739130434783,
+          "gross_eur": -4.0222387458816895,
+          "net_eur": -6.999541981797991,
+          "cost_eur": 2.977303235916302,
+          "spread_slippage_cost_eur": 1.8785422862844063,
+          "commission_eur": 1.0987609496318957,
+          "gross_return_pct_of_500": -0.8044477491763379,
+          "net_return_pct_of_500": -1.3999083963595984,
+          "mean_net_eur": -0.30432791225208655,
+          "mean_net_r": -0.20084652182047136,
+          "mean_net_r_ci95": [
+            -0.5684805987765867,
+            0.1592543590444405
+          ],
+          "win_rate": 0.43478260869565216,
+          "avg_win_eur": 1.0338495920978268,
+          "avg_loss_eur": -1.3336952232904813,
+          "profit_factor_r": 0.6003731937434584,
+          "max_drawdown_eur": 8.7305360551195,
+          "max_drawdown_fraction": 0.017461072110239003,
+          "holding_minutes_mean": 13.165217391304349,
+          "holding_minutes_median": 10.0,
+          "exits": {
+            "REVERSION_EXIT": 9,
+            "STOP": 12,
+            "TIME_EXIT": 2
+          },
+          "any_position_fraction": 0.005630304783950617,
+          "position_minutes": 302.8,
+          "mean_concurrency": 0.007301311728395062
+        },
+        "VAL_PLUS_OOS": {
+          "n_trades": 59,
+          "unique_episodes": 35,
+          "trades_per_episode_mean": 1.6857142857142857,
+          "share_of_trades_in_multi_trade_episodes": 0.6610169491525424,
+          "gross_eur": -11.916581462725626,
+          "net_eur": -22.182747980171257,
+          "cost_eur": 10.266166517445631,
+          "spread_slippage_cost_eur": 6.989312953577361,
+          "commission_eur": 3.2768535638682708,
+          "gross_return_pct_of_500": -2.3833162925451252,
+          "net_return_pct_of_500": -4.436549596034252,
+          "mean_net_eur": -0.37597877932493656,
+          "mean_net_r": -0.2038726432314512,
+          "mean_net_r_ci95": [
+            -0.45418576783260006,
+            0.07917242867988311
+          ],
+          "win_rate": 0.4067796610169492,
+          "avg_win_eur": 1.241777141990073,
+          "avg_loss_eur": -1.4852971253695144,
+          "profit_factor_r": 0.613455877184955,
+          "max_drawdown_eur": 27.125576676220362,
+          "max_drawdown_fraction": 0.05390488619282413,
+          "holding_minutes_mean": 13.928813559322034,
+          "holding_minutes_median": 10.0,
+          "exits": {
+            "REVERSION_EXIT": 16,
+            "STOP": 32,
+            "TIME_EXIT": 11
+          },
+          "any_position_fraction": 0.0072914944334215165,
+          "position_minutes": 821.8,
+          "mean_concurrency": 0.008492476851851852
+        },
+        "ALL_EVALUATED": {
+          "n_trades": 983,
+          "unique_episodes": 391,
+          "trades_per_episode_mean": 2.5140664961636827,
+          "share_of_trades_in_multi_trade_episodes": 0.8128179043743642,
+          "gross_eur": 27.68146892641189,
+          "net_eur": -353.32654008056966,
+          "cost_eur": 381.0080090069816,
+          "spread_slippage_cost_eur": 227.04669144748948,
+          "commission_eur": 153.96131755949207,
+          "gross_return_pct_of_500": 5.536293785282378,
+          "net_return_pct_of_500": -70.66530801611394,
+          "mean_net_eur": -0.3594369685458491,
+          "mean_net_r": -0.17126323725357656,
+          "mean_net_r_ci95": [
+            -0.23049574137493736,
+            -0.10978029934246719
+          ],
+          "win_rate": 0.46185147507629704,
+          "avg_win_eur": 1.1616749457916715,
+          "avg_loss_eur": -1.6648902938941181,
+          "profit_factor_r": 0.6011902670262322,
+          "max_drawdown_eur": 359.0395955951192,
+          "max_drawdown_fraction": 0.7124055061967491,
+          "holding_minutes_mean": 16.866395388267208,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "REVERSION_EXIT": 366,
+            "STOP": 386,
+            "TIME_EXIT": 231
+          },
+          "any_position_fraction": 0.04782430180469822,
+          "position_minutes": 16579.666666666668,
+          "mean_concurrency": 0.0666299618484225
+        }
+      },
+      "cost_sensitivity": {
+        "optimistic": {
+          "n_trades": 939,
+          "unique_episodes": 352,
+          "trades_per_episode_mean": 2.6676136363636362,
+          "share_of_trades_in_multi_trade_episodes": 0.832800851970181,
+          "gross_eur": 36.866141245692454,
+          "net_eur": -311.9704586656189,
+          "cost_eur": 348.83659991131134,
+          "spread_slippage_cost_eur": 189.6277158353043,
+          "commission_eur": 159.20888407600705,
+          "gross_return_pct_of_500": 7.37322824913849,
+          "net_return_pct_of_500": -62.39409173312377,
+          "mean_net_eur": -0.33223691018702756,
+          "mean_net_r": -0.1548281023844384,
+          "mean_net_r_ci95": [
+            -0.2155596438530314,
+            -0.0926187082138976
+          ],
+          "win_rate": 0.46006389776357826,
+          "avg_win_eur": 1.2974596264477103,
+          "avg_loss_eur": -1.7208540774971,
+          "profit_factor_r": 0.6447154229836882,
+          "max_drawdown_eur": 322.9333302422432,
+          "max_drawdown_fraction": 0.6400539384715359,
+          "holding_minutes_mean": 17.230617678381257,
+          "holding_minutes_median": 16.65,
+          "exits": {
+            "REVERSION_EXIT": 353,
+            "STOP": 368,
+            "TIME_EXIT": 218
+          },
+          "any_position_fraction": 0.0448102869941701,
+          "position_minutes": 16179.55,
+          "mean_concurrency": 0.0650219827031893
+        },
+        "base": {
+          "n_trades": 983,
+          "unique_episodes": 391,
+          "trades_per_episode_mean": 2.5140664961636827,
+          "share_of_trades_in_multi_trade_episodes": 0.8128179043743642,
+          "gross_eur": 27.68146892641189,
+          "net_eur": -353.32654008056966,
+          "cost_eur": 381.0080090069816,
+          "spread_slippage_cost_eur": 227.04669144748948,
+          "commission_eur": 153.96131755949207,
+          "gross_return_pct_of_500": 5.536293785282378,
+          "net_return_pct_of_500": -70.66530801611394,
+          "mean_net_eur": -0.3594369685458491,
+          "mean_net_r": -0.17126323725357656,
+          "mean_net_r_ci95": [
+            -0.23049574137493736,
+            -0.10978029934246719
+          ],
+          "win_rate": 0.46185147507629704,
+          "avg_win_eur": 1.1616749457916715,
+          "avg_loss_eur": -1.6648902938941181,
+          "profit_factor_r": 0.6011902670262322,
+          "max_drawdown_eur": 359.0395955951192,
+          "max_drawdown_fraction": 0.7124055061967491,
+          "holding_minutes_mean": 16.866395388267208,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "REVERSION_EXIT": 366,
+            "STOP": 386,
+            "TIME_EXIT": 231
+          },
+          "any_position_fraction": 0.04782430180469822,
+          "position_minutes": 16579.666666666668,
+          "mean_concurrency": 0.0666299618484225
+        },
+        "adverse": {
+          "n_trades": 885,
+          "unique_episodes": 436,
+          "trades_per_episode_mean": 2.029816513761468,
+          "share_of_trades_in_multi_trade_episodes": 0.7446327683615819,
+          "gross_eur": 26.090584927904803,
+          "net_eur": -339.6615899556692,
+          "cost_eur": 365.75217488357407,
+          "spread_slippage_cost_eur": 214.4198690027818,
+          "commission_eur": 151.33230588079226,
+          "gross_return_pct_of_500": 5.21811698558096,
+          "net_return_pct_of_500": -67.93231799113386,
+          "mean_net_eur": -0.3837984067295698,
+          "mean_net_r": -0.1967913567781698,
+          "mean_net_r_ci95": [
+            -0.2535365289455933,
+            -0.1370419265485882
+          ],
+          "win_rate": 0.4271186440677966,
+          "avg_win_eur": 1.028071005714719,
+          "avg_loss_eur": -1.4364347734040102,
+          "profit_factor_r": 0.5390820375275703,
+          "max_drawdown_eur": 340.8238695975402,
+          "max_drawdown_fraction": 0.6804290528162045,
+          "holding_minutes_mean": 18.238907721280604,
+          "holding_minutes_median": 20.0,
+          "exits": {
+            "REVERSION_EXIT": 324,
+            "STOP": 320,
+            "STOP_REJECTED": 16,
+            "TIME_EXIT": 225
+          },
+          "any_position_fraction": 0.04943127625600137,
+          "position_minutes": 16141.433333333332,
+          "mean_concurrency": 0.0648688003686557
+        }
+      },
+      "by_pair": {
+        "AUDUSD": {
+          "n": 166,
+          "mean_net_r": -0.16773374067739583,
+          "net_eur": -56.99080710952176,
+          "win_rate": 0.5
+        },
+        "EURUSD": {
+          "n": 203,
+          "mean_net_r": -0.13267132450754912,
+          "net_eur": -58.83682651223019,
+          "win_rate": 0.47783251231527096
+        },
+        "GBPUSD": {
+          "n": 245,
+          "mean_net_r": -0.13384972326610406,
+          "net_eur": -68.5857615606983,
+          "win_rate": 0.4897959183673469
+        },
+        "NZDUSD": {
+          "n": 69,
+          "mean_net_r": -0.29054303672215465,
+          "net_eur": -40.918756171863265,
+          "win_rate": 0.34782608695652173
+        },
+        "USDCAD": {
+          "n": 13,
+          "mean_net_r": -0.24899084377269057,
+          "net_eur": -6.818229095339105,
+          "win_rate": 0.46153846153846156
+        },
+        "USDCHF": {
+          "n": 117,
+          "mean_net_r": -0.2913840480882008,
+          "net_eur": -71.6902199656208,
+          "win_rate": 0.38461538461538464
+        },
+        "USDJPY": {
+          "n": 170,
+          "mean_net_r": -0.1376836239023348,
+          "net_eur": -49.48593966529624,
+          "win_rate": 0.4647058823529412
+        }
+      },
+      "by_regime": {
+        "session": {
+          "ASIA": {
+            "n": 206,
+            "mean_net_r": -0.1943095943989337
+          },
+          "LONDON": {
+            "n": 333,
+            "mean_net_r": -0.16258189049791638
+          },
+          "LONDON_NEW_YORK_OVERLAP": {
+            "n": 308,
+            "mean_net_r": -0.10303236423068267
+          },
+          "NEW_YORK": {
+            "n": 64,
+            "mean_net_r": -0.24944233994908652
+          },
+          "OTHER": {
+            "n": 72,
+            "mean_net_r": -0.36786025414565887
+          }
+        },
+        "volatility_tercile": {
+          "low": {
+            "n": 328,
+            "mean_net_r": -0.14455737694478552
+          },
+          "mid": {
+            "n": 327,
+            "mean_net_r": -0.1727158550217192
+          },
+          "high": {
+            "n": 328,
+            "mean_net_r": -0.19652090850693257
+          }
+        }
+      },
+      "governed": {
+        "n_trades": 81,
+        "final_ledger_equity_eur": 452.0918872687065,
+        "engine_balance_eur": 440.94,
+        "ledger_minus_engine_eur": 11.229917259375718,
+        "paused_drawdown": true,
+        "max_drawdown_eur": 51.89017417252154,
+        "max_drawdown_fraction": 0.10296035939083265,
+        "net_eur": -47.908112731293755
+      },
+      "reject_counts_research_base": {
+        "COST_GATE": 13493,
+        "MAX_POSITIONS": 285,
+        "DAILY_LOSS_HALT": 5808,
+        "SESSION_NO_ENTRY": 896,
+        "ENGINE_DENIED": 2127
+      },
+      "tf_resets": {
+        "EURUSD": 24,
+        "GBPUSD": 24,
+        "USDJPY": 24,
+        "USDCHF": 24,
+        "AUDUSD": 24,
+        "USDCAD": 24,
+        "NZDUSD": 24
+      },
+      "seconds": 66.2
+    },
+    "F03": {
+      "config_hash": "0cbc94bfc8165a4e698bebcf216cfece534c8166b7616c225a51db1b885448f4",
+      "harness_sha256": "fa548c139ef40aab5137131371cbb5b2224c689e7cd2a865a5c9718dbb3418be",
+      "nautilus_trader": "2.0.0rc6",
+      "classification": {
+        "classification": "MIXED_EVIDENCE",
+        "criteria": {
+          "unique_episodes": {
+            "all": 324,
+            "val_plus_oos": 111,
+            "oos": 44
+          },
+          "mean_net_r_by_partition": {
+            "DEVELOPMENT": -0.2495359720212964,
+            "VALIDATION": -0.40580628986306577,
+            "OUT_OF_SAMPLE": 0.1926559731397844
+          },
+          "pooled_val_oos_mean_net_r": -0.15036508004477614,
+          "pooled_ci95": [
+            -0.3558115264549706,
+            0.07874517958821199
+          ],
+          "pooled_profit_factor": 0.7104861022785809,
+          "pairs_positive": 0
+        },
+        "reason": "sufficient data; neither NEGATIVE_EVIDENCE nor PROMISING_RESEARCH criteria satisfied"
+      },
+      "partitions_base": {
+        "DEVELOPMENT": {
+          "n_trades": 390,
+          "unique_episodes": 213,
+          "trades_per_episode_mean": 1.8309859154929577,
+          "share_of_trades_in_multi_trade_episodes": 0.7282051282051282,
+          "gross_eur": -55.96036948611595,
+          "net_eur": -208.7455194237072,
+          "cost_eur": 152.78514993759126,
+          "spread_slippage_cost_eur": 91.53085890536792,
+          "commission_eur": 61.25429103222334,
+          "gross_return_pct_of_500": -11.19207389722319,
+          "net_return_pct_of_500": -41.74910388474144,
+          "mean_net_eur": -0.5352449215992493,
+          "mean_net_r": -0.2495359720212964,
+          "mean_net_r_ci95": [
+            -0.3711187137530863,
+            -0.12535134452747712
+          ],
+          "win_rate": 0.3230769230769231,
+          "avg_win_eur": 1.8106116471135005,
+          "avg_loss_eur": -1.654858283939425,
+          "profit_factor_r": 0.52569524726977,
+          "max_drawdown_eur": 223.32699590268874,
+          "max_drawdown_fraction": 0.4391623438275677,
+          "holding_minutes_mean": 77.39474358974358,
+          "holding_minutes_median": 85.0,
+          "exits": {
+            "FORCE_FLAT": 48,
+            "STOP": 188,
+            "TIME_EXIT": 154
+          },
+          "any_position_fraction": 0.11582020289702581,
+          "position_minutes": 30183.95,
+          "mean_concurrency": 0.19849504156144782
+        },
+        "VALIDATION": {
+          "n_trades": 94,
+          "unique_episodes": 67,
+          "trades_per_episode_mean": 1.4029850746268657,
+          "share_of_trades_in_multi_trade_episodes": 0.5106382978723404,
+          "gross_eur": -43.41976238527805,
+          "net_eur": -79.94017258398888,
+          "cost_eur": 36.52041019871083,
+          "spread_slippage_cost_eur": 21.851846707865654,
+          "commission_eur": 14.668563490845171,
+          "gross_return_pct_of_500": -8.683952477055609,
+          "net_return_pct_of_500": -15.988034516797775,
+          "mean_net_eur": -0.8504273679147754,
+          "mean_net_r": -0.40580628986306577,
+          "mean_net_r_ci95": [
+            -0.5894882671949101,
+            -0.19616096176755546
+          ],
+          "win_rate": 0.2127659574468085,
+          "avg_win_eur": 1.987214235068577,
+          "avg_loss_eur": -1.617357530883249,
+          "profit_factor_r": 0.32620696001589095,
+          "max_drawdown_eur": 79.94017258398873,
+          "max_drawdown_fraction": 0.15988034516797744,
+          "holding_minutes_mean": 72.54060283687942,
+          "holding_minutes_median": 70.325,
+          "exits": {
+            "FORCE_FLAT": 9,
+            "STOP": 52,
+            "TIME_EXIT": 33
+          },
+          "any_position_fraction": 0.0876341266396605,
+          "position_minutes": 6818.816666666667,
+          "mean_concurrency": 0.12331482687114198
+        },
+        "OUT_OF_SAMPLE": {
+          "n_trades": 70,
+          "unique_episodes": 44,
+          "trades_per_episode_mean": 1.5909090909090908,
+          "share_of_trades_in_multi_trade_episodes": 0.6,
+          "gross_eur": 53.656571182526086,
+          "net_eur": 28.81542923159066,
+          "cost_eur": 24.841141950935427,
+          "spread_slippage_cost_eur": 15.896220908166285,
+          "commission_eur": 8.944921042769142,
+          "gross_return_pct_of_500": 10.731314236505217,
+          "net_return_pct_of_500": 5.763085846318132,
+          "mean_net_eur": 0.4116489890227237,
+          "mean_net_r": 0.1926559731397844,
+          "mean_net_r_ci95": [
+            -0.17861734619262093,
+            0.6559768666304747
+          ],
+          "win_rate": 0.38571428571428573,
+          "avg_win_eur": 3.3331914868328396,
+          "avg_loss_eur": -1.422807928206884,
+          "profit_factor_r": 1.4721413496002367,
+          "max_drawdown_eur": 26.330417731369607,
+          "max_drawdown_fraction": 0.05029434657597882,
+          "holding_minutes_mean": 91.295,
+          "holding_minutes_median": 120.0,
+          "exits": {
+            "FORCE_FLAT": 11,
+            "STOP": 22,
+            "TIME_EXIT": 37
+          },
+          "any_position_fraction": 0.09769965277777778,
+          "position_minutes": 6390.65,
+          "mean_concurrency": 0.15409553433641976
+        },
+        "VAL_PLUS_OOS": {
+          "n_trades": 164,
+          "unique_episodes": 111,
+          "trades_per_episode_mean": 1.4774774774774775,
+          "share_of_trades_in_multi_trade_episodes": 0.5487804878048781,
+          "gross_eur": 10.236808797248036,
+          "net_eur": -51.12474335239821,
+          "cost_eur": 61.36155214964625,
+          "spread_slippage_cost_eur": 37.74806761603194,
+          "commission_eur": 23.61348453361431,
+          "gross_return_pct_of_500": 2.047361759449607,
+          "net_return_pct_of_500": -10.224948670479641,
+          "mean_net_eur": -0.31173623995364774,
+          "mean_net_r": -0.15036508004477614,
+          "mean_net_r_ci95": [
+            -0.3558115264549706,
+            0.07874517958821199
+          ],
+          "win_rate": 0.2865853658536585,
+          "avg_win_eur": 2.7604352094863445,
+          "avg_loss_eur": -1.5458563948568924,
+          "profit_factor_r": 0.7104861022785809,
+          "max_drawdown_eur": 86.7831426766079,
+          "max_drawdown_fraction": 0.17356628535321578,
+          "holding_minutes_mean": 80.54552845528455,
+          "holding_minutes_median": 97.65,
+          "exits": {
+            "FORCE_FLAT": 20,
+            "STOP": 74,
+            "TIME_EXIT": 70
+          },
+          "any_position_fraction": 0.09194792355599647,
+          "position_minutes": 13209.466666666667,
+          "mean_concurrency": 0.1365065586419753
+        },
+        "ALL_EVALUATED": {
+          "n_trades": 554,
+          "unique_episodes": 324,
+          "trades_per_episode_mean": 1.7098765432098766,
+          "share_of_trades_in_multi_trade_episodes": 0.6750902527075813,
+          "gross_eur": -45.72356068886791,
+          "net_eur": -259.87026277610545,
+          "cost_eur": 214.14670208723751,
+          "spread_slippage_cost_eur": 129.27892652139985,
+          "commission_eur": 84.86777556583766,
+          "gross_return_pct_of_500": -9.144712137773583,
+          "net_return_pct_of_500": -51.97405255522109,
+          "mean_net_eur": -0.46907989670777156,
+          "mean_net_r": -0.22017852385496187,
+          "mean_net_r_ci95": [
+            -0.3274068785322731,
+            -0.1081628598352234
+          ],
+          "win_rate": 0.31227436823104693,
+          "avg_win_eur": 2.068656198740805,
+          "avg_loss_eur": -1.6213852628825847,
+          "profit_factor_r": 0.5799035917794267,
+          "max_drawdown_eur": 304.0581365453632,
+          "max_drawdown_fraction": 0.5979164469811268,
+          "holding_minutes_mean": 78.32746690734055,
+          "holding_minutes_median": 87.325,
+          "exits": {
+            "FORCE_FLAT": 68,
+            "STOP": 262,
+            "TIME_EXIT": 224
+          },
+          "any_position_fraction": 0.10653653870884773,
+          "position_minutes": 43393.416666666664,
+          "mean_concurrency": 0.17438840931498628
+        }
+      },
+      "cost_sensitivity": {
+        "optimistic": {
+          "n_trades": 584,
+          "unique_episodes": 340,
+          "trades_per_episode_mean": 1.7176470588235293,
+          "share_of_trades_in_multi_trade_episodes": 0.6815068493150684,
+          "gross_eur": 0.2587977663953,
+          "net_eur": -216.69398286977915,
+          "cost_eur": 216.95278063617445,
+          "spread_slippage_cost_eur": 119.74620891635594,
+          "commission_eur": 97.20657171981851,
+          "gross_return_pct_of_500": 0.05175955327906,
+          "net_return_pct_of_500": -43.338796573955825,
+          "mean_net_eur": -0.37105134053044375,
+          "mean_net_r": -0.16759310674525763,
+          "mean_net_r_ci95": [
+            -0.27484608842641306,
+            -0.056644853698685264
+          ],
+          "win_rate": 0.3441780821917808,
+          "avg_win_eur": 2.08993566245897,
+          "avg_loss_eur": -1.6625876005849405,
+          "profit_factor_r": 0.6678465698892413,
+          "max_drawdown_eur": 276.282794630885,
+          "max_drawdown_fraction": 0.5317460283681249,
+          "holding_minutes_mean": 81.09897260273972,
+          "holding_minutes_median": 100.0,
+          "exits": {
+            "FORCE_FLAT": 76,
+            "STOP": 254,
+            "TIME_EXIT": 254
+          },
+          "any_position_fraction": 0.11558019065072017,
+          "position_minutes": 47361.8,
+          "mean_concurrency": 0.19033645190329218
+        },
+        "base": {
+          "n_trades": 554,
+          "unique_episodes": 324,
+          "trades_per_episode_mean": 1.7098765432098766,
+          "share_of_trades_in_multi_trade_episodes": 0.6750902527075813,
+          "gross_eur": -45.72356068886791,
+          "net_eur": -259.87026277610545,
+          "cost_eur": 214.14670208723751,
+          "spread_slippage_cost_eur": 129.27892652139985,
+          "commission_eur": 84.86777556583766,
+          "gross_return_pct_of_500": -9.144712137773583,
+          "net_return_pct_of_500": -51.97405255522109,
+          "mean_net_eur": -0.46907989670777156,
+          "mean_net_r": -0.22017852385496187,
+          "mean_net_r_ci95": [
+            -0.3274068785322731,
+            -0.1081628598352234
+          ],
+          "win_rate": 0.31227436823104693,
+          "avg_win_eur": 2.068656198740805,
+          "avg_loss_eur": -1.6213852628825847,
+          "profit_factor_r": 0.5799035917794267,
+          "max_drawdown_eur": 304.0581365453632,
+          "max_drawdown_fraction": 0.5979164469811268,
+          "holding_minutes_mean": 78.32746690734055,
+          "holding_minutes_median": 87.325,
+          "exits": {
+            "FORCE_FLAT": 68,
+            "STOP": 262,
+            "TIME_EXIT": 224
+          },
+          "any_position_fraction": 0.10653653870884773,
+          "position_minutes": 43393.416666666664,
+          "mean_concurrency": 0.17438840931498628
+        },
+        "adverse": {
+          "n_trades": 219,
+          "unique_episodes": 161,
+          "trades_per_episode_mean": 1.360248447204969,
+          "share_of_trades_in_multi_trade_episodes": 0.4474885844748858,
+          "gross_eur": 19.210011262404663,
+          "net_eur": -72.05837984812608,
+          "cost_eur": 91.26839111053074,
+          "spread_slippage_cost_eur": 57.40921896370509,
+          "commission_eur": 33.859172146825664,
+          "gross_return_pct_of_500": 3.842002252480933,
+          "net_return_pct_of_500": -14.411675969625216,
+          "mean_net_eur": -0.3290336979366488,
+          "mean_net_r": -0.17190742423436023,
+          "mean_net_r_ci95": [
+            -0.3133599425879565,
+            -0.015319873633756151
+          ],
+          "win_rate": 0.3378995433789954,
+          "avg_win_eur": 1.6074428376539076,
+          "avg_loss_eur": -1.3173044816173467,
+          "profit_factor_r": 0.6163276916151005,
+          "max_drawdown_eur": 106.00178329259967,
+          "max_drawdown_fraction": 0.2076862089501239,
+          "holding_minutes_mean": 85.30913242009132,
+          "holding_minutes_median": 115.0,
+          "exits": {
+            "FORCE_FLAT": 39,
+            "STOP": 79,
+            "STOP_REJECTED": 1,
+            "TIME_EXIT": 100
+          },
+          "any_position_fraction": 0.057230715234910835,
+          "position_minutes": 18682.7,
+          "mean_concurrency": 0.07508158114711934
+        }
+      },
+      "by_pair": {
+        "AUDUSD": {
+          "n": 60,
+          "mean_net_r": -0.2837215425833058,
+          "net_eur": -35.99698581908022,
+          "win_rate": 0.26666666666666666
+        },
+        "EURUSD": {
+          "n": 99,
+          "mean_net_r": -0.36392220990854807,
+          "net_eur": -76.31867900484393,
+          "win_rate": 0.29292929292929293
+        },
+        "GBPUSD": {
+          "n": 125,
+          "mean_net_r": -0.31313300015105344,
+          "net_eur": -80.38106960909387,
+          "win_rate": 0.296
+        },
+        "NZDUSD": {
+          "n": 52,
+          "mean_net_r": -0.060800967280522394,
+          "net_eur": -6.9658587713457,
+          "win_rate": 0.38461538461538464
+        },
+        "USDCAD": {
+          "n": 16,
+          "mean_net_r": -0.5093732950080665,
+          "net_eur": -18.335091712210982,
+          "win_rate": 0.1875
+        },
+        "USDCHF": {
+          "n": 78,
+          "mean_net_r": -0.1686301368266222,
+          "net_eur": -27.386155958495383,
+          "win_rate": 0.2948717948717949
+        },
+        "USDJPY": {
+          "n": 124,
+          "mean_net_r": -0.04291058201314388,
+          "net_eur": -14.486421901035342,
+          "win_rate": 0.3629032258064516
+        }
+      },
+      "by_regime": {
+        "session": {
+          "ASIA": {
+            "n": 290,
+            "mean_net_r": -0.24177031819669986
+          },
+          "LONDON": {
+            "n": 22,
+            "mean_net_r": -0.026128858734582674
+          },
+          "LONDON_NEW_YORK_OVERLAP": {
+            "n": 19,
+            "mean_net_r": -0.1791184785670022
+          },
+          "NEW_YORK": {
+            "n": 211,
+            "mean_net_r": -0.1725431720687358
+          },
+          "OTHER": {
+            "n": 12,
+            "mean_net_r": -0.9567345539307347
+          }
+        },
+        "volatility_tercile": {
+          "low": {
+            "n": 185,
+            "mean_net_r": -0.35841389977404275
+          },
+          "mid": {
+            "n": 184,
+            "mean_net_r": -0.3429375976157855
+          },
+          "high": {
+            "n": 185,
+            "mean_net_r": 0.040152363264073405
+          }
+        }
+      },
+      "governed": {
+        "n_trades": 95,
+        "final_ledger_equity_eur": 453.9226713360519,
+        "engine_balance_eur": 441.14,
+        "ledger_minus_engine_eur": 12.911346294964515,
+        "paused_drawdown": true,
+        "max_drawdown_eur": 55.13025033481688,
+        "max_drawdown_fraction": 0.10829964427639936,
+        "net_eur": -46.07732866394801
+      },
+      "reject_counts_research_base": {
+        "SESSION_NO_ENTRY": 357,
+        "COST_GATE": 1117,
+        "DAILY_LOSS_HALT": 428,
+        "MAX_POSITIONS": 233,
+        "ENGINE_DENIED": 32,
+        "BELOW_MIN_UNITS": 1
+      },
+      "tf_resets": {
+        "EURUSD": 24,
+        "GBPUSD": 24,
+        "USDJPY": 24,
+        "USDCHF": 24,
+        "AUDUSD": 24,
+        "USDCAD": 24,
+        "NZDUSD": 24
+      },
+      "seconds": 56.2
+    },
+    "F04": {
+      "config_hash": "f2c918cead00fc8393b7f9327e639749aec6d1c4fab15d2b7cda3a07162f732d",
+      "harness_sha256": "fa548c139ef40aab5137131371cbb5b2224c689e7cd2a865a5c9718dbb3418be",
+      "nautilus_trader": "2.0.0rc6",
+      "classification": {
+        "classification": "INSUFFICIENT_DATA",
+        "criteria": {
+          "unique_episodes": {
+            "all": 16,
+            "val_plus_oos": 6,
+            "oos": 4
+          }
+        },
+        "reason": "unique episodes: all=16 (<30?) val+oos=6 (<15?)"
+      },
+      "partitions_base": {
+        "DEVELOPMENT": {
+          "n_trades": 10,
+          "unique_episodes": 10,
+          "trades_per_episode_mean": 1.0,
+          "share_of_trades_in_multi_trade_episodes": 0.0,
+          "gross_eur": 2.4316589024918693,
+          "net_eur": 0.949984517299516,
+          "cost_eur": 1.4816743851923533,
+          "spread_slippage_cost_eur": 0.9737660606272456,
+          "commission_eur": 0.5079083245651076,
+          "gross_return_pct_of_500": 0.48633178049837383,
+          "net_return_pct_of_500": 0.18999690345990322,
+          "mean_net_eur": 0.09499845172995156,
+          "mean_net_r": 0.06838229905993974,
+          "mean_net_r_ci95": [
+            -0.6136237542283768,
+            0.8651939997776863
+          ],
+          "win_rate": 0.4,
+          "avg_win_eur": 1.4227578220434185,
+          "avg_loss_eur": -0.7901744618123597,
+          "profit_factor_r": 1.143712440760238,
+          "max_drawdown_eur": 2.899859124221507,
+          "max_drawdown_fraction": 0.005774655734878415,
+          "holding_minutes_mean": 41.86,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "STOP": 4,
+            "TIME_EXIT": 6
+          },
+          "any_position_fraction": 0.0019728535353535355,
+          "position_minutes": 418.6,
+          "mean_concurrency": 0.0027527882996632998
+        },
+        "VALIDATION": {
+          "n_trades": 2,
+          "unique_episodes": 2,
+          "trades_per_episode_mean": 1.0,
+          "share_of_trades_in_multi_trade_episodes": 0.0,
+          "gross_eur": 0.4756888006441494,
+          "net_eur": 0.15552487658998992,
+          "cost_eur": 0.3201639240541595,
+          "spread_slippage_cost_eur": 0.17898174960980917,
+          "commission_eur": 0.14118217444435033,
+          "gross_return_pct_of_500": 0.09513776012882988,
+          "net_return_pct_of_500": 0.031104975317997982,
+          "mean_net_eur": 0.07776243829499496,
+          "mean_net_r": 0.08807397042727894,
+          "mean_net_r_ci95": [
+            -1.0402735871524282,
+            1.216421528006986
+          ],
+          "win_rate": 0.5,
+          "avg_win_eur": 1.053038014672364,
+          "avg_loss_eur": -0.897513138082374,
+          "profit_factor_r": 1.1693284757298634,
+          "max_drawdown_eur": 0.8975131380823882,
+          "max_drawdown_fraction": 0.0017950262761647763,
+          "holding_minutes_mean": 31.325,
+          "holding_minutes_median": 31.325,
+          "exits": {
+            "STOP": 1,
+            "TIME_EXIT": 1
+          },
+          "any_position_fraction": 0.0010850694444444445,
+          "position_minutes": 62.65,
+          "mean_concurrency": 0.0011329933449074074
+        },
+        "OUT_OF_SAMPLE": {
+          "n_trades": 4,
+          "unique_episodes": 4,
+          "trades_per_episode_mean": 1.0,
+          "share_of_trades_in_multi_trade_episodes": 0.0,
+          "gross_eur": 1.3500443772157793,
+          "net_eur": 0.5497274925819604,
+          "cost_eur": 0.800316884633819,
+          "spread_slippage_cost_eur": 0.5556975568809875,
+          "commission_eur": 0.24461932775283146,
+          "gross_return_pct_of_500": 0.2700088754431559,
+          "net_return_pct_of_500": 0.10994549851639208,
+          "mean_net_eur": 0.1374318731454901,
+          "mean_net_r": 0.04893379754609957,
+          "mean_net_r_ci95": [
+            -0.3501701220871324,
+            0.49332994287596243
+          ],
+          "win_rate": 0.5,
+          "avg_win_eur": 0.5520776253467184,
+          "avg_loss_eur": -0.27721387905573824,
+          "profit_factor_r": 1.27948585250185,
+          "max_drawdown_eur": 0.36585525198279356,
+          "max_drawdown_fraction": 0.0007303730700056032,
+          "holding_minutes_mean": 60.0,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "TIME_EXIT": 4
+          },
+          "any_position_fraction": 0.0028935185185185184,
+          "position_minutes": 240.0,
+          "mean_concurrency": 0.005787037037037037
+        },
+        "VAL_PLUS_OOS": {
+          "n_trades": 6,
+          "unique_episodes": 6,
+          "trades_per_episode_mean": 1.0,
+          "share_of_trades_in_multi_trade_episodes": 0.0,
+          "gross_eur": 1.8257331778599288,
+          "net_eur": 0.7052523691719503,
+          "cost_eur": 1.1204808086879785,
+          "spread_slippage_cost_eur": 0.7346793064907967,
+          "commission_eur": 0.3858015021971818,
+          "gross_return_pct_of_500": 0.3651466355719858,
+          "net_return_pct_of_500": 0.14105047383439007,
+          "mean_net_eur": 0.11754206152865838,
+          "mean_net_r": 0.061980521839826025,
+          "mean_net_r_ci95": [
+            -0.5163380684154789,
+            0.6819806522571481
+          ],
+          "win_rate": 0.5,
+          "avg_win_eur": 0.7190644217886003,
+          "avg_loss_eur": -0.4839802987312835,
+          "profit_factor_r": 1.2136505664530468,
+          "max_drawdown_eur": 0.8975131380823882,
+          "max_drawdown_fraction": 0.0017950262761647763,
+          "holding_minutes_mean": 50.44166666666666,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "STOP": 1,
+            "TIME_EXIT": 5
+          },
+          "any_position_fraction": 0.0018601190476190475,
+          "position_minutes": 302.65,
+          "mean_concurrency": 0.0031275834986772486
+        },
+        "ALL_EVALUATED": {
+          "n_trades": 16,
+          "unique_episodes": 16,
+          "trades_per_episode_mean": 1.0,
+          "share_of_trades_in_multi_trade_episodes": 0.0,
+          "gross_eur": 4.257392080351798,
+          "net_eur": 1.6552368864714664,
+          "cost_eur": 2.6021551938803316,
+          "spread_slippage_cost_eur": 1.7084453671180422,
+          "commission_eur": 0.8937098267622894,
+          "gross_return_pct_of_500": 0.8514784160703597,
+          "net_return_pct_of_500": 0.33104737729429323,
+          "mean_net_eur": 0.10345230540446661,
+          "mean_net_r": 0.06598163260239709,
+          "mean_net_r_ci95": [
+            -0.41687883608500664,
+            0.6131607513038261
+          ],
+          "win_rate": 0.4375,
+          "avg_win_eur": 1.1211749362199248,
+          "avg_loss_eur": -0.6881097407853343,
+          "profit_factor_r": 1.1624441523247344,
+          "max_drawdown_eur": 2.899859124221507,
+          "max_drawdown_fraction": 0.005774655734878415,
+          "holding_minutes_mean": 45.078125,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "STOP": 5,
+            "TIME_EXIT": 11
+          },
+          "any_position_fraction": 0.0019290123456790122,
+          "position_minutes": 721.25,
+          "mean_concurrency": 0.002898541988168724
+        }
+      },
+      "cost_sensitivity": {
+        "optimistic": {
+          "n_trades": 16,
+          "unique_episodes": 16,
+          "trades_per_episode_mean": 1.0,
+          "share_of_trades_in_multi_trade_episodes": 0.0,
+          "gross_eur": 3.8689955739110546,
+          "net_eur": 1.5342612997310943,
+          "cost_eur": 2.33473427417996,
+          "spread_slippage_cost_eur": 1.3854691668962142,
+          "commission_eur": 0.9492651072837459,
+          "gross_return_pct_of_500": 0.773799114782211,
+          "net_return_pct_of_500": 0.30685225994621884,
+          "mean_net_eur": 0.09589133123319338,
+          "mean_net_r": 0.10201757059849338,
+          "mean_net_r_ci95": [
+            -0.3985270458152602,
+            0.6535755630652791
+          ],
+          "win_rate": 0.5,
+          "avg_win_eur": 0.9812964666278807,
+          "avg_loss_eur": -0.789513804161494,
+          "profit_factor_r": 1.2573738217059676,
+          "max_drawdown_eur": 2.7431755952248977,
+          "max_drawdown_fraction": 0.005462245142443582,
+          "holding_minutes_mean": 45.140625,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "STOP": 5,
+            "TIME_EXIT": 11
+          },
+          "any_position_fraction": 0.0019290123456790122,
+          "position_minutes": 722.25,
+          "mean_concurrency": 0.002902560763888889
+        },
+        "base": {
+          "n_trades": 16,
+          "unique_episodes": 16,
+          "trades_per_episode_mean": 1.0,
+          "share_of_trades_in_multi_trade_episodes": 0.0,
+          "gross_eur": 4.257392080351798,
+          "net_eur": 1.6552368864714664,
+          "cost_eur": 2.6021551938803316,
+          "spread_slippage_cost_eur": 1.7084453671180422,
+          "commission_eur": 0.8937098267622894,
+          "gross_return_pct_of_500": 0.8514784160703597,
+          "net_return_pct_of_500": 0.33104737729429323,
+          "mean_net_eur": 0.10345230540446661,
+          "mean_net_r": 0.06598163260239709,
+          "mean_net_r_ci95": [
+            -0.41687883608500664,
+            0.6131607513038261
+          ],
+          "win_rate": 0.4375,
+          "avg_win_eur": 1.1211749362199248,
+          "avg_loss_eur": -0.6881097407853343,
+          "profit_factor_r": 1.1624441523247344,
+          "max_drawdown_eur": 2.899859124221507,
+          "max_drawdown_fraction": 0.005774655734878415,
+          "holding_minutes_mean": 45.078125,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "STOP": 5,
+            "TIME_EXIT": 11
+          },
+          "any_position_fraction": 0.0019290123456790122,
+          "position_minutes": 721.25,
+          "mean_concurrency": 0.002898541988168724
+        },
+        "adverse": {
+          "n_trades": 6,
+          "unique_episodes": 6,
+          "trades_per_episode_mean": 1.0,
+          "share_of_trades_in_multi_trade_episodes": 0.0,
+          "gross_eur": 1.7392391444508832,
+          "net_eur": 0.512352924284666,
+          "cost_eur": 1.2268862201662172,
+          "spread_slippage_cost_eur": 0.9267897004851886,
+          "commission_eur": 0.3000965196810287,
+          "gross_return_pct_of_500": 0.3478478288901766,
+          "net_return_pct_of_500": 0.10247058485693318,
+          "mean_net_eur": 0.08539215404744432,
+          "mean_net_r": 0.07842637711069624,
+          "mean_net_r_ci95": [
+            -0.46386065969727097,
+            0.7371390886675196
+          ],
+          "win_rate": 0.5,
+          "avg_win_eur": 0.46191604503556954,
+          "avg_loss_eur": -0.2911317369406809,
+          "profit_factor_r": 1.3810127643765528,
+          "max_drawdown_eur": 0.6156687010234805,
+          "max_drawdown_fraction": 0.001231337402046961,
+          "holding_minutes_mean": 53.60833333333333,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "STOP": 1,
+            "TIME_EXIT": 5
+          },
+          "any_position_fraction": 0.0007233796296296296,
+          "position_minutes": 321.65,
+          "mean_concurrency": 0.0012926392103909466
+        }
+      },
+      "by_pair": {
+        "AUDUSD": {
+          "n": 4,
+          "mean_net_r": -0.4566495667018508,
+          "net_eur": -1.5278107720235885,
+          "win_rate": 0.0
+        },
+        "GBPUSD": {
+          "n": 1,
+          "mean_net_r": 1.216421528006986,
+          "net_eur": 1.053038014672364,
+          "win_rate": 1.0
+        },
+        "NZDUSD": {
+          "n": 2,
+          "mean_net_r": 0.44621421616393475,
+          "net_eur": 1.0545938586773727,
+          "win_rate": 1.0
+        },
+        "USDCAD": {
+          "n": 3,
+          "mean_net_r": 0.7003897549976609,
+          "net_eur": 1.9006665372425844,
+          "win_rate": 0.6666666666666666
+        },
+        "USDCHF": {
+          "n": 2,
+          "mean_net_r": -0.9391370202818323,
+          "net_eur": -1.9250433316081519,
+          "win_rate": 0.0
+        },
+        "USDJPY": {
+          "n": 4,
+          "mean_net_r": 0.13763980092039566,
+          "net_eur": 1.0997925795108858,
+          "win_rate": 0.5
+        }
+      },
+      "by_regime": {
+        "session": {
+          "ASIA": {
+            "n": 8,
+            "mean_net_r": 0.20602233497644185
+          },
+          "LONDON": {
+            "n": 4,
+            "mean_net_r": 0.2182567281266348
+          },
+          "LONDON_NEW_YORK_OVERLAP": {
+            "n": 4,
+            "mean_net_r": -0.3663748676699301
+          }
+        },
+        "volatility_tercile": {
+          "low": {
+            "n": 6,
+            "mean_net_r": 0.08742932495168747
+          },
+          "mid": {
+            "n": 5,
+            "mean_net_r": 0.006676539317473607
+          },
+          "high": {
+            "n": 5,
+            "mean_net_r": 0.09954949506817208
+          }
+        }
+      },
+      "governed": {
+        "n_trades": 16,
+        "final_ledger_equity_eur": 501.6552368864715,
+        "engine_balance_eur": 501.06,
+        "ledger_minus_engine_eur": 0.6409856562009747,
+        "paused_drawdown": false,
+        "max_drawdown_eur": 2.899859124221507,
+        "max_drawdown_fraction": 0.005774655734878415,
+        "net_eur": 1.6552368864714664
+      },
+      "reject_counts_research_base": {
+        "POSITION_OPEN": 6,
+        "BELOW_MIN_UNITS": 4,
+        "SESSION_NO_ENTRY": 2,
+        "COST_GATE": 4
+      },
+      "tf_resets": {
+        "EURUSD": 24,
+        "GBPUSD": 24,
+        "USDJPY": 24,
+        "USDCHF": 24,
+        "AUDUSD": 24,
+        "USDCAD": 24,
+        "NZDUSD": 24
+      },
+      "seconds": 52.9
+    },
+    "F05": {
+      "config_hash": "ecd91f1d9c74b4bc3ee572db8935aba399b507ec37b831fec09814d45f4df4bf",
+      "harness_sha256": "fa548c139ef40aab5137131371cbb5b2224c689e7cd2a865a5c9718dbb3418be",
+      "nautilus_trader": "2.0.0rc6",
+      "classification": {
+        "classification": "NEGATIVE_EVIDENCE",
+        "criteria": {
+          "unique_episodes": {
+            "all": 308,
+            "val_plus_oos": 121,
+            "oos": 50
+          },
+          "mean_net_r_by_partition": {
+            "DEVELOPMENT": -0.09345915414589287,
+            "VALIDATION": -0.26204720910407303,
+            "OUT_OF_SAMPLE": -0.18112489119782785
+          },
+          "pooled_val_oos_mean_net_r": -0.2286159812431918,
+          "pooled_ci95": [
+            -0.3427613265352737,
+            -0.11391949619663855
+          ],
+          "pooled_profit_factor": 0.4719293114052544
+        },
+        "reason": "pooled VAL+OOS mean net R < 0 with CI upper < 0 or negative in every partition"
+      },
+      "partitions_base": {
+        "DEVELOPMENT": {
+          "n_trades": 429,
+          "unique_episodes": 187,
+          "trades_per_episode_mean": 2.2941176470588234,
+          "share_of_trades_in_multi_trade_episodes": 0.8811188811188811,
+          "gross_eur": 45.41303693192951,
+          "net_eur": -75.61094010456738,
+          "cost_eur": 121.02397703649689,
+          "spread_slippage_cost_eur": 76.19789900618254,
+          "commission_eur": 44.82607803031434,
+          "gross_return_pct_of_500": 9.082607386385902,
+          "net_return_pct_of_500": -15.122188020913477,
+          "mean_net_eur": -0.1762492776330242,
+          "mean_net_r": -0.09345915414589287,
+          "mean_net_r_ci95": [
+            -0.20592861893986877,
+            0.03089085575411056
+          ],
+          "win_rate": 0.42657342657342656,
+          "avg_win_eur": 1.4338871341110269,
+          "avg_loss_eur": -1.3740336814914036,
+          "profit_factor_r": 0.7604990914847113,
+          "max_drawdown_eur": 90.28284614539643,
+          "max_drawdown_fraction": 0.1775157664595653,
+          "holding_minutes_mean": 50.840054390054384,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "STOP": 137,
+            "TIME_EXIT": 292
+          },
+          "any_position_fraction": 0.06660506979517396,
+          "position_minutes": 21810.383333333335,
+          "mean_concurrency": 0.1434289728886083
+        },
+        "VALIDATION": {
+          "n_trades": 152,
+          "unique_episodes": 71,
+          "trades_per_episode_mean": 2.140845070422535,
+          "share_of_trades_in_multi_trade_episodes": 0.875,
+          "gross_eur": -32.1906876655027,
+          "net_eur": -80.297983545161,
+          "cost_eur": 48.10729587965831,
+          "spread_slippage_cost_eur": 28.839924063376298,
+          "commission_eur": 19.267371816282015,
+          "gross_return_pct_of_500": -6.43813753310054,
+          "net_return_pct_of_500": -16.059596709032203,
+          "mean_net_eur": -0.528276207533954,
+          "mean_net_r": -0.26204720910407303,
+          "mean_net_r_ci95": [
+            -0.39078544839155605,
+            -0.12540987571129236
+          ],
+          "win_rate": 0.3618421052631579,
+          "avg_win_eur": 1.0781392606889801,
+          "avg_loss_eur": -1.4391303390005663,
+          "profit_factor_r": 0.4091935993443916,
+          "max_drawdown_eur": 92.09158967273868,
+          "max_drawdown_fraction": 0.18418317934547734,
+          "holding_minutes_mean": 49.09046052631579,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "STOP": 55,
+            "TIME_EXIT": 97
+          },
+          "any_position_fraction": 0.05988016010802469,
+          "position_minutes": 7461.75,
+          "mean_concurrency": 0.1349419487847222
+        },
+        "OUT_OF_SAMPLE": {
+          "n_trades": 107,
+          "unique_episodes": 50,
+          "trades_per_episode_mean": 2.14,
+          "share_of_trades_in_multi_trade_episodes": 0.8598130841121495,
+          "gross_eur": -8.780427205959898,
+          "net_eur": -40.701856594330955,
+          "cost_eur": 31.921429388371056,
+          "spread_slippage_cost_eur": 19.6560102122463,
+          "commission_eur": 12.265419176124755,
+          "gross_return_pct_of_500": -1.7560854411919795,
+          "net_return_pct_of_500": -8.140371318866192,
+          "mean_net_eur": -0.38039118312458836,
+          "mean_net_r": -0.18112489119782785,
+          "mean_net_r_ci95": [
+            -0.38202124441002805,
+            0.021806165670652
+          ],
+          "win_rate": 0.40186915887850466,
+          "avg_win_eur": 1.208178265097563,
+          "avg_loss_eur": -1.4477112811488462,
+          "profit_factor_r": 0.5665292131694724,
+          "max_drawdown_eur": 41.132562737422234,
+          "max_drawdown_fraction": 0.08219432227578169,
+          "holding_minutes_mean": 49.61744548286603,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "STOP": 36,
+            "TIME_EXIT": 71
+          },
+          "any_position_fraction": 0.060930266203703703,
+          "position_minutes": 5309.066666666667,
+          "mean_concurrency": 0.12801568930041152
+        },
+        "VAL_PLUS_OOS": {
+          "n_trades": 259,
+          "unique_episodes": 121,
+          "trades_per_episode_mean": 2.1404958677685952,
+          "share_of_trades_in_multi_trade_episodes": 0.8687258687258688,
+          "gross_eur": -40.971114871462596,
+          "net_eur": -120.99984013949197,
+          "cost_eur": 80.02872526802936,
+          "spread_slippage_cost_eur": 48.4959342756226,
+          "commission_eur": 31.532790992406767,
+          "gross_return_pct_of_500": -8.194222974292519,
+          "net_return_pct_of_500": -24.199968027898393,
+          "mean_net_eur": -0.46718084995942843,
+          "mean_net_r": -0.2286159812431918,
+          "mean_net_r_ci95": [
+            -0.3427613265352737,
+            -0.11391949619663855
+          ],
+          "win_rate": 0.3783783783783784,
+          "avg_win_eur": 1.135197191194787,
+          "avg_loss_eur": -1.4425413967489507,
+          "profit_factor_r": 0.4719293114052544,
+          "max_drawdown_eur": 120.99984013949211,
+          "max_drawdown_fraction": 0.24199968027898422,
+          "holding_minutes_mean": 49.30817245817246,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "STOP": 91,
+            "TIME_EXIT": 168
+          },
+          "any_position_fraction": 0.06033020557760141,
+          "position_minutes": 12770.816666666668,
+          "mean_concurrency": 0.13197355186287477
+        },
+        "ALL_EVALUATED": {
+          "n_trades": 688,
+          "unique_episodes": 308,
+          "trades_per_episode_mean": 2.2337662337662336,
+          "share_of_trades_in_multi_trade_episodes": 0.876453488372093,
+          "gross_eur": 4.441922060466917,
+          "net_eur": -196.61078024405933,
+          "cost_eur": 201.05270230452626,
+          "spread_slippage_cost_eur": 124.69383328180514,
+          "commission_eur": 76.35886902272111,
+          "gross_return_pct_of_500": 0.8883844120933834,
+          "net_return_pct_of_500": -39.32215604881186,
+          "mean_net_eur": -0.2857714829128769,
+          "mean_net_r": -0.14433941318397492,
+          "mean_net_r_ci95": [
+            -0.22866855210787176,
+            -0.05485945793917267
+          ],
+          "win_rate": 0.40843023255813954,
+          "avg_win_eur": 1.3297176878270711,
+          "avg_loss_eur": -1.401133785069942,
+          "profit_factor_r": 0.6447467349458096,
+          "max_drawdown_eur": 205.20135755461683,
+          "max_drawdown_fraction": 0.4034706239343399,
+          "holding_minutes_mean": 50.26337209302325,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "STOP": 228,
+            "TIME_EXIT": 460
+          },
+          "any_position_fraction": 0.06416484482167352,
+          "position_minutes": 34581.2,
+          "mean_concurrency": 0.1389740869341564
+        }
+      },
+      "cost_sensitivity": {
+        "optimistic": {
+          "n_trades": 701,
+          "unique_episodes": 315,
+          "trades_per_episode_mean": 2.2253968253968255,
+          "share_of_trades_in_multi_trade_episodes": 0.8730385164051355,
+          "gross_eur": -10.6771761968542,
+          "net_eur": -202.81731688502933,
+          "cost_eur": 192.1401406881751,
+          "spread_slippage_cost_eur": 108.30331651330818,
+          "commission_eur": 83.83682417486695,
+          "gross_return_pct_of_500": -2.13543523937084,
+          "net_return_pct_of_500": -40.56346337700587,
+          "mean_net_eur": -0.28932570169048405,
+          "mean_net_r": -0.14133509784707168,
+          "mean_net_r_ci95": [
+            -0.2225221490523738,
+            -0.05653461804534739
+          ],
+          "win_rate": 0.4108416547788873,
+          "avg_win_eur": 1.3964015830138914,
+          "avg_loss_eur": -1.4648449704431719,
+          "profit_factor_r": 0.6596957526425081,
+          "max_drawdown_eur": 209.0119953282608,
+          "max_drawdown_fraction": 0.4129083220927242,
+          "holding_minutes_mean": 50.19947693770803,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "STOP": 234,
+            "TIME_EXIT": 467
+          },
+          "any_position_fraction": 0.0645240563914609,
+          "position_minutes": 35189.833333333336,
+          "mean_concurrency": 0.14142004779663922
+        },
+        "base": {
+          "n_trades": 688,
+          "unique_episodes": 308,
+          "trades_per_episode_mean": 2.2337662337662336,
+          "share_of_trades_in_multi_trade_episodes": 0.876453488372093,
+          "gross_eur": 4.441922060466917,
+          "net_eur": -196.61078024405933,
+          "cost_eur": 201.05270230452626,
+          "spread_slippage_cost_eur": 124.69383328180514,
+          "commission_eur": 76.35886902272111,
+          "gross_return_pct_of_500": 0.8883844120933834,
+          "net_return_pct_of_500": -39.32215604881186,
+          "mean_net_eur": -0.2857714829128769,
+          "mean_net_r": -0.14433941318397492,
+          "mean_net_r_ci95": [
+            -0.22866855210787176,
+            -0.05485945793917267
+          ],
+          "win_rate": 0.40843023255813954,
+          "avg_win_eur": 1.3297176878270711,
+          "avg_loss_eur": -1.401133785069942,
+          "profit_factor_r": 0.6447467349458096,
+          "max_drawdown_eur": 205.20135755461683,
+          "max_drawdown_fraction": 0.4034706239343399,
+          "holding_minutes_mean": 50.26337209302325,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "STOP": 228,
+            "TIME_EXIT": 460
+          },
+          "any_position_fraction": 0.06416484482167352,
+          "position_minutes": 34581.2,
+          "mean_concurrency": 0.1389740869341564
+        },
+        "adverse": {
+          "n_trades": 528,
+          "unique_episodes": 269,
+          "trades_per_episode_mean": 1.962825278810409,
+          "share_of_trades_in_multi_trade_episodes": 0.8068181818181818,
+          "gross_eur": -29.334558781863088,
+          "net_eur": -214.42797392609123,
+          "cost_eur": 185.09341514422815,
+          "spread_slippage_cost_eur": 118.15290849498143,
+          "commission_eur": 66.9405066492467,
+          "gross_return_pct_of_500": -5.866911756372618,
+          "net_return_pct_of_500": -42.885594785218245,
+          "mean_net_eur": -0.4061135869812334,
+          "mean_net_r": -0.2132949549718767,
+          "mean_net_r_ci95": [
+            -0.28713781110536335,
+            -0.13753046069578734
+          ],
+          "win_rate": 0.38825757575757575,
+          "avg_win_eur": 0.9013422482423002,
+          "avg_loss_eur": -1.2359230180054577,
+          "profit_factor_r": 0.46424888856602486,
+          "max_drawdown_eur": 214.42797392609134,
+          "max_drawdown_fraction": 0.4288559478521827,
+          "holding_minutes_mean": 50.751704545454544,
+          "holding_minutes_median": 60.0,
+          "exits": {
+            "STOP": 168,
+            "TIME_EXIT": 360
+          },
+          "any_position_fraction": 0.05748141986025377,
+          "position_minutes": 26796.9,
+          "mean_concurrency": 0.10769073109567902
+        }
+      },
+      "by_pair": {
+        "AUDUSD": {
+          "n": 112,
+          "mean_net_r": -0.19902164404752215,
+          "net_eur": -45.46432804392007,
+          "win_rate": 0.39285714285714285
+        },
+        "EURUSD": {
+          "n": 126,
+          "mean_net_r": -0.17332996391206268,
+          "net_eur": -44.6074643763894,
+          "win_rate": 0.3968253968253968
+        },
+        "GBPUSD": {
+          "n": 114,
+          "mean_net_r": -0.19389415795612122,
+          "net_eur": -42.207328709422555,
+          "win_rate": 0.3684210526315789
+        },
+        "NZDUSD": {
+          "n": 107,
+          "mean_net_r": -0.041114206406086734,
+          "net_eur": -7.360100244697059,
+          "win_rate": 0.4766355140186916
+        },
+        "USDCAD": {
+          "n": 59,
+          "mean_net_r": -0.17841206665174764,
+          "net_eur": -22.392580817223187,
+          "win_rate": 0.3898305084745763
+        },
+        "USDCHF": {
+          "n": 85,
+          "mean_net_r": -0.06672091228168617,
+          "net_eur": -9.421925548981605,
+          "win_rate": 0.4
+        },
+        "USDJPY": {
+          "n": 85,
+          "mean_net_r": -0.14676203665278612,
+          "net_eur": -25.157052503425454,
+          "win_rate": 0.43529411764705883
+        }
+      },
+      "by_regime": {
+        "session": {
+          "LONDON": {
+            "n": 357,
+            "mean_net_r": -0.12400204612827792
+          },
+          "LONDON_NEW_YORK_OVERLAP": {
+            "n": 331,
+            "mean_net_r": -0.1662742773497871
+          }
+        },
+        "volatility_tercile": {
+          "low": {
+            "n": 230,
+            "mean_net_r": -0.15534147044068772
+          },
+          "mid": {
+            "n": 229,
+            "mean_net_r": -0.13336831388544634
+          },
+          "high": {
+            "n": 229,
+            "mean_net_r": -0.14426041130763903
+          }
+        }
+      },
+      "governed": {
+        "n_trades": 311,
+        "final_ledger_equity_eur": 450.52639244676203,
+        "engine_balance_eur": 441.39,
+        "ledger_minus_engine_eur": 9.604201820701732,
+        "paused_drawdown": true,
+        "max_drawdown_eur": 50.424058401768264,
+        "max_drawdown_fraction": 0.10065677816310563,
+        "net_eur": -49.47360755323791
+      },
+      "reject_counts_research_base": {
+        "MAX_POSITIONS": 308,
+        "COST_GATE": 104,
+        "BELOW_MIN_UNITS": 1,
+        "DAILY_LOSS_HALT": 19
+      },
+      "tf_resets": {
+        "EURUSD": 24,
+        "GBPUSD": 24,
+        "USDJPY": 24,
+        "USDCHF": 24,
+        "AUDUSD": 24,
+        "USDCAD": 24,
+        "NZDUSD": 24
+      },
+      "seconds": 83.1
+    },
+    "F06": {
+      "config_hash": "9634dcb01aad65a6f07ac1c508c89c3fe09abf6f97130dc1448b4ab2bb0299e8",
+      "harness_sha256": "fa548c139ef40aab5137131371cbb5b2224c689e7cd2a865a5c9718dbb3418be",
+      "nautilus_trader": "2.0.0rc6",
+      "classification": {
+        "classification": "NEGATIVE_EVIDENCE",
+        "criteria": {
+          "unique_episodes": {
+            "all": 258,
+            "val_plus_oos": 97,
+            "oos": 45
+          },
+          "mean_net_r_by_partition": {
+            "DEVELOPMENT": -0.26502073452359554,
+            "VALIDATION": -0.2901183457902596,
+            "OUT_OF_SAMPLE": -0.10654293363438987
+          },
+          "pooled_val_oos_mean_net_r": -0.2069151014318438,
+          "pooled_ci95": [
+            -0.48659096715560235,
+            0.1361420324862245
+          ],
+          "pooled_profit_factor": 0.6725225266593001
+        },
+        "reason": "pooled VAL+OOS mean net R < 0 with CI upper < 0 or negative in every partition"
+      },
+      "partitions_base": {
+        "DEVELOPMENT": {
+          "n_trades": 289,
+          "unique_episodes": 161,
+          "trades_per_episode_mean": 1.795031055900621,
+          "share_of_trades_in_multi_trade_episodes": 0.7093425605536332,
+          "gross_eur": -68.21493809422927,
+          "net_eur": -176.58768938784965,
+          "cost_eur": 108.37275129362037,
+          "spread_slippage_cost_eur": 63.812474709230976,
+          "commission_eur": 44.5602765843894,
+          "gross_return_pct_of_500": -13.642987618845853,
+          "net_return_pct_of_500": -35.317537877569926,
+          "mean_net_eur": -0.611030067085985,
+          "mean_net_r": -0.26502073452359554,
+          "mean_net_r_ci95": [
+            -0.4174836165962902,
+            -0.09791075046444715
+          ],
+          "win_rate": 0.29411764705882354,
+          "avg_win_eur": 2.5501424172022777,
+          "avg_loss_eur": -1.9281852688727612,
+          "profit_factor_r": 0.5831066339313472,
+          "max_drawdown_eur": 185.7543068728541,
+          "max_drawdown_fraction": 0.3715086137457082,
+          "holding_minutes_mean": 31.43817762399078,
+          "holding_minutes_median": 26.65,
+          "exits": {
+            "STOP": 181,
+            "STOP_REJECTED": 1,
+            "TIME_EXIT": 107
+          },
+          "any_position_fraction": 0.03939098011363636,
+          "position_minutes": 9085.633333333333,
+          "mean_concurrency": 0.05974874614197531
+        },
+        "VALIDATION": {
+          "n_trades": 76,
+          "unique_episodes": 52,
+          "trades_per_episode_mean": 1.4615384615384615,
+          "share_of_trades_in_multi_trade_episodes": 0.5263157894736842,
+          "gross_eur": -17.384732255398223,
+          "net_eur": -46.424942275882046,
+          "cost_eur": 29.040210020483823,
+          "spread_slippage_cost_eur": 16.871780715136612,
+          "commission_eur": 12.168429305347212,
+          "gross_return_pct_of_500": -3.4769464510796446,
+          "net_return_pct_of_500": -9.28498845517641,
+          "mean_net_eur": -0.6108545036300268,
+          "mean_net_r": -0.2901183457902596,
+          "mean_net_r_ci95": [
+            -0.6601738855166251,
+            0.2276261109087424
+          ],
+          "win_rate": 0.27631578947368424,
+          "avg_win_eur": 2.8440389130747694,
+          "avg_loss_eur": -1.929995626371858,
+          "profit_factor_r": 0.5591332427015839,
+          "max_drawdown_eur": 77.6532019684214,
+          "max_drawdown_fraction": 0.1545890882294353,
+          "holding_minutes_mean": 31.813596491228072,
+          "holding_minutes_median": 26.65,
+          "exits": {
+            "STOP": 50,
+            "TIME_EXIT": 26
+          },
+          "any_position_fraction": 0.033764949845679015,
+          "position_minutes": 2417.8333333333335,
+          "mean_concurrency": 0.043725284529320986
+        },
+        "OUT_OF_SAMPLE": {
+          "n_trades": 63,
+          "unique_episodes": 45,
+          "trades_per_episode_mean": 1.4,
+          "share_of_trades_in_multi_trade_episodes": 0.4444444444444444,
+          "gross_eur": 7.788295403615488,
+          "net_eur": -14.82888259349497,
+          "cost_eur": 22.61717799711046,
+          "spread_slippage_cost_eur": 12.91060479313806,
+          "commission_eur": 9.7065732039724,
+          "gross_return_pct_of_500": 1.5576590807230977,
+          "net_return_pct_of_500": -2.965776518698994,
+          "mean_net_eur": -0.23537908878563443,
+          "mean_net_r": -0.10654293363438987,
+          "mean_net_r_ci95": [
+            -0.4722314672713318,
+            0.295772968405784
+          ],
+          "win_rate": 0.30158730158730157,
+          "avg_win_eur": 3.4320111500689463,
+          "avg_loss_eur": -1.8190248737455668,
+          "profit_factor_r": 0.8224926193423666,
+          "max_drawdown_eur": 38.95022390843417,
+          "max_drawdown_fraction": 0.07703721069580316,
+          "holding_minutes_mean": 35.37671957671958,
+          "holding_minutes_median": 39.65,
+          "exits": {
+            "FORCE_FLAT": 1,
+            "STOP": 37,
+            "TIME_EXIT": 25
+          },
+          "any_position_fraction": 0.04450151105967078,
+          "position_minutes": 2228.733333333333,
+          "mean_concurrency": 0.05374067644032922
+        },
+        "VAL_PLUS_OOS": {
+          "n_trades": 139,
+          "unique_episodes": 97,
+          "trades_per_episode_mean": 1.4329896907216495,
+          "share_of_trades_in_multi_trade_episodes": 0.4892086330935252,
+          "gross_eur": -9.596436851782734,
+          "net_eur": -61.25382486937702,
+          "cost_eur": 51.657388017594286,
+          "spread_slippage_cost_eur": 29.782385508274672,
+          "commission_eur": 21.875002509319614,
+          "gross_return_pct_of_500": -1.9192873703565467,
+          "net_return_pct_of_500": -12.250764973875404,
+          "mean_net_eur": -0.4406749990602663,
+          "mean_net_r": -0.2069151014318438,
+          "mean_net_r_ci95": [
+            -0.48659096715560235,
+            0.1361420324862245
+          ],
+          "win_rate": 0.28776978417266186,
+          "avg_win_eur": 3.1233257256470033,
+          "avg_loss_eur": -1.880675291871284,
+          "profit_factor_r": 0.6725225266593001,
+          "max_drawdown_eur": 82.09251013380776,
+          "max_drawdown_fraction": 0.163426696779507,
+          "holding_minutes_mean": 33.42853717026379,
+          "holding_minutes_median": 30.316666666666666,
+          "exits": {
+            "FORCE_FLAT": 1,
+            "STOP": 87,
+            "TIME_EXIT": 51
+          },
+          "any_position_fraction": 0.03836633322310406,
+          "position_minutes": 4646.566666666667,
+          "mean_concurrency": 0.04801759534832452
+        },
+        "ALL_EVALUATED": {
+          "n_trades": 428,
+          "unique_episodes": 258,
+          "trades_per_episode_mean": 1.6589147286821706,
+          "share_of_trades_in_multi_trade_episodes": 0.6378504672897196,
+          "gross_eur": -77.81137494601201,
+          "net_eur": -237.84151425722666,
+          "cost_eur": 160.03013931121464,
+          "spread_slippage_cost_eur": 93.59486021750564,
+          "commission_eur": 66.43527909370901,
+          "gross_return_pct_of_500": -15.562274989202402,
+          "net_return_pct_of_500": -47.56830285144533,
+          "mean_net_eur": -0.5557044725636137,
+          "mean_net_r": -0.24614997985127435,
+          "mean_net_r_ci95": [
+            -0.3887960887683684,
+            -0.09324883759199774
+          ],
+          "win_rate": 0.29205607476635514,
+          "avg_win_eur": 2.73356107590459,
+          "avg_loss_eur": -1.9126622070801995,
+          "profit_factor_r": 0.6120266540768357,
+          "max_drawdown_eur": 256.3601272719819,
+          "max_drawdown_fraction": 0.5127202545439639,
+          "holding_minutes_mean": 32.08457943925233,
+          "holding_minutes_median": 27.316666666666666,
+          "exits": {
+            "FORCE_FLAT": 1,
+            "STOP": 268,
+            "STOP_REJECTED": 1,
+            "TIME_EXIT": 158
+          },
+          "any_position_fraction": 0.0389925063228738,
+          "position_minutes": 13732.2,
+          "mean_concurrency": 0.055186631944444446
+        }
+      },
+      "cost_sensitivity": {
+        "optimistic": {
+          "n_trades": 439,
+          "unique_episodes": 266,
+          "trades_per_episode_mean": 1.650375939849624,
+          "share_of_trades_in_multi_trade_episodes": 0.621867881548975,
+          "gross_eur": -68.53446186983005,
+          "net_eur": -226.55256192440646,
+          "cost_eur": 158.01810005457642,
+          "spread_slippage_cost_eur": 82.88772535271357,
+          "commission_eur": 75.13037470186285,
+          "gross_return_pct_of_500": -13.706892373966012,
+          "net_return_pct_of_500": -45.31051238488129,
+          "mean_net_eur": -0.516065061331222,
+          "mean_net_r": -0.23454632967254643,
+          "mean_net_r_ci95": [
+            -0.381433092719176,
+            -0.07281329575170016
+          ],
+          "win_rate": 0.2824601366742597,
+          "avg_win_eur": 3.1495242888112966,
+          "avg_loss_eur": -1.9590272182127217,
+          "profit_factor_r": 0.6406147544715945,
+          "max_drawdown_eur": 242.44896069724473,
+          "max_drawdown_fraction": 0.48489792139448945,
+          "holding_minutes_mean": 32.268982536066815,
+          "holding_minutes_median": 27.316666666666666,
+          "exits": {
+            "FORCE_FLAT": 1,
+            "STOP": 275,
+            "STOP_REJECTED": 1,
+            "TIME_EXIT": 162
+          },
+          "any_position_fraction": 0.03928768539951989,
+          "position_minutes": 14166.083333333334,
+          "mean_concurrency": 0.05693031174982853
+        },
+        "base": {
+          "n_trades": 428,
+          "unique_episodes": 258,
+          "trades_per_episode_mean": 1.6589147286821706,
+          "share_of_trades_in_multi_trade_episodes": 0.6378504672897196,
+          "gross_eur": -77.81137494601201,
+          "net_eur": -237.84151425722666,
+          "cost_eur": 160.03013931121464,
+          "spread_slippage_cost_eur": 93.59486021750564,
+          "commission_eur": 66.43527909370901,
+          "gross_return_pct_of_500": -15.562274989202402,
+          "net_return_pct_of_500": -47.56830285144533,
+          "mean_net_eur": -0.5557044725636137,
+          "mean_net_r": -0.24614997985127435,
+          "mean_net_r_ci95": [
+            -0.3887960887683684,
+            -0.09324883759199774
+          ],
+          "win_rate": 0.29205607476635514,
+          "avg_win_eur": 2.73356107590459,
+          "avg_loss_eur": -1.9126622070801995,
+          "profit_factor_r": 0.6120266540768357,
+          "max_drawdown_eur": 256.3601272719819,
+          "max_drawdown_fraction": 0.5127202545439639,
+          "holding_minutes_mean": 32.08457943925233,
+          "holding_minutes_median": 27.316666666666666,
+          "exits": {
+            "FORCE_FLAT": 1,
+            "STOP": 268,
+            "STOP_REJECTED": 1,
+            "TIME_EXIT": 158
+          },
+          "any_position_fraction": 0.0389925063228738,
+          "position_minutes": 13732.2,
+          "mean_concurrency": 0.055186631944444446
+        },
+        "adverse": {
+          "n_trades": 203,
+          "unique_episodes": 126,
+          "trades_per_episode_mean": 1.6111111111111112,
+          "share_of_trades_in_multi_trade_episodes": 0.5960591133004927,
+          "gross_eur": 6.754994735256273,
+          "net_eur": -73.10138484183425,
+          "cost_eur": 79.85637957709052,
+          "spread_slippage_cost_eur": 48.25843700015858,
+          "commission_eur": 31.597942576931942,
+          "gross_return_pct_of_500": 1.3509989470512547,
+          "net_return_pct_of_500": -14.620276968366849,
+          "mean_net_eur": -0.3601053440484445,
+          "mean_net_r": -0.18957164879633343,
+          "mean_net_r_ci95": [
+            -0.3895961461355025,
+            0.023709079960707657
+          ],
+          "win_rate": 0.31527093596059114,
+          "avg_win_eur": 2.40707209548016,
+          "avg_loss_eur": -1.6342014313134137,
+          "profit_factor_r": 0.676676978905156,
+          "max_drawdown_eur": 88.63692871109248,
+          "max_drawdown_fraction": 0.17291468224933332,
+          "holding_minutes_mean": 32.90796387520525,
+          "holding_minutes_median": 27.65,
+          "exits": {
+            "STOP": 112,
+            "STOP_REJECTED": 9,
+            "TIME_EXIT": 82
+          },
+          "any_position_fraction": 0.019461457261659806,
+          "position_minutes": 6680.316666666667,
+          "mean_concurrency": 0.026846694423010974
+        }
+      },
+      "by_pair": {
+        "AUDUSD": {
+          "n": 51,
+          "mean_net_r": -0.22696200485033233,
+          "net_eur": -24.536574533360934,
+          "win_rate": 0.29411764705882354
+        },
+        "EURUSD": {
+          "n": 93,
+          "mean_net_r": -0.23859405721091592,
+          "net_eur": -49.901697992640045,
+          "win_rate": 0.3118279569892473
+        },
+        "GBPUSD": {
+          "n": 84,
+          "mean_net_r": -0.2638726237758575,
+          "net_eur": -50.9891893424069,
+          "win_rate": 0.32142857142857145
+        },
+        "NZDUSD": {
+          "n": 34,
+          "mean_net_r": -0.16587495666933305,
+          "net_eur": -11.47000079372709,
+          "win_rate": 0.38235294117647056
+        },
+        "USDCAD": {
+          "n": 21,
+          "mean_net_r": -0.19602153125913663,
+          "net_eur": -9.631918482342826,
+          "win_rate": 0.3333333333333333
+        },
+        "USDCHF": {
+          "n": 58,
+          "mean_net_r": -0.35303373978301833,
+          "net_eur": -40.72027000270894,
+          "win_rate": 0.29310344827586204
+        },
+        "USDJPY": {
+          "n": 87,
+          "mean_net_r": -0.22057958414456305,
+          "net_eur": -50.59186311003992,
+          "win_rate": 0.19540229885057472
+        }
+      },
+      "by_regime": {
+        "session": {
+          "ASIA": {
+            "n": 61,
+            "mean_net_r": -0.18396040341681408
+          },
+          "LONDON": {
+            "n": 113,
+            "mean_net_r": -0.2751940135599307
+          },
+          "LONDON_NEW_YORK_OVERLAP": {
+            "n": 175,
+            "mean_net_r": -0.20933390579163322
+          },
+          "NEW_YORK": {
+            "n": 62,
+            "mean_net_r": -0.2573186005234684
+          },
+          "OTHER": {
+            "n": 17,
+            "mean_net_r": -0.6144997935092195
+          }
+        },
+        "volatility_tercile": {
+          "low": {
+            "n": 143,
+            "mean_net_r": -0.40639154651686643
+          },
+          "mid": {
+            "n": 142,
+            "mean_net_r": -0.1624139328360029
+          },
+          "high": {
+            "n": 143,
+            "mean_net_r": -0.16905889343860908
+          }
+        }
+      },
+      "governed": {
+        "n_trades": 79,
+        "final_ledger_equity_eur": 446.95341705206675,
+        "engine_balance_eur": 438.91,
+        "ledger_minus_engine_eur": 8.050747959167715,
+        "paused_drawdown": true,
+        "max_drawdown_eur": 53.046582947933246,
+        "max_drawdown_fraction": 0.1060931658958665,
+        "net_eur": -53.04658294793339
+      },
+      "reject_counts_research_base": {
+        "COST_GATE": 1658,
+        "MAX_POSITIONS": 142,
+        "SESSION_NO_ENTRY": 69,
+        "DAILY_LOSS_HALT": 195,
+        "ENGINE_DENIED": 9
+      },
+      "tf_resets": {
+        "EURUSD": 24,
+        "GBPUSD": 24,
+        "USDJPY": 24,
+        "USDCHF": 24,
+        "AUDUSD": 24,
+        "USDCAD": 24,
+        "NZDUSD": 24
+      },
+      "seconds": 56.2
+    },
+    "F07": {
+      "config_hash": "fe6ebd6dc6bc6ff8232952119b6e4ccd3b6c21b05c454fd36da298703f85a9f0",
+      "harness_sha256": "fa548c139ef40aab5137131371cbb5b2224c689e7cd2a865a5c9718dbb3418be",
+      "nautilus_trader": "2.0.0rc6",
+      "classification": {
+        "classification": "NEGATIVE_EVIDENCE",
+        "criteria": {
+          "unique_episodes": {
+            "all": 428,
+            "val_plus_oos": 48,
+            "oos": 14
+          },
+          "mean_net_r_by_partition": {
+            "DEVELOPMENT": -0.1704128687852485,
+            "VALIDATION": -0.17179378850241359,
+            "OUT_OF_SAMPLE": -0.29819394916465897
+          },
+          "pooled_val_oos_mean_net_r": -0.20575204062062874,
+          "pooled_ci95": [
+            -0.42786465857130024,
+            0.08127059976819732
+          ],
+          "pooled_profit_factor": 0.5474265298505416
+        },
+        "reason": "pooled VAL+OOS mean net R < 0 with CI upper < 0 or negative in every partition"
+      },
+      "partitions_base": {
+        "DEVELOPMENT": {
+          "n_trades": 1018,
+          "unique_episodes": 380,
+          "trades_per_episode_mean": 2.6789473684210527,
+          "share_of_trades_in_multi_trade_episodes": 0.8271119842829077,
+          "gross_eur": 38.37976965298438,
+          "net_eur": -363.9996388329773,
+          "cost_eur": 402.3794084859617,
+          "spread_slippage_cost_eur": 239.08855042096798,
+          "commission_eur": 163.29085806499373,
+          "gross_return_pct_of_500": 7.675953930596876,
+          "net_return_pct_of_500": -72.79992776659547,
+          "mean_net_eur": -0.3575634959066575,
+          "mean_net_r": -0.1704128687852485,
+          "mean_net_r_ci95": [
+            -0.22939698396038646,
+            -0.11148381382084621
+          ],
+          "win_rate": 0.3831041257367387,
+          "avg_win_eur": 1.1509810142446275,
+          "avg_loss_eur": -1.2943984624018823,
+          "profit_factor_r": 0.546197739518082,
+          "max_drawdown_eur": 376.2562439250038,
+          "max_drawdown_fraction": 0.7347082232655863,
+          "holding_minutes_mean": 12.981581532416502,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "STOP": 263,
+            "STOP_REJECTED": 2,
+            "TIME_EXIT": 753
+          },
+          "any_position_fraction": 0.05921497965768799,
+          "position_minutes": 13215.25,
+          "mean_concurrency": 0.08690584227693603
+        },
+        "VALIDATION": {
+          "n_trades": 49,
+          "unique_episodes": 34,
+          "trades_per_episode_mean": 1.4411764705882353,
+          "share_of_trades_in_multi_trade_episodes": 0.5102040816326531,
+          "gross_eur": -6.121096923231499,
+          "net_eur": -17.128167350414184,
+          "cost_eur": 11.007070427182686,
+          "spread_slippage_cost_eur": 7.683145860669433,
+          "commission_eur": 3.3239245665132517,
+          "gross_return_pct_of_500": -1.2242193846462999,
+          "net_return_pct_of_500": -3.425633470082837,
+          "mean_net_eur": -0.3495544357227385,
+          "mean_net_r": -0.17179378850241359,
+          "mean_net_r_ci95": [
+            -0.4577880146456197,
+            0.18734601760267147
+          ],
+          "win_rate": 0.2857142857142857,
+          "avg_win_eur": 1.6046028037892037,
+          "avg_loss_eur": -1.1312173315275154,
+          "profit_factor_r": 0.6297216807513062,
+          "max_drawdown_eur": 17.12816735041406,
+          "max_drawdown_fraction": 0.03425633470082812,
+          "holding_minutes_mean": 11.395918367346939,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "STOP": 16,
+            "TIME_EXIT": 33
+          },
+          "any_position_fraction": 0.009153464988425926,
+          "position_minutes": 558.4,
+          "mean_concurrency": 0.010098379629629629
+        },
+        "OUT_OF_SAMPLE": {
+          "n_trades": 18,
+          "unique_episodes": 14,
+          "trades_per_episode_mean": 1.2857142857142858,
+          "share_of_trades_in_multi_trade_episodes": 0.4444444444444444,
+          "gross_eur": -7.705043969441938,
+          "net_eur": -10.225661594443848,
+          "cost_eur": 2.5206176250019094,
+          "spread_slippage_cost_eur": 1.6339826077401844,
+          "commission_eur": 0.886635017261725,
+          "gross_return_pct_of_500": -1.5410087938883876,
+          "net_return_pct_of_500": -2.0451323188887693,
+          "mean_net_eur": -0.5680923108024359,
+          "mean_net_r": -0.29819394916465897,
+          "mean_net_r_ci95": [
+            -0.553895063241007,
+            0.004669826948784717
+          ],
+          "win_rate": 0.16666666666666666,
+          "avg_win_eur": 1.0980660056878662,
+          "avg_loss_eur": -0.9013239741004964,
+          "profit_factor_r": 0.3052716808882168,
+          "max_drawdown_eur": 10.704597213859472,
+          "max_drawdown_fraction": 0.021409194427718943,
+          "holding_minutes_mean": 13.608333333333333,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "STOP": 3,
+            "TIME_EXIT": 15
+          },
+          "any_position_fraction": 0.005360243055555556,
+          "position_minutes": 244.95,
+          "mean_concurrency": 0.005906394675925926
+        },
+        "VAL_PLUS_OOS": {
+          "n_trades": 67,
+          "unique_episodes": 48,
+          "trades_per_episode_mean": 1.3958333333333333,
+          "share_of_trades_in_multi_trade_episodes": 0.4925373134328358,
+          "gross_eur": -13.826140892673438,
+          "net_eur": -27.353828944858034,
+          "cost_eur": 13.527688052184594,
+          "spread_slippage_cost_eur": 9.317128468409617,
+          "commission_eur": 4.210559583774977,
+          "gross_return_pct_of_500": -2.7652281785346875,
+          "net_return_pct_of_500": -5.470765788971606,
+          "mean_net_eur": -0.4082661036545975,
+          "mean_net_r": -0.20575204062062874,
+          "mean_net_r_ci95": [
+            -0.42786465857130024,
+            0.08127059976819732
+          ],
+          "win_rate": 0.2537313432835821,
+          "avg_win_eur": 1.5152139570654384,
+          "avg_loss_eur": -1.0622493242994098,
+          "profit_factor_r": 0.5474265298505416,
+          "max_drawdown_eur": 27.832764564273532,
+          "max_drawdown_fraction": 0.05566552912854707,
+          "holding_minutes_mean": 11.990298507462686,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "STOP": 19,
+            "TIME_EXIT": 48
+          },
+          "any_position_fraction": 0.007527798445767196,
+          "position_minutes": 803.35,
+          "mean_concurrency": 0.0083018146494709
+        },
+        "ALL_EVALUATED": {
+          "n_trades": 1085,
+          "unique_episodes": 428,
+          "trades_per_episode_mean": 2.5350467289719627,
+          "share_of_trades_in_multi_trade_episodes": 0.8064516129032258,
+          "gross_eur": 24.55362876031094,
+          "net_eur": -391.35346777783536,
+          "cost_eur": 415.9070965381463,
+          "spread_slippage_cost_eur": 248.40567888937758,
+          "commission_eur": 167.5014176487687,
+          "gross_return_pct_of_500": 4.910725752062188,
+          "net_return_pct_of_500": -78.27069355556708,
+          "mean_net_eur": -0.36069444034823533,
+          "mean_net_r": -0.17259510335941483,
+          "mean_net_r_ci95": [
+            -0.23016488956075193,
+            -0.11568263386287349
+          ],
+          "win_rate": 0.37511520737327186,
+          "avg_win_eur": 1.166194675246971,
+          "avg_loss_eur": -1.2772783194739714,
+          "profit_factor_r": 0.5462884232323688,
+          "max_drawdown_eur": 403.9489579835637,
+          "max_drawdown_fraction": 0.7887832454662062,
+          "holding_minutes_mean": 12.92036866359447,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "STOP": 282,
+            "STOP_REJECTED": 2,
+            "TIME_EXIT": 801
+          },
+          "any_position_fraction": 0.03911440918638546,
+          "position_minutes": 14018.6,
+          "mean_concurrency": 0.05633760931069959
+        }
+      },
+      "cost_sensitivity": {
+        "optimistic": {
+          "n_trades": 900,
+          "unique_episodes": 356,
+          "trades_per_episode_mean": 2.5280898876404496,
+          "share_of_trades_in_multi_trade_episodes": 0.8155555555555556,
+          "gross_eur": -53.4224687420274,
+          "net_eur": -380.12192524246353,
+          "cost_eur": 326.69945650043616,
+          "spread_slippage_cost_eur": 179.70183852400112,
+          "commission_eur": 146.99761797643504,
+          "gross_return_pct_of_500": -10.68449374840548,
+          "net_return_pct_of_500": -76.0243850484927,
+          "mean_net_eur": -0.4223576947138484,
+          "mean_net_r": -0.1963914840119283,
+          "mean_net_r_ci95": [
+            -0.2613330095928522,
+            -0.13159036815794764
+          ],
+          "win_rate": 0.35555555555555557,
+          "avg_win_eur": 1.176940192999575,
+          "avg_loss_eur": -1.3047289431074613,
+          "profit_factor_r": 0.503340061239083,
+          "max_drawdown_eur": 391.5781881484626,
+          "max_drawdown_fraction": 0.7663510004261934,
+          "holding_minutes_mean": 12.997074074074076,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "STOP": 237,
+            "STOP_REJECTED": 1,
+            "TIME_EXIT": 662
+          },
+          "any_position_fraction": 0.032768829303840875,
+          "position_minutes": 11697.366666666667,
+          "mean_concurrency": 0.047009093149862825
+        },
+        "base": {
+          "n_trades": 1085,
+          "unique_episodes": 428,
+          "trades_per_episode_mean": 2.5350467289719627,
+          "share_of_trades_in_multi_trade_episodes": 0.8064516129032258,
+          "gross_eur": 24.55362876031094,
+          "net_eur": -391.35346777783536,
+          "cost_eur": 415.9070965381463,
+          "spread_slippage_cost_eur": 248.40567888937758,
+          "commission_eur": 167.5014176487687,
+          "gross_return_pct_of_500": 4.910725752062188,
+          "net_return_pct_of_500": -78.27069355556708,
+          "mean_net_eur": -0.36069444034823533,
+          "mean_net_r": -0.17259510335941483,
+          "mean_net_r_ci95": [
+            -0.23016488956075193,
+            -0.11568263386287349
+          ],
+          "win_rate": 0.37511520737327186,
+          "avg_win_eur": 1.166194675246971,
+          "avg_loss_eur": -1.2772783194739714,
+          "profit_factor_r": 0.5462884232323688,
+          "max_drawdown_eur": 403.9489579835637,
+          "max_drawdown_fraction": 0.7887832454662062,
+          "holding_minutes_mean": 12.92036866359447,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "STOP": 282,
+            "STOP_REJECTED": 2,
+            "TIME_EXIT": 801
+          },
+          "any_position_fraction": 0.03911440918638546,
+          "position_minutes": 14018.6,
+          "mean_concurrency": 0.05633760931069959
+        },
+        "adverse": {
+          "n_trades": 918,
+          "unique_episodes": 446,
+          "trades_per_episode_mean": 2.0582959641255605,
+          "share_of_trades_in_multi_trade_episodes": 0.7483660130718954,
+          "gross_eur": -4.311897048904816,
+          "net_eur": -389.2902332110252,
+          "cost_eur": 384.9783361621204,
+          "spread_slippage_cost_eur": 226.70859653210496,
+          "commission_eur": 158.26973963001544,
+          "gross_return_pct_of_500": -0.8623794097809632,
+          "net_return_pct_of_500": -77.85804664220504,
+          "mean_net_eur": -0.4240634348703978,
+          "mean_net_r": -0.22164479796090586,
+          "mean_net_r_ci95": [
+            -0.27953928890976776,
+            -0.16388966982975794
+          ],
+          "win_rate": 0.3300653594771242,
+          "avg_win_eur": 1.0826065548583248,
+          "avg_loss_eur": -1.1663740151757687,
+          "profit_factor_r": 0.45202383923740774,
+          "max_drawdown_eur": 389.61902546191146,
+          "max_drawdown_fraction": 0.7787259727929874,
+          "holding_minutes_mean": 12.991176470588236,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "STOP": 240,
+            "STOP_REJECTED": 7,
+            "TIME_EXIT": 671
+          },
+          "any_position_fraction": 0.03628686556927298,
+          "position_minutes": 11925.9,
+          "mean_concurrency": 0.04792751736111111
+        }
+      },
+      "by_pair": {
+        "AUDUSD": {
+          "n": 166,
+          "mean_net_r": -0.18141575050051198,
+          "net_eur": -63.76531857008421,
+          "win_rate": 0.3674698795180723
+        },
+        "EURUSD": {
+          "n": 194,
+          "mean_net_r": -0.0949617683209927,
+          "net_eur": -38.400299343717144,
+          "win_rate": 0.4329896907216495
+        },
+        "GBPUSD": {
+          "n": 246,
+          "mean_net_r": -0.18831601509235626,
+          "net_eur": -89.15463919353373,
+          "win_rate": 0.3861788617886179
+        },
+        "NZDUSD": {
+          "n": 92,
+          "mean_net_r": -0.273713590640145,
+          "net_eur": -53.62272552294505,
+          "win_rate": 0.32608695652173914
+        },
+        "USDCAD": {
+          "n": 28,
+          "mean_net_r": -0.21285778118503568,
+          "net_eur": -13.015011021744202,
+          "win_rate": 0.35714285714285715
+        },
+        "USDCHF": {
+          "n": 142,
+          "mean_net_r": -0.1839517321190818,
+          "net_eur": -52.21087863944527,
+          "win_rate": 0.34507042253521125
+        },
+        "USDJPY": {
+          "n": 217,
+          "mean_net_r": -0.16193334387974148,
+          "net_eur": -81.18459548636574,
+          "win_rate": 0.35944700460829493
+        }
+      },
+      "by_regime": {
+        "session": {
+          "ASIA": {
+            "n": 258,
+            "mean_net_r": -0.21285088852347173
+          },
+          "LONDON": {
+            "n": 359,
+            "mean_net_r": -0.20936069230519258
+          },
+          "LONDON_NEW_YORK_OVERLAP": {
+            "n": 310,
+            "mean_net_r": -0.14649396012018587
+          },
+          "NEW_YORK": {
+            "n": 83,
+            "mean_net_r": -0.04048833153592503
+          },
+          "OTHER": {
+            "n": 75,
+            "mean_net_r": -0.11221346951474456
+          }
+        },
+        "volatility_tercile": {
+          "low": {
+            "n": 362,
+            "mean_net_r": -0.21805878814021118
+          },
+          "mid": {
+            "n": 361,
+            "mean_net_r": -0.12806392516534623
+          },
+          "high": {
+            "n": 362,
+            "mean_net_r": -0.17153958246828355
+          }
+        }
+      },
+      "governed": {
+        "n_trades": 182,
+        "final_ledger_equity_eur": 456.84707443627065,
+        "engine_balance_eur": 438.22,
+        "ledger_minus_engine_eur": 18.850861151102226,
+        "paused_drawdown": true,
+        "max_drawdown_eur": 54.436515873694304,
+        "max_drawdown_fraction": 0.10647029731717429,
+        "net_eur": -43.15292556372956
+      },
+      "reject_counts_research_base": {
+        "MAX_POSITIONS": 451,
+        "COST_GATE": 22233,
+        "DAILY_LOSS_HALT": 12231,
+        "SESSION_NO_ENTRY": 2266,
+        "ENGINE_DENIED": 3139,
+        "BELOW_MIN_UNITS": 3
+      },
+      "tf_resets": {
+        "EURUSD": 24,
+        "GBPUSD": 24,
+        "USDJPY": 24,
+        "USDCHF": 24,
+        "AUDUSD": 24,
+        "USDCAD": 24,
+        "NZDUSD": 24
+      },
+      "seconds": 124.3
+    },
+    "F07R": {
+      "config_hash": "fe6ebd6dc6bc6ff8232952119b6e4ccd3b6c21b05c454fd36da298703f85a9f0",
+      "harness_sha256": "fa548c139ef40aab5137131371cbb5b2224c689e7cd2a865a5c9718dbb3418be",
+      "nautilus_trader": "2.0.0rc6",
+      "classification": {
+        "classification": "MIXED_EVIDENCE",
+        "criteria": {
+          "unique_episodes": {
+            "all": 327,
+            "val_plus_oos": 27,
+            "oos": 13
+          },
+          "mean_net_r_by_partition": {
+            "DEVELOPMENT": -0.2039511101775118,
+            "VALIDATION": -0.3563805892502005,
+            "OUT_OF_SAMPLE": 0.06721212754570968
+          },
+          "pooled_val_oos_mean_net_r": -0.14458423085224537,
+          "pooled_ci95": [
+            -0.4079410875367897,
+            0.13148529543763232
+          ],
+          "pooled_profit_factor": 0.6469585455180741,
+          "pairs_positive": 0
+        },
+        "reason": "sufficient data; neither NEGATIVE_EVIDENCE nor PROMISING_RESEARCH criteria satisfied"
+      },
+      "partitions_base": {
+        "DEVELOPMENT": {
+          "n_trades": 702,
+          "unique_episodes": 300,
+          "trades_per_episode_mean": 2.34,
+          "share_of_trades_in_multi_trade_episodes": 0.7962962962962963,
+          "gross_eur": -28.92086997849289,
+          "net_eur": -307.47420143848785,
+          "cost_eur": 278.553331459995,
+          "spread_slippage_cost_eur": 168.57575770207816,
+          "commission_eur": 109.9775737579168,
+          "gross_return_pct_of_500": -5.784173995698579,
+          "net_return_pct_of_500": -61.49484028769758,
+          "mean_net_eur": -0.4379974379465638,
+          "mean_net_r": -0.2039511101775118,
+          "mean_net_r_ci95": [
+            -0.26365046730975067,
+            -0.14164311613058825
+          ],
+          "win_rate": 0.37606837606837606,
+          "avg_win_eur": 1.0583738233323423,
+          "avg_loss_eur": -1.3399198420050829,
+          "profit_factor_r": 0.48182286332467383,
+          "max_drawdown_eur": 309.1911471358065,
+          "max_drawdown_fraction": 0.6181988024060954,
+          "holding_minutes_mean": 12.401092117758786,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "STOP": 206,
+            "STOP_REJECTED": 1,
+            "TIME_EXIT": 495
+          },
+          "any_position_fraction": 0.04444356762065095,
+          "position_minutes": 8705.566666666668,
+          "mean_concurrency": 0.057249359918630754
+        },
+        "VALIDATION": {
+          "n_trades": 23,
+          "unique_episodes": 14,
+          "trades_per_episode_mean": 1.6428571428571428,
+          "share_of_trades_in_multi_trade_episodes": 0.6086956521739131,
+          "gross_eur": -9.553283168029798,
+          "net_eur": -12.82107660582996,
+          "cost_eur": 3.2677934378001616,
+          "spread_slippage_cost_eur": 2.146514659069304,
+          "commission_eur": 1.1212787787308576,
+          "gross_return_pct_of_500": -1.9106566336059598,
+          "net_return_pct_of_500": -2.564215321165992,
+          "mean_net_eur": -0.5574381132969549,
+          "mean_net_r": -0.3563805892502005,
+          "mean_net_r_ci95": [
+            -0.6901930497084179,
+            0.10507435216232443
+          ],
+          "win_rate": 0.21739130434782608,
+          "avg_win_eur": 1.4880456088289857,
+          "avg_loss_eur": -1.125628036109716,
+          "profit_factor_r": 0.3900973984059397,
+          "max_drawdown_eur": 14.741768930092633,
+          "max_drawdown_fraction": 0.029474226820065206,
+          "holding_minutes_mean": 10.122463768115942,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "STOP": 11,
+            "TIME_EXIT": 12
+          },
+          "any_position_fraction": 0.0037890022183641975,
+          "position_minutes": 232.81666666666666,
+          "mean_concurrency": 0.004210370852623457
+        },
+        "OUT_OF_SAMPLE": {
+          "n_trades": 23,
+          "unique_episodes": 13,
+          "trades_per_episode_mean": 1.7692307692307692,
+          "share_of_trades_in_multi_trade_episodes": 0.6956521739130435,
+          "gross_eur": 8.158421800434002,
+          "net_eur": 4.841750870139618,
+          "cost_eur": 3.3166709302943835,
+          "spread_slippage_cost_eur": 2.2343608956470704,
+          "commission_eur": 1.082310034647313,
+          "gross_return_pct_of_500": 1.6316843600868005,
+          "net_return_pct_of_500": 0.9683501740279237,
+          "mean_net_eur": 0.2105109073973747,
+          "mean_net_r": 0.06721212754570968,
+          "mean_net_r_ci95": [
+            -0.23341809452016024,
+            0.33852360436761697
+          ],
+          "win_rate": 0.6956521739130435,
+          "avg_win_eur": 0.7935650724870623,
+          "avg_loss_eur": -1.1221843270933398,
+          "profit_factor_r": 1.2863085792423619,
+          "max_drawdown_eur": 3.7518694027552897,
+          "max_drawdown_fraction": 0.007454480509604743,
+          "holding_minutes_mean": 12.880434782608695,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "STOP": 5,
+            "TIME_EXIT": 18
+          },
+          "any_position_fraction": 0.006419994212962963,
+          "position_minutes": 296.25,
+          "mean_concurrency": 0.007143373842592593
+        },
+        "VAL_PLUS_OOS": {
+          "n_trades": 46,
+          "unique_episodes": 27,
+          "trades_per_episode_mean": 1.7037037037037037,
+          "share_of_trades_in_multi_trade_episodes": 0.6521739130434783,
+          "gross_eur": -1.3948613675957975,
+          "net_eur": -7.979325735690343,
+          "cost_eur": 6.584464368094545,
+          "spread_slippage_cost_eur": 4.380875554716375,
+          "commission_eur": 2.2035888133781705,
+          "gross_return_pct_of_500": -0.2789722735191595,
+          "net_return_pct_of_500": -1.5958651471380685,
+          "mean_net_eur": -0.17346360294979005,
+          "mean_net_r": -0.14458423085224537,
+          "mean_net_r_ci95": [
+            -0.4079410875367897,
+            0.13148529543763232
+          ],
+          "win_rate": 0.45652173913043476,
+          "avg_win_eur": 0.9589175811399012,
+          "avg_loss_eur": -1.1246637975851308,
+          "profit_factor_r": 0.6469585455180741,
+          "max_drawdown_eur": 14.741768930092633,
+          "max_drawdown_fraction": 0.029474226820065206,
+          "holding_minutes_mean": 11.501449275362317,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "STOP": 16,
+            "TIME_EXIT": 30
+          },
+          "any_position_fraction": 0.004916570216049383,
+          "position_minutes": 529.0666666666667,
+          "mean_concurrency": 0.005467372134038801
+        },
+        "ALL_EVALUATED": {
+          "n_trades": 748,
+          "unique_episodes": 327,
+          "trades_per_episode_mean": 2.287461773700306,
+          "share_of_trades_in_multi_trade_episodes": 0.7874331550802139,
+          "gross_eur": -30.31573134608869,
+          "net_eur": -315.4535271741782,
+          "cost_eur": 285.1377958280895,
+          "spread_slippage_cost_eur": 172.95663325679453,
+          "commission_eur": 112.18116257129498,
+          "gross_return_pct_of_500": -6.0631462692177385,
+          "net_return_pct_of_500": -63.09070543483564,
+          "mean_net_eur": -0.4217293144039816,
+          "mean_net_r": -0.20030020583397934,
+          "mean_net_r_ci95": [
+            -0.2578526231170537,
+            -0.14433801577418873
+          ],
+          "win_rate": 0.3810160427807487,
+          "avg_win_eur": 1.0510454686444781,
+          "avg_loss_eur": -1.3282969454381308,
+          "profit_factor_r": 0.4923634283284043,
+          "max_drawdown_eur": 322.20642659242355,
+          "max_drawdown_fraction": 0.6442216373015824,
+          "holding_minutes_mean": 12.345766488413549,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "STOP": 222,
+            "STOP_REJECTED": 1,
+            "TIME_EXIT": 525
+          },
+          "any_position_fraction": 0.029071957518861453,
+          "position_minutes": 9234.633333333333,
+          "mean_concurrency": 0.03711192022462277
+        }
+      },
+      "cost_sensitivity": {
+        "optimistic": {
+          "n_trades": 900,
+          "unique_episodes": 330,
+          "trades_per_episode_mean": 2.727272727272727,
+          "share_of_trades_in_multi_trade_episodes": 0.8511111111111112,
+          "gross_eur": 40.09187900113121,
+          "net_eur": -286.1424936692398,
+          "cost_eur": 326.23437267037104,
+          "spread_slippage_cost_eur": 179.86414883571732,
+          "commission_eur": 146.3702238346537,
+          "gross_return_pct_of_500": 8.018375800226242,
+          "net_return_pct_of_500": -57.228498733847964,
+          "mean_net_eur": -0.3179361040769331,
+          "mean_net_r": -0.14625219730028807,
+          "mean_net_r_ci95": [
+            -0.2031089450543239,
+            -0.08958069735983436
+          ],
+          "win_rate": 0.4077777777777778,
+          "avg_win_eur": 1.2039723728576879,
+          "avg_loss_eur": -1.3658543236548053,
+          "profit_factor_r": 0.6152282148165564,
+          "max_drawdown_eur": 294.00084229893946,
+          "max_drawdown_fraction": 0.5880016845978789,
+          "holding_minutes_mean": 12.616888888888889,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "STOP": 248,
+            "STOP_REJECTED": 1,
+            "TIME_EXIT": 651
+          },
+          "any_position_fraction": 0.032700041259430726,
+          "position_minutes": 11355.2,
+          "mean_concurrency": 0.04563400205761317
+        },
+        "base": {
+          "n_trades": 748,
+          "unique_episodes": 327,
+          "trades_per_episode_mean": 2.287461773700306,
+          "share_of_trades_in_multi_trade_episodes": 0.7874331550802139,
+          "gross_eur": -30.31573134608869,
+          "net_eur": -315.4535271741782,
+          "cost_eur": 285.1377958280895,
+          "spread_slippage_cost_eur": 172.95663325679453,
+          "commission_eur": 112.18116257129498,
+          "gross_return_pct_of_500": -6.0631462692177385,
+          "net_return_pct_of_500": -63.09070543483564,
+          "mean_net_eur": -0.4217293144039816,
+          "mean_net_r": -0.20030020583397934,
+          "mean_net_r_ci95": [
+            -0.2578526231170537,
+            -0.14433801577418873
+          ],
+          "win_rate": 0.3810160427807487,
+          "avg_win_eur": 1.0510454686444781,
+          "avg_loss_eur": -1.3282969454381308,
+          "profit_factor_r": 0.4923634283284043,
+          "max_drawdown_eur": 322.20642659242355,
+          "max_drawdown_fraction": 0.6442216373015824,
+          "holding_minutes_mean": 12.345766488413549,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "STOP": 222,
+            "STOP_REJECTED": 1,
+            "TIME_EXIT": 525
+          },
+          "any_position_fraction": 0.029071957518861453,
+          "position_minutes": 9234.633333333333,
+          "mean_concurrency": 0.03711192022462277
+        },
+        "adverse": {
+          "n_trades": 802,
+          "unique_episodes": 417,
+          "trades_per_episode_mean": 1.9232613908872902,
+          "share_of_trades_in_multi_trade_episodes": 0.7169576059850374,
+          "gross_eur": -30.20847039484969,
+          "net_eur": -370.05658698193184,
+          "cost_eur": 339.84811658708213,
+          "spread_slippage_cost_eur": 203.20485334600326,
+          "commission_eur": 136.6432632410789,
+          "gross_return_pct_of_500": -6.041694078969939,
+          "net_return_pct_of_500": -74.01131739638636,
+          "mean_net_eur": -0.4614171907505384,
+          "mean_net_r": -0.23828847111596446,
+          "mean_net_r_ci95": [
+            -0.2937005002440858,
+            -0.17929060654275655
+          ],
+          "win_rate": 0.36159600997506236,
+          "avg_win_eur": 0.8183622740480586,
+          "avg_loss_eur": -1.1862922782341188,
+          "profit_factor_r": 0.39595187758451567,
+          "max_drawdown_eur": 372.1884358005,
+          "max_drawdown_fraction": 0.7441805023689768,
+          "holding_minutes_mean": 12.644077306733168,
+          "holding_minutes_median": 15.0,
+          "exits": {
+            "STOP": 211,
+            "STOP_REJECTED": 19,
+            "TIME_EXIT": 572
+          },
+          "any_position_fraction": 0.03160700124314129,
+          "position_minutes": 10140.55,
+          "mean_concurrency": 0.04075259612911523
+        }
+      },
+      "by_pair": {
+        "AUDUSD": {
+          "n": 114,
+          "mean_net_r": -0.20161378107837544,
+          "net_eur": -47.43554295137291,
+          "win_rate": 0.35964912280701755
+        },
+        "EURUSD": {
+          "n": 87,
+          "mean_net_r": -0.3774319259674049,
+          "net_eur": -73.60918766878662,
+          "win_rate": 0.3103448275862069
+        },
+        "GBPUSD": {
+          "n": 183,
+          "mean_net_r": -0.16470368789581952,
+          "net_eur": -61.65525022852141,
+          "win_rate": 0.3770491803278688
+        },
+        "NZDUSD": {
+          "n": 77,
+          "mean_net_r": -0.18518842830022147,
+          "net_eur": -29.539977781793567,
+          "win_rate": 0.44155844155844154
+        },
+        "USDCAD": {
+          "n": 17,
+          "mean_net_r": -0.4235301482213347,
+          "net_eur": -14.76416745545701,
+          "win_rate": 0.17647058823529413
+        },
+        "USDCHF": {
+          "n": 107,
+          "mean_net_r": -0.08562162108446784,
+          "net_eur": -20.042197828908492,
+          "win_rate": 0.4205607476635514
+        },
+        "USDJPY": {
+          "n": 163,
+          "mean_net_r": -0.20393984982739125,
+          "net_eur": -68.4072032593382,
+          "win_rate": 0.4049079754601227
+        }
+      },
+      "by_regime": {
+        "session": {
+          "ASIA": {
+            "n": 218,
+            "mean_net_r": -0.22019841837941942
+          },
+          "LONDON": {
+            "n": 231,
+            "mean_net_r": -0.2292529306158823
+          },
+          "LONDON_NEW_YORK_OVERLAP": {
+            "n": 196,
+            "mean_net_r": -0.08823679792861275
+          },
+          "NEW_YORK": {
+            "n": 47,
+            "mean_net_r": -0.15667655390218593
+          },
+          "OTHER": {
+            "n": 56,
+            "mean_net_r": -0.4322439528111338
+          }
+        },
+        "volatility_tercile": {
+          "low": {
+            "n": 250,
+            "mean_net_r": -0.25982652863626715
+          },
+          "mid": {
+            "n": 249,
+            "mean_net_r": -0.18195477195893928
+          },
+          "high": {
+            "n": 249,
+            "mean_net_r": -0.15888025536937314
+          }
+        }
+      },
+      "governed": {
+        "n_trades": 60,
+        "final_ledger_equity_eur": 449.6549119841011,
+        "engine_balance_eur": 430.42,
+        "ledger_minus_engine_eur": 19.2923335798982,
+        "paused_drawdown": true,
+        "max_drawdown_eur": 50.493496476739836,
+        "max_drawdown_fraction": 0.10095702719944417,
+        "net_eur": -50.34508801589871
+      },
+      "reject_counts_research_base": {
+        "MAX_POSITIONS": 157,
+        "COST_GATE": 24857,
+        "DAILY_LOSS_HALT": 9009,
+        "SESSION_NO_ENTRY": 2830,
+        "ENGINE_DENIED": 4233,
+        "BELOW_MIN_UNITS": 3
+      },
+      "tf_resets": {
+        "EURUSD": 24,
+        "GBPUSD": 24,
+        "USDJPY": 24,
+        "USDCHF": 24,
+        "AUDUSD": 24,
+        "USDCAD": 24,
+        "NZDUSD": 24
+      },
+      "seconds": 110.6
+    }
+  }
+}

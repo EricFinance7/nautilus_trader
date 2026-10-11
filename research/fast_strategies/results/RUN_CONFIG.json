@@ -1,0 +1,44 @@
+{
+  "start": "2026-04-01T00:00:00Z",
+  "end": "2026-09-20T19:12:00Z",
+  "families": [
+    "F01",
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F07R"
+  ],
+  "runs": [
+    [
+      "research",
+      "optimistic"
+    ],
+    [
+      "research",
+      "base"
+    ],
+    [
+      "research",
+      "adverse"
+    ],
+    [
+      "governed",
+      "base"
+    ]
+  ],
+  "harness_sha256": "fa548c139ef40aab5137131371cbb5b2224c689e7cd2a865a5c9718dbb3418be",
+  "config_hashes": {
+    "F01": "74e1db8dbf379849c3deb8377dd365ada74b4162e18b883fd2a53646c9aa729a",
+    "F02": "2321b557fe2c5f683df567128c81fa0157621bdc73b998a38ced36c2d3721343",
+    "F03": "0cbc94bfc8165a4e698bebcf216cfece534c8166b7616c225a51db1b885448f4",
+    "F04": "f2c918cead00fc8393b7f9327e639749aec6d1c4fab15d2b7cda3a07162f732d",
+    "F05": "ecd91f1d9c74b4bc3ee572db8935aba399b507ec37b831fec09814d45f4df4bf",
+    "F06": "9634dcb01aad65a6f07ac1c508c89c3fe09abf6f97130dc1448b4ab2bb0299e8",
+    "F07": "fe6ebd6dc6bc6ff8232952119b6e4ccd3b6c21b05c454fd36da298703f85a9f0",
+    "F07R": "fe6ebd6dc6bc6ff8232952119b6e4ccd3b6c21b05c454fd36da298703f85a9f0"
+  },
+  "note": "RESERVED_FORWARD (from 2026-09-20T19:12:00Z) is excluded from this evaluation."
+}

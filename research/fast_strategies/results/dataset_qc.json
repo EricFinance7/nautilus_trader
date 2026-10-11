@@ -1,0 +1,557 @@
+{
+  "window": [
+    "2026-04-01",
+    "2026-10-09"
+  ],
+  "pairs": {
+    "EURUSD": {
+      "pair": "EURUSD",
+      "rows": 237600,
+      "days_expected": 165,
+      "days_missing": [],
+      "first_ts": "2026-04-01 00:00:00+00:00",
+      "last_ts": "2026-10-09 23:59:00+00:00",
+      "timestamps": {
+        "tz": "UTC",
+        "duplicates": 0,
+        "monotonic_increasing": true,
+        "not_minute_aligned": 0
+      },
+      "crossed_quotes": {
+        "open": 0,
+        "high": 0,
+        "low": 0,
+        "close": 0
+      },
+      "ohlc_invariant_violations": {
+        "bid": 0,
+        "ask": 0
+      },
+      "non_positive_prices": 0,
+      "session": {
+        "minutes_in_expected_session": 198540,
+        "valid_minutes_in_session": 197557,
+        "zero_volume_minutes_in_session": 983,
+        "valid_minutes_outside_session": 0
+      },
+      "in_session_gaps": {
+        "runs_ge_5min": 3,
+        "longest_minutes": 5,
+        "examples": [
+          {
+            "start": "2026-06-28 21:21:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-07-06 21:31:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-07-19 21:50:00+00:00",
+            "minutes": 5
+          }
+        ]
+      },
+      "spread_pips": {
+        "open_mean": 0.4344953608325726,
+        "open_median": 0.2999999999997449,
+        "open_p95": 0.700000000000145,
+        "close_mean": 0.44750426459199305,
+        "close_median": 0.2999999999997449,
+        "close_p95": 0.700000000000145,
+        "close_max": 19.700000000000273,
+        "negative_close": 0
+      },
+      "content_sha256": "c0fb91c0ddd316649156a00528e9d300e3b4ca7af3a907c50a0975e373851921",
+      "deterministic_rebuild_hash_matches": true,
+      "parquet_path": "E:\\Tradingdata\\normalized\\dukascopy\\minute\\EURUSD.parquet",
+      "parquet_sha256": "b19ee7e4d15feccb8cf6b891b532a33c3ddc72a6adb6140d76d11fcd91fa2712"
+    },
+    "GBPUSD": {
+      "pair": "GBPUSD",
+      "rows": 237600,
+      "days_expected": 165,
+      "days_missing": [],
+      "first_ts": "2026-04-01 00:00:00+00:00",
+      "last_ts": "2026-10-09 23:59:00+00:00",
+      "timestamps": {
+        "tz": "UTC",
+        "duplicates": 0,
+        "monotonic_increasing": true,
+        "not_minute_aligned": 0
+      },
+      "crossed_quotes": {
+        "open": 0,
+        "high": 0,
+        "low": 0,
+        "close": 0
+      },
+      "ohlc_invariant_violations": {
+        "bid": 0,
+        "ask": 0
+      },
+      "non_positive_prices": 0,
+      "session": {
+        "minutes_in_expected_session": 198540,
+        "valid_minutes_in_session": 197520,
+        "zero_volume_minutes_in_session": 1020,
+        "valid_minutes_outside_session": 0
+      },
+      "in_session_gaps": {
+        "runs_ge_5min": 8,
+        "longest_minutes": 8,
+        "examples": [
+          {
+            "start": "2026-06-18 21:00:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-07-19 21:00:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-07-20 21:09:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-08-26 21:05:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-08-30 21:21:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-09-06 21:06:00+00:00",
+            "minutes": 8
+          },
+          {
+            "start": "2026-09-22 21:06:00+00:00",
+            "minutes": 6
+          },
+          {
+            "start": "2026-10-04 21:14:00+00:00",
+            "minutes": 5
+          }
+        ]
+      },
+      "spread_pips": {
+        "open_mean": 0.9683885176184671,
+        "open_median": 0.700000000000145,
+        "open_p95": 1.40000000000029,
+        "close_mean": 0.9845321992709569,
+        "close_median": 0.700000000000145,
+        "close_p95": 1.40000000000029,
+        "close_max": 34.70000000000084,
+        "negative_close": 0
+      },
+      "content_sha256": "b9d1cd4b67f611415eba6977c8a2ae58d1ed624cfebe570c27b87eceb7a434ae",
+      "deterministic_rebuild_hash_matches": true,
+      "parquet_path": "E:\\Tradingdata\\normalized\\dukascopy\\minute\\GBPUSD.parquet",
+      "parquet_sha256": "7dac663a0d37e1b28a16575ebcaf69f0547cdfeb9e7a1a4745fb5e8817fc7654"
+    },
+    "USDJPY": {
+      "pair": "USDJPY",
+      "rows": 237600,
+      "days_expected": 165,
+      "days_missing": [],
+      "first_ts": "2026-04-01 00:00:00+00:00",
+      "last_ts": "2026-10-09 23:59:00+00:00",
+      "timestamps": {
+        "tz": "UTC",
+        "duplicates": 0,
+        "monotonic_increasing": true,
+        "not_minute_aligned": 0
+      },
+      "crossed_quotes": {
+        "open": 0,
+        "high": 0,
+        "low": 0,
+        "close": 0
+      },
+      "ohlc_invariant_violations": {
+        "bid": 0,
+        "ask": 0
+      },
+      "non_positive_prices": 0,
+      "session": {
+        "minutes_in_expected_session": 198540,
+        "valid_minutes_in_session": 197637,
+        "zero_volume_minutes_in_session": 903,
+        "valid_minutes_outside_session": 0
+      },
+      "in_session_gaps": {
+        "runs_ge_5min": 9,
+        "longest_minutes": 19,
+        "examples": [
+          {
+            "start": "2026-04-13 21:51:00+00:00",
+            "minutes": 8
+          },
+          {
+            "start": "2026-05-19 21:43:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-05-31 21:27:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-05-31 21:43:00+00:00",
+            "minutes": 6
+          },
+          {
+            "start": "2026-06-15 21:19:00+00:00",
+            "minutes": 6
+          },
+          {
+            "start": "2026-07-22 21:09:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-09-13 21:00:00+00:00",
+            "minutes": 19
+          },
+          {
+            "start": "2026-10-04 21:00:00+00:00",
+            "minutes": 15
+          },
+          {
+            "start": "2026-10-04 21:22:00+00:00",
+            "minutes": 5
+          }
+        ]
+      },
+      "spread_pips": {
+        "open_mean": 0.670144254365316,
+        "open_median": 0.40000000000190994,
+        "open_p95": 1.099999999999568,
+        "close_mean": 0.6849744734032535,
+        "close_median": 0.40000000000190994,
+        "close_p95": 1.099999999999568,
+        "close_max": 34.79999999999848,
+        "negative_close": 0
+      },
+      "content_sha256": "8ea99125b6de285885405a821887f9eec7c8f8848c7ccaefab8fb28e23d6889d",
+      "deterministic_rebuild_hash_matches": true,
+      "parquet_path": "E:\\Tradingdata\\normalized\\dukascopy\\minute\\USDJPY.parquet",
+      "parquet_sha256": "40b7362763c1b6aa5099eb43c2e7b0d0a55460bc84d4a95cba61d07397ab165f"
+    },
+    "USDCHF": {
+      "pair": "USDCHF",
+      "rows": 237600,
+      "days_expected": 165,
+      "days_missing": [],
+      "first_ts": "2026-04-01 00:00:00+00:00",
+      "last_ts": "2026-10-09 23:59:00+00:00",
+      "timestamps": {
+        "tz": "UTC",
+        "duplicates": 0,
+        "monotonic_increasing": true,
+        "not_minute_aligned": 0
+      },
+      "crossed_quotes": {
+        "open": 0,
+        "high": 0,
+        "low": 0,
+        "close": 0
+      },
+      "ohlc_invariant_violations": {
+        "bid": 0,
+        "ask": 0
+      },
+      "non_positive_prices": 0,
+      "session": {
+        "minutes_in_expected_session": 198540,
+        "valid_minutes_in_session": 197238,
+        "zero_volume_minutes_in_session": 1302,
+        "valid_minutes_outside_session": 0
+      },
+      "in_session_gaps": {
+        "runs_ge_5min": 10,
+        "longest_minutes": 15,
+        "examples": [
+          {
+            "start": "2026-04-05 21:00:00+00:00",
+            "minutes": 7
+          },
+          {
+            "start": "2026-04-06 21:00:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-04-20 21:00:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-05-03 21:00:00+00:00",
+            "minutes": 15
+          },
+          {
+            "start": "2026-05-03 21:16:00+00:00",
+            "minutes": 15
+          },
+          {
+            "start": "2026-05-24 21:38:00+00:00",
+            "minutes": 7
+          },
+          {
+            "start": "2026-06-07 21:00:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-06-18 21:22:00+00:00",
+            "minutes": 6
+          },
+          {
+            "start": "2026-07-30 21:01:00+00:00",
+            "minutes": 7
+          },
+          {
+            "start": "2026-09-02 21:13:00+00:00",
+            "minutes": 5
+          }
+        ]
+      },
+      "spread_pips": {
+        "open_mean": 1.184446202050316,
+        "open_median": 0.7999999999996898,
+        "open_p95": 1.5999999999993797,
+        "close_mean": 1.1928908222553474,
+        "close_median": 0.8000000000008001,
+        "close_p95": 1.5999999999993797,
+        "close_max": 40.000000000000036,
+        "negative_close": 0
+      },
+      "content_sha256": "51832086b982cdcce176c941474fcb51a2cde186afe12d9013385a5d50608f44",
+      "deterministic_rebuild_hash_matches": true,
+      "parquet_path": "E:\\Tradingdata\\normalized\\dukascopy\\minute\\USDCHF.parquet",
+      "parquet_sha256": "98b9db4ad12aab3c9391b26e314264bbbf58b9f2aa1c0b08f7493460674a5e4b"
+    },
+    "AUDUSD": {
+      "pair": "AUDUSD",
+      "rows": 237600,
+      "days_expected": 165,
+      "days_missing": [],
+      "first_ts": "2026-04-01 00:00:00+00:00",
+      "last_ts": "2026-10-09 23:59:00+00:00",
+      "timestamps": {
+        "tz": "UTC",
+        "duplicates": 0,
+        "monotonic_increasing": true,
+        "not_minute_aligned": 0
+      },
+      "crossed_quotes": {
+        "open": 0,
+        "high": 0,
+        "low": 0,
+        "close": 0
+      },
+      "ohlc_invariant_violations": {
+        "bid": 0,
+        "ask": 0
+      },
+      "non_positive_prices": 0,
+      "session": {
+        "minutes_in_expected_session": 198540,
+        "valid_minutes_in_session": 197304,
+        "zero_volume_minutes_in_session": 1236,
+        "valid_minutes_outside_session": 0
+      },
+      "in_session_gaps": {
+        "runs_ge_5min": 6,
+        "longest_minutes": 5,
+        "examples": [
+          {
+            "start": "2026-07-12 21:36:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-08-10 20:28:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-09-07 19:43:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-09-07 20:04:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-09-07 20:40:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-10-06 21:23:00+00:00",
+            "minutes": 5
+          }
+        ]
+      },
+      "spread_pips": {
+        "open_mean": 1.0547292502939647,
+        "open_median": 0.8999999999992347,
+        "open_p95": 1.2999999999996348,
+        "close_mean": 1.0660843165876013,
+        "close_median": 0.900000000000345,
+        "close_p95": 1.300000000000745,
+        "close_max": 34.10000000000024,
+        "negative_close": 0
+      },
+      "content_sha256": "a7e6b831263ef78538939830d084a5cd6d52ecfc5eb1aa2b64e497643a6c75cc",
+      "deterministic_rebuild_hash_matches": true,
+      "parquet_path": "E:\\Tradingdata\\normalized\\dukascopy\\minute\\AUDUSD.parquet",
+      "parquet_sha256": "353527f3379a958d8605cfb48fc48a32b1d7f4146686a0355a477154e063a92f"
+    },
+    "USDCAD": {
+      "pair": "USDCAD",
+      "rows": 237600,
+      "days_expected": 165,
+      "days_missing": [],
+      "first_ts": "2026-04-01 00:00:00+00:00",
+      "last_ts": "2026-10-09 23:59:00+00:00",
+      "timestamps": {
+        "tz": "UTC",
+        "duplicates": 0,
+        "monotonic_increasing": true,
+        "not_minute_aligned": 0
+      },
+      "crossed_quotes": {
+        "open": 0,
+        "high": 0,
+        "low": 0,
+        "close": 0
+      },
+      "ohlc_invariant_violations": {
+        "bid": 0,
+        "ask": 0
+      },
+      "non_positive_prices": 0,
+      "session": {
+        "minutes_in_expected_session": 198540,
+        "valid_minutes_in_session": 197133,
+        "zero_volume_minutes_in_session": 1407,
+        "valid_minutes_outside_session": 0
+      },
+      "in_session_gaps": {
+        "runs_ge_5min": 2,
+        "longest_minutes": 7,
+        "examples": [
+          {
+            "start": "2026-04-06 23:36:00+00:00",
+            "minutes": 7
+          },
+          {
+            "start": "2026-09-13 21:14:00+00:00",
+            "minutes": 6
+          }
+        ]
+      },
+      "spread_pips": {
+        "open_mean": 1.3825123140214957,
+        "open_median": 1.100000000000545,
+        "open_p95": 1.80000000000069,
+        "close_mean": 1.3876509767517298,
+        "close_median": 1.100000000000545,
+        "close_p95": 1.80000000000069,
+        "close_max": 29.69999999999917,
+        "negative_close": 0
+      },
+      "content_sha256": "40db917a2212a8c25f205e222931f02eed67ad786dea4a174f3b954c091c0e98",
+      "deterministic_rebuild_hash_matches": true,
+      "parquet_path": "E:\\Tradingdata\\normalized\\dukascopy\\minute\\USDCAD.parquet",
+      "parquet_sha256": "97833b6e3f388c45d507a8aad57298e51b30a1200b5dab900a4dd85400381d86"
+    },
+    "NZDUSD": {
+      "pair": "NZDUSD",
+      "rows": 237600,
+      "days_expected": 165,
+      "days_missing": [],
+      "first_ts": "2026-04-01 00:00:00+00:00",
+      "last_ts": "2026-10-09 23:59:00+00:00",
+      "timestamps": {
+        "tz": "UTC",
+        "duplicates": 0,
+        "monotonic_increasing": true,
+        "not_minute_aligned": 0
+      },
+      "crossed_quotes": {
+        "open": 0,
+        "high": 0,
+        "low": 0,
+        "close": 0
+      },
+      "ohlc_invariant_violations": {
+        "bid": 0,
+        "ask": 0
+      },
+      "non_positive_prices": 0,
+      "session": {
+        "minutes_in_expected_session": 198540,
+        "valid_minutes_in_session": 197108,
+        "zero_volume_minutes_in_session": 1432,
+        "valid_minutes_outside_session": 0
+      },
+      "in_session_gaps": {
+        "runs_ge_5min": 12,
+        "longest_minutes": 19,
+        "examples": [
+          {
+            "start": "2026-04-08 21:01:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-04-29 21:00:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-05-05 21:01:00+00:00",
+            "minutes": 6
+          },
+          {
+            "start": "2026-05-25 19:13:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-05-25 19:28:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-06-25 21:35:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-07-26 21:08:00+00:00",
+            "minutes": 7
+          },
+          {
+            "start": "2026-08-17 21:18:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-09-13 21:00:00+00:00",
+            "minutes": 5
+          },
+          {
+            "start": "2026-09-17 21:01:00+00:00",
+            "minutes": 5
+          }
+        ]
+      },
+      "spread_pips": {
+        "open_mean": 1.196037705217443,
+        "open_median": 0.9999999999998899,
+        "open_p95": 1.4999999999998348,
+        "close_mean": 1.2036954360046273,
+        "close_median": 0.9999999999998899,
+        "close_p95": 1.4999999999998348,
+        "close_max": 35.00000000000058,
+        "negative_close": 0
+      },
+      "content_sha256": "0d405c0322eae17ea0835586732388952fc1d329060ae1fa7e0b17572a39f756",
+      "deterministic_rebuild_hash_matches": true,
+      "parquet_path": "E:\\Tradingdata\\normalized\\dukascopy\\minute\\NZDUSD.parquet",
+      "parquet_sha256": "523a7e306e109a520b46dd60d5dace453768ee234c6ebe5df7d3f92e879f4c28"
+    }
+  }
+}

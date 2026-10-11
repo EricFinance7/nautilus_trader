@@ -35,7 +35,7 @@ of equity; evidence is measured in R = net P&L / actual risk at the stop so this
 
 | Component | Base | Optimistic | Adverse | Provenance |
 |---|---|---|---|---|
-| Spread | observed Dukascopy bid/ask as is (x1.0) | x1.0 | x1.5 | **OBSERVED** (candle values). Median spreads: EURUSD 0.3 pip, USDJPY 0.6, GBPUSD 0.7, USDCHF 0.8, AUDUSD 0.9, NZDUSD 1.0, USDCAD 1.1 |
+| Spread | observed Dukascopy bid/ask as is (x1.0) | x1.0 | x1.5 | **OBSERVED** (candle values). Median spreads: EURUSD 0.3 pip, USDJPY 0.4, GBPUSD 0.7, USDCHF 0.8, AUDUSD 0.9, NZDUSD 1.0, USDCAD 1.1 |
 | Commission (per side, fraction of notional) | 0.000026 | 0.000026 | 0.000040 | **BROKER_SCHEDULE**: Pepperstone GmbH cTrader Razor, USD 3 per side per 100k, Sept 2026 published fee schedule. The broker is *not yet selected or opened*; this is a vendor-published figure, not an observed fill |
 | Market-order slippage (each side) | 0.1 pip | 0 | 0.3 pip | **CONSERVATIVE_ASSUMPTION** (baked into the quote stream so every market fill pays it) |
 | Extra stop slippage | 0.3 pip total | 0 | 0.6 pip total | **CONSERVATIVE_ASSUMPTION** (applied to the ledger's stop exits) |
