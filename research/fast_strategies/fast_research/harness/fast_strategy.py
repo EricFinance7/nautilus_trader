@@ -22,6 +22,23 @@ from .sizing import cost_gate, expected_round_trip_cost_eur, position_size
 NS_MIN = 60_000_000_000
 
 
+def guarded(fn):
+    """Nautilus only LOGS exceptions raised inside strategy callbacks and keeps running, which would let a broken
+    strategy silently do nothing. Record them so the runner can fail loudly."""
+    import functools
+    import traceback
+
+    @functools.wraps(fn)
+    def wrapper(self, *a, **k):
+        try:
+            return fn(self, *a, **k)
+        except Exception:  # noqa: BLE001
+            if len(self.errors) < 5:
+                self.errors.append(traceback.format_exc())
+            raise
+    return wrapper
+
+
 def money_value(m) -> float:
     for attr in ("as_double", "as_f64", "to_float"):
         f = getattr(m, attr, None)
@@ -31,10 +48,11 @@ def money_value(m) -> float:
 
 
 class FastConfig(StrategyConfig):
-    def __init__(self, *, family: str, family_spec: dict, harness: dict, scenario: str, journal_path=None, mode: str = "governed", model_factory=None, **_):
+    def __init__(self, *, family: str, family_spec: dict, harness: dict, scenario: str, journal_path=None, mode: str = "governed", model_factory=None, trade_from_ns: int = 0, restore_journal=None, **_):
         super().__init__()
         self.family, self.family_spec, self.harness = family, family_spec, harness
         self.scenario, self.journal_path, self.mode, self.model_factory = scenario, journal_path, mode, model_factory
+        self.trade_from_ns, self.restore_journal = trade_from_ns, restore_journal
 
 
 class FastStrategy(Strategy):
@@ -45,12 +63,24 @@ class FastStrategy(Strategy):
         self.cap = cap
         self.model = (config.model_factory or MODELS[config.family])(config.family_spec)
         self.family = config.family
+        self.trade_from_ns = config.trade_from_ns
+        self.errors: list[str] = []
         self.pairs = list(h["universe"])
         tfs = set(self.model.tfs) | {1, 5, 15}
         self.state = {p: PairState(tfs, h["data"]["session_reset_gap_minutes"]) for p in self.pairs}
         self.research = config.mode == "research"   # amendment A4: fixed sizing equity, drawdown pause off
-        self.ledger = VirtualLedger(cap["initial_virtual_equity_eur"], cap["daily_realized_loss_limit_fraction"],
-                                    1e9 if self.research else cap["drawdown_pause_fraction"], config.journal_path)
+        dd = 1e9 if self.research else cap["drawdown_pause_fraction"]
+        if config.restore_journal:    # restart recovery: rebuild equity/peak/daily state from the append-only journal
+            # Never open a journal for writing before it has been read (that would truncate the record).
+            self.ledger = VirtualLedger.rebuild(config.restore_journal, append=False,
+                                                initial_eur=cap["initial_virtual_equity_eur"],
+                                                daily_loss_fraction=cap["daily_realized_loss_limit_fraction"],
+                                                drawdown_fraction=dd)
+            if config.journal_path:
+                self.ledger._fh = open(config.journal_path, "a", encoding="utf-8")
+        else:
+            self.ledger = VirtualLedger(cap["initial_virtual_equity_eur"], cap["daily_realized_loss_limit_fraction"],
+                                        dd, config.journal_path)
         self.risk_fraction = cap["risk_per_trade_fraction"]
         self.open: dict[str, dict] = {}
         self.pending: dict[str, dict] = {}
@@ -92,6 +122,7 @@ class FastStrategy(Strategy):
                         pair=getattr(intent, "pair", None), family=self.family, signal=getattr(intent, "reason", None), **extra)
 
     # ------------------------------------------------------------------ data
+    @guarded
     def on_bar(self, bar):
         pair = self._iid_to_pair.get(str(bar.bar_type.instrument_id))
         if pair is None:
@@ -135,7 +166,7 @@ class FastStrategy(Strategy):
         if self.family != "F04" and (pair in self.open or pair in self.pending):
             return   # one position per pair: nothing to evaluate while it is busy
         intents = self.model.entry(self, pair, done)
-        if not intents:
+        if not intents or now < self.trade_from_ns:     # warm-up replay after a restart: state advances, nothing trades
             return
         ok, why = self.ledger.entries_allowed(now)
         if not ok:
@@ -206,6 +237,7 @@ class FastStrategy(Strategy):
             self.submit_order(o)
 
     # ------------------------------------------------------------------ order events
+    @guarded
     def on_order_filled(self, ev):
         role, pair = self.roles.get(ev.client_order_id.value, (None, None))
         if role is None:
@@ -290,9 +322,11 @@ class FastStrategy(Strategy):
         elif role == "EXIT":
             self.ledger.log("EXIT_FAILED", self.now_ns, pair=pair, why=why, detail=str(getattr(ev, "reason", ""))[:160])
 
+    @guarded
     def on_order_denied(self, ev):
         self._entry_failed(ev, "DENIED")
 
+    @guarded
     def on_order_rejected(self, ev):
         self._entry_failed(ev, "REJECTED")
 

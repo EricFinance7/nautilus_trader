@@ -67,7 +67,9 @@ class VirtualLedger:
         return True, None
 
     @classmethod
-    def rebuild(cls, journal_path: str | Path, **kw) -> "VirtualLedger":
+    def rebuild(cls, journal_path: str | Path, append: bool = False, **kw) -> "VirtualLedger":
+        """Replay a journal into a fresh ledger. With append=True the same file stays open for further events
+        (a restarted process continues the SAME append-only record)."""
         led = cls(**kw)
         for line in Path(journal_path).read_text(encoding="utf-8").splitlines():
             ev = json.loads(line)
@@ -79,6 +81,8 @@ class VirtualLedger:
                 if (led.peak - led.equity) / led.peak >= led.drawdown_fraction:
                     led.paused = True
                 led.trades.append({k: v for k, v in ev.items() if k not in ("seq", "kind", "equity_after", "ts_ns")})
+        if append:
+            led._fh = open(journal_path, "a", encoding="utf-8")
         return led
 
     def close(self) -> None:
