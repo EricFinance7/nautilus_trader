@@ -26,7 +26,7 @@
     "exits": [
       "stop",
       "partial reversion: on a completed 5m bar with |z| <= 0.5 exit at next open",
-      "time exit at the first 5m boundary >= entry fill + 30 min",
+      "time exit at the first 5m boundary >= signal bar close + 30 min",
       "force_flat"
     ],
     "max_holding_minutes": 30,

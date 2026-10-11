@@ -25,7 +25,7 @@
     "entry": "market at next-open",
     "exits": [
       "stop",
-      "time exit at the first 15m boundary >= entry fill + 120 min",
+      "time exit at the first 15m boundary >= signal bar close + 120 min",
       "force_flat"
     ],
     "max_holding_minutes": 120,

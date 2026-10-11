@@ -54,13 +54,15 @@ HARNESS = {
     "execution_timing": {
         "decision": "on completion of the signal-timeframe bar",
         "order_type_entry": "MARKET",
-        "latency_base_seconds": 2,
-        "latency_adverse_seconds": 62,
+        "latency_base_seconds": 0.5,
+        "latency_adverse_seconds": 60.5,
         "synthetic_quote_schedule_seconds_into_minute": {"open": 1, "first_extreme": 20, "second_extreme": 40, "close": 59},
         "intrabar_path": "open -> extreme nearer the open -> other extreme -> close (Nautilus bar_adaptive_high_low_ordering heuristic), applied to bid and ask candles separately",
-        "note": "Base fill = first quote after decision+2s = the next minute's OPEN bid/ask. No same-bar-close fill is permitted. Adverse = one bar later.",
-        "protective_stop": "native STOP_MARKET submitted immediately on entry fill (bid-triggered for longs, ask-triggered for shorts)",
-        "non_stop_exits": "evaluated only on completed bars, executed as MARKET at the next open (never as resting limit orders)",
+        "note": "Base fill = first quote after decision+0.5s = the next minute's OPEN bid/ask (the open quote is emitted at +1s). No same-bar-close fill is permitted. Adverse = one bar later (arrival at +60.5s lands before the following minute's open quote at +61s).",
+        "protective_stop": "native reduce-only STOP_MARKET submitted immediately on entry fill (bid-triggered for longs, ask-triggered for shorts); cancelled on any other exit; if the venue rejects it the position is closed at market immediately",
+        "stop_fill_repricing": "the engine fills a triggered stop at the quote that crossed it; on a 4-point minute path that quote is often the minute extreme, which would overstate losses. The virtual ledger therefore re-prices stop exits: if the trigger quote is the minute-open quote (gap through the stop) the engine fill is kept (plus the extra stop slippage); otherwise the exit is booked at the stop price minus slippage_pips_stop. The correction is reported per run as ledger_minus_engine_eur.",
+        "non_stop_exits": "evaluated only on completed bars, executed as reduce-only MARKET at the next open (never as resting limit orders)",
+        "time_exit_anchor": "first signal-timeframe boundary >= signal bar close + max_holding_minutes",
     },
     "capital_and_risk": {
         "base_currency": "EUR", "initial_virtual_equity_eur": 500.0, "risk_per_trade_fraction": 0.005,
@@ -103,6 +105,15 @@ HARNESS = {
         "multiplicity": "eight strategy arms are tested (F01-F07 plus the pre-declared F07 reversal mirror); no multiple-testing correction is applied, which makes any positive finding weaker, not stronger",
         "win_rate_target": "none; no target (including 85%) is forced",
     },
+    "amendments": [
+        {"id": "A1", "date": "2026-10-11", "kind": "pre-evaluation mechanics correction",
+         "reason": "Engine-mechanics prototype on synthetic orders (no strategy, no performance computed): a 2 s latency filled at the +20 s path point (a bar extreme), not the next open; and a triggered stop fills at the crossing path quote (minute extreme).",
+         "changes": ["latency_base 2 s -> 0.5 s, latency_adverse 62 s -> 60.5 s", "stop exits re-priced in the virtual ledger (see stop_fill_repricing)", "time-exit anchor is the signal bar close, not the entry fill (an entry fill 1 s after a 15m boundary would otherwise add a whole extra bar)", "orders are reduce-only for stops/exits; stops cancelled on exit", "time bars are built with no fabricated flat bars (time_bars_build_with_no_updates=False)"],
+         "performance_examined": False},
+        {"id": "A2", "date": "2026-10-11", "kind": "pre-evaluation data-integrity guard",
+         "reason": "An opening range built from a mostly empty window would be wrong data, not a signal.",
+         "changes": ["F05 requires >= 24 of the 30 opening-range minutes to be valid, else NO_TRADE"], "performance_examined": False},
+    ],
     "common_definitions": {
         "TR": "max(H-L, |H-C_prev|, |L-C_prev|) on MID bars of the stated timeframe",
         "ATR_n": "simple mean of the last n true ranges (needs n+1 contiguous bars), as in the FRONT-1 stop calculation",
@@ -136,7 +147,7 @@ FAMILIES = {
             "signal_timeframe": "15m", "lookback_bars": 4, "move_threshold_atr": 1.5, "atr_n": 14,
             "rule": "LONG if z_move_4 >= +1.5 AND the last completed 15m bar closed up; SHORT mirror. z_move_4 = (C_t - C_{t-4}) / ATR14(15m).",
             "entry": "market at next-open after bar completion", "stop_timeframe": "15m", "stop_multiple": 1.5,
-            "exits": ["stop", "time exit at the first 15m boundary >= entry fill + 60 min", "force_flat"],
+            "exits": ["stop", "time exit at the first 15m boundary >= signal bar close + 60 min", "force_flat"],
             "max_holding_minutes": 60, "one_position_per_pair": True,
         },
         "gap_fill_decisions": [
@@ -159,7 +170,7 @@ FAMILIES = {
             "entry_z": 2.0, "exit_z": 0.5, "atr_n": 14,
             "rule": "z = (C_t - SMA12) / std12. SHORT if z >= +2.0, LONG if z <= -2.0 (fade). Skip if std12 == 0.",
             "entry": "market at next-open", "stop_timeframe": "5m", "stop_multiple": 1.5,
-            "exits": ["stop", "partial reversion: on a completed 5m bar with |z| <= 0.5 exit at next open", "time exit at the first 5m boundary >= entry fill + 30 min", "force_flat"],
+            "exits": ["stop", "partial reversion: on a completed 5m bar with |z| <= 0.5 exit at next open", "time exit at the first 5m boundary >= signal bar close + 30 min", "force_flat"],
             "max_holding_minutes": 30, "one_position_per_pair": True,
         },
         "gap_fill_decisions": [
@@ -179,7 +190,7 @@ FAMILIES = {
             "signal_timeframe": "15m", "compression_short_atr": 8, "compression_long_atr": 48, "compression_ratio_max": 0.7, "range_bars": 8, "atr_n": 14,
             "rule": "At the prior bar t-1, compressed if ATR8/ATR48 <= 0.7. At bar t: LONG if C_t > max(H over bars t-8..t-1); SHORT if C_t < min(L over bars t-8..t-1).",
             "entry": "market at next-open", "stop_timeframe": "15m", "stop_multiple": 1.5,
-            "exits": ["stop", "time exit at the first 15m boundary >= entry fill + 120 min", "force_flat"],
+            "exits": ["stop", "time exit at the first 15m boundary >= signal bar close + 120 min", "force_flat"],
             "max_holding_minutes": 120, "one_position_per_pair": True,
         },
         "gap_fill_decisions": [
@@ -201,7 +212,7 @@ FAMILIES = {
             "rule": "For each pair p: m_p = (C_t - C_{t-4}) / ATR14_p. Non-USD currency strength s_c = +m_p where the currency is the BASE (EUR, GBP, AUD, NZD vs USD) and -m_p where it is the QUOTE (JPY, CHF, CAD in USDJPY, USDCHF, USDCAD). If max(s) - min(s) >= 3.0: BUY the strongest currency vs USD and SELL the weakest currency vs USD (USD-neutral relative position, two pair legs).",
             "entry": "both legs market at next-open; all-or-nothing (if either leg fails any gate neither is sent)",
             "leg_risk_fraction": 0.0025, "stop_timeframe": "15m", "stop_multiple": 1.5,
-            "exits": ["either leg's stop closes only that leg's position (the other continues to its own exit)", "time exit of both legs at the first 15m boundary >= entry fill + 60 min", "force_flat"],
+            "exits": ["either leg's stop closes only that leg's position (the other continues to its own exit)", "time exit of both legs at the first 15m boundary >= signal bar close + 60 min", "force_flat"],
             "max_holding_minutes": 60, "one_position_per_pair": True,
         },
         "gap_fill_decisions": [
@@ -221,9 +232,9 @@ FAMILIES = {
         "operationalization": {
             "sessions": [{"name": "LONDON", "tz": "Europe/London", "open_local": "08:00"}, {"name": "NEW_YORK", "tz": "America/New_York", "open_local": "08:00"}],
             "range_window_minutes": 30, "entry_window_minutes": 60, "atr_timeframe": "15m", "atr_n": 14, "range_width_atr_min": 0.5, "range_width_atr_max": 3.0,
-            "rule": "Opening range = max/min of MID highs/lows over [open, open+30m). After the window, on the first completed 5m bar within the next 60 min whose close is beyond the range: LONG above, SHORT below. One trade per pair per session-day. Skip if range width is outside [0.5, 3.0] x ATR14(15m).",
+            "rule": "Opening range = max/min of MID highs/lows over [open, open+30m). After the window, on the first completed 5m bar within the next 60 min whose close is beyond the range: LONG above, SHORT below. One trade per pair per session-day. Skip if range width is outside [0.5, 3.0] x ATR14(15m), or if fewer than 24 of the 30 opening-range minutes are valid.",
             "entry": "market at next-open", "stop": "opposite range boundary, but at least 1.0 x ATR14(15m); skip if the distance exceeds 2.5 x ATR14(15m)",
-            "exits": ["stop", "time exit at the first 5m boundary >= entry fill + 60 min", "force_flat"],
+            "exits": ["stop", "time exit at the first 5m boundary >= signal bar close + 60 min", "force_flat"],
             "max_holding_minutes": 60, "one_position_per_pair": True,
         },
         "gap_fill_decisions": [
@@ -244,7 +255,7 @@ FAMILIES = {
             "fine_timeframe": "5m", "coarse_timeframe": "1h", "fine_lookback_bars": 6, "fine_threshold_atr": 1.5, "coarse_sma_bars": 12, "atr_n": 14,
             "rule": "Fine trigger (as F01 but on 5m): LONG candidate if (C_t - C_{t-6}) / ATR14(5m) >= +1.5 and the last 5m bar closed up; SHORT mirror. Coarse trend: sign(C_1h - SMA12(1h closes)) from the last COMPLETED 1h bar. Trade only if coarse trend == trigger direction.",
             "entry": "market at next-open", "stop_timeframe": "5m", "stop_multiple": 1.5,
-            "exits": ["stop", "time exit at the first 5m boundary >= entry fill + 60 min", "force_flat"],
+            "exits": ["stop", "time exit at the first 5m boundary >= signal bar close + 60 min", "force_flat"],
             "max_holding_minutes": 60, "one_position_per_pair": True,
         },
         "gap_fill_decisions": [
@@ -265,7 +276,7 @@ FAMILIES = {
             "signal_timeframe": "1m", "lookback_bars": 5, "impulse_threshold_atr": 3.0, "atr_n": 14,
             "rule": "z_move_5 = (C_t - C_{t-5}) / ATR14(1m). MOMENTUM arm (official F07): LONG if z_move_5 >= +3.0 and the last 1m bar closed up; SHORT mirror. Pre-declared companion arm F07R (REVERSAL mirror): identical trigger, opposite direction; reported but not promotable on its own.",
             "entry": "market at next-open", "stop_timeframe": "5m", "stop_multiple": 1.5,
-            "exits": ["stop", "time exit at the first 1m boundary >= entry fill + 15 min", "force_flat"],
+            "exits": ["stop", "time exit at the first 1m boundary >= signal bar close + 15 min", "force_flat"],
             "max_holding_minutes": 15, "one_position_per_pair": True,
         },
         "gap_fill_decisions": [

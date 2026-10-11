@@ -22,7 +22,7 @@
     "entry": "market at next-open",
     "exits": [
       "stop",
-      "time exit at the first 1m boundary >= entry fill + 15 min",
+      "time exit at the first 1m boundary >= signal bar close + 15 min",
       "force_flat"
     ],
     "impulse_threshold_atr": 3.0,

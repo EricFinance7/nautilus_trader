@@ -1,4 +1,30 @@
 {
+  "amendments": [
+    {
+      "changes": [
+        "latency_base 2 s -> 0.5 s, latency_adverse 62 s -> 60.5 s",
+        "stop exits re-priced in the virtual ledger (see stop_fill_repricing)",
+        "time-exit anchor is the signal bar close, not the entry fill (an entry fill 1 s after a 15m boundary would otherwise add a whole extra bar)",
+        "orders are reduce-only for stops/exits; stops cancelled on exit",
+        "time bars are built with no fabricated flat bars (time_bars_build_with_no_updates=False)"
+      ],
+      "date": "2026-10-11",
+      "id": "A1",
+      "kind": "pre-evaluation mechanics correction",
+      "performance_examined": false,
+      "reason": "Engine-mechanics prototype on synthetic orders (no strategy, no performance computed): a 2 s latency filled at the +20 s path point (a bar extreme), not the next open; and a triggered stop fills at the crossing path quote (minute extreme)."
+    },
+    {
+      "changes": [
+        "F05 requires >= 24 of the 30 opening-range minutes to be valid, else NO_TRADE"
+      ],
+      "date": "2026-10-11",
+      "id": "A2",
+      "kind": "pre-evaluation data-integrity guard",
+      "performance_examined": false,
+      "reason": "An opening range built from a mostly empty window would be wrong data, not a signal."
+    }
+  ],
   "capital_and_risk": {
     "averaging_down": false,
     "base_currency": "EUR",
@@ -97,18 +123,20 @@
   "execution_timing": {
     "decision": "on completion of the signal-timeframe bar",
     "intrabar_path": "open -> extreme nearer the open -> other extreme -> close (Nautilus bar_adaptive_high_low_ordering heuristic), applied to bid and ask candles separately",
-    "latency_adverse_seconds": 62,
-    "latency_base_seconds": 2,
-    "non_stop_exits": "evaluated only on completed bars, executed as MARKET at the next open (never as resting limit orders)",
-    "note": "Base fill = first quote after decision+2s = the next minute's OPEN bid/ask. No same-bar-close fill is permitted. Adverse = one bar later.",
+    "latency_adverse_seconds": 60.5,
+    "latency_base_seconds": 0.5,
+    "non_stop_exits": "evaluated only on completed bars, executed as reduce-only MARKET at the next open (never as resting limit orders)",
+    "note": "Base fill = first quote after decision+0.5s = the next minute's OPEN bid/ask (the open quote is emitted at +1s). No same-bar-close fill is permitted. Adverse = one bar later (arrival at +60.5s lands before the following minute's open quote at +61s).",
     "order_type_entry": "MARKET",
-    "protective_stop": "native STOP_MARKET submitted immediately on entry fill (bid-triggered for longs, ask-triggered for shorts)",
+    "protective_stop": "native reduce-only STOP_MARKET submitted immediately on entry fill (bid-triggered for longs, ask-triggered for shorts); cancelled on any other exit; if the venue rejects it the position is closed at market immediately",
+    "stop_fill_repricing": "the engine fills a triggered stop at the quote that crossed it; on a 4-point minute path that quote is often the minute extreme, which would overstate losses. The virtual ledger therefore re-prices stop exits: if the trigger quote is the minute-open quote (gap through the stop) the engine fill is kept (plus the extra stop slippage); otherwise the exit is booked at the stop price minus slippage_pips_stop. The correction is reported per run as ledger_minus_engine_eur.",
     "synthetic_quote_schedule_seconds_into_minute": {
       "close": 59,
       "first_extreme": 20,
       "open": 1,
       "second_extreme": 40
-    }
+    },
+    "time_exit_anchor": "first signal-timeframe boundary >= signal bar close + max_holding_minutes"
   },
   "harness_version": "fast_harness_v1",
   "nautilus_trader": "2.0.0rc6",

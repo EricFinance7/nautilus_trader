@@ -21,7 +21,7 @@
     "entry": "market at next-open after bar completion",
     "exits": [
       "stop",
-      "time exit at the first 15m boundary >= entry fill + 60 min",
+      "time exit at the first 15m boundary >= signal bar close + 60 min",
       "force_flat"
     ],
     "lookback_bars": 4,

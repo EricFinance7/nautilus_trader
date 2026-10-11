@@ -26,7 +26,7 @@
     "entry_window_minutes": 60,
     "exits": [
       "stop",
-      "time exit at the first 5m boundary >= entry fill + 60 min",
+      "time exit at the first 5m boundary >= signal bar close + 60 min",
       "force_flat"
     ],
     "max_holding_minutes": 60,
@@ -34,7 +34,7 @@
     "range_width_atr_max": 3.0,
     "range_width_atr_min": 0.5,
     "range_window_minutes": 30,
-    "rule": "Opening range = max/min of MID highs/lows over [open, open+30m). After the window, on the first completed 5m bar within the next 60 min whose close is beyond the range: LONG above, SHORT below. One trade per pair per session-day. Skip if range width is outside [0.5, 3.0] x ATR14(15m).",
+    "rule": "Opening range = max/min of MID highs/lows over [open, open+30m). After the window, on the first completed 5m bar within the next 60 min whose close is beyond the range: LONG above, SHORT below. One trade per pair per session-day. Skip if range width is outside [0.5, 3.0] x ATR14(15m), or if fewer than 24 of the 30 opening-range minutes are valid.",
     "sessions": [
       {
         "name": "LONDON",

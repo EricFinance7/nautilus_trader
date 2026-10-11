@@ -23,7 +23,7 @@
     "entry": "both legs market at next-open; all-or-nothing (if either leg fails any gate neither is sent)",
     "exits": [
       "either leg's stop closes only that leg's position (the other continues to its own exit)",
-      "time exit of both legs at the first 15m boundary >= entry fill + 60 min",
+      "time exit of both legs at the first 15m boundary >= signal bar close + 60 min",
       "force_flat"
     ],
     "leg_risk_fraction": 0.0025,
