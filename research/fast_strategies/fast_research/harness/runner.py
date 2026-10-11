@@ -56,7 +56,7 @@ def build_engine(harness: dict, scenario: str, tag: int):
 
 
 def run_arm(family: str, scenario: str, minute_dir: Path, start: str, end: str, tag: int = 1, pairs=None,
-            journal_path=None, harness=None, mode="governed", frames=None, model_factory=None, spec=None) -> dict:
+            journal_path=None, harness=None, mode="governed", frames=None, model_factory=None, spec=None, tick_dir=None) -> dict:
     """Run one strategy arm. `start`/`end` are ISO UTC timestamps (end exclusive)."""
     harness = harness or S.HARNESS
     pairs = list(pairs or harness["universe"])
@@ -69,10 +69,18 @@ def run_arm(family: str, scenario: str, minute_dir: Path, start: str, end: str, 
 
     per_pair = {}
     for p in pairs:
-        df = frames[p] if frames is not None else load_minutes(minute_dir, p)
-        _t = Q.ts_ns(df["ts"])
-        df = df[(_t >= t_start) & (_t < t_end)]
-        ts, b, a = Q.quote_arrays(df, I.PIP[p], I.PRICE_PRECISION[p], sc["spread_multiplier"], sc["slippage_pips_market"])
+        if tick_dir is not None:      # REAL ticks (fidelity tier): every tick is a quote
+            from ..data import ticks_dataset as TD
+            parts = [pd.read_parquet(f) for f in sorted((Path(tick_dir) / p).glob("*.parquet"))]
+            tdf = pd.concat(parts, ignore_index=True) if parts else pd.DataFrame(columns=["ts", "bid", "ask"])
+            _t = Q.ts_ns(tdf["ts"])
+            tdf = tdf[(_t >= t_start) & (_t < t_end)]
+            ts, b, a = TD.tick_quote_arrays(tdf, I.PIP[p], I.PRICE_PRECISION[p], sc["spread_multiplier"], sc["slippage_pips_market"])
+        else:
+            df = frames[p] if frames is not None else load_minutes(minute_dir, p)
+            _t = Q.ts_ns(df["ts"])
+            df = df[(_t >= t_start) & (_t < t_end)]
+            ts, b, a = Q.quote_arrays(df, I.PIP[p], I.PRICE_PRECISION[p], sc["spread_multiplier"], sc["slippage_pips_market"])
         inst = I.make_instrument(p)
         engine.add_instrument(inst)
         per_pair[p] = (inst, ts, b, a)
