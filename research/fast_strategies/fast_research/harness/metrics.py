@@ -124,7 +124,8 @@ def summarize(trades: list, partitions: dict, window: tuple, resamples: int = 50
     mdd, mdd_frac = max_drawdown(trades)
     hold = [(t["exit_ts_ns"] - t["entry_ts_ns"]) / NS_MIN for t in trades]
     out.update({
-        "unique_episodes": n_ep,
+        "unique_episodes": n_ep, "trades_per_episode_mean": len(trades) / n_ep,
+        "share_of_trades_in_multi_trade_episodes": sum(1 for i in ids if ids.count(i) > 1) / len(ids) if len(ids) < 5000 else None,
         "gross_eur": sum(t["gross_eur"] for t in trades), "net_eur": sum(t["net_eur"] for t in trades),
         "cost_eur": sum(t["cost_eur"] for t in trades),
         "spread_slippage_cost_eur": sum(t.get("spread_slippage_cost_eur", 0.0) for t in trades),

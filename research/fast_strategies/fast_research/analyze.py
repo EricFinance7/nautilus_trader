@@ -76,7 +76,7 @@ def tables(res: dict) -> str:
          f"Window: {res['run_config']['start']} -> {res['run_config']['end']} (DEVELOPMENT + VALIDATION + OUT_OF_SAMPLE; RESERVED_FORWARD untouched).",
          "All figures are RESEARCH-mode, BASE cost scenario (fixed EUR 500 sizing, drawdown pause off) unless stated. R = net P&L / risk at the stop.", "",
          "## Summary (all evaluated partitions)", "",
-         "| Arm | Class | Trades | Indep. episodes | Gross (mid-to-mid, before any cost) % of 500 | Net (after spread, slippage, commission) % of 500 | Mean net R [95% CI] | Win % | Avg win EUR | Avg loss EUR | Profit factor (R) | Max DD % | Exposure % |",
+         "| Arm | Class | Trades | Indep. episodes (trades/episode) | Gross (mid-to-mid, before any cost) % of 500 | Net (after spread, slippage, commission) % of 500 | Mean net R [95% CI] | Win % | Avg win EUR | Avg loss EUR | Profit factor (R) | Max DD % | Exposure % |",
          "|---|---|---:|---:|---:|---:|---|---:|---:|---:|---:|---:|---:|"]
     for fam, d in res["families"].items():
         a = d["partitions_base"]["ALL_EVALUATED"]
@@ -84,7 +84,7 @@ def tables(res: dict) -> str:
             L.append(f"| {fam} | {d['classification']['classification']} | 0 | 0 | - | - | - | - | - | - | - | - | - |")
             continue
         ci = a["mean_net_r_ci95"]
-        L.append(f"| {fam} | **{d['classification']['classification']}** | {a['n_trades']} | {a['unique_episodes']} | {fmt(a['gross_return_pct_of_500'])} | "
+        L.append(f"| {fam} | **{d['classification']['classification']}** | {a['n_trades']} | {a['unique_episodes']} ({fmt(a['trades_per_episode_mean'], 2)}) | {fmt(a['gross_return_pct_of_500'])} | "
                  f"{fmt(a['net_return_pct_of_500'])} | {fmt(a['mean_net_r'], 3)} [{fmt(ci[0], 3)}, {fmt(ci[1], 3)}] | {fmt(100 * a['win_rate'], 1)} | "
                  f"{fmt(a['avg_win_eur'])} | {fmt(a['avg_loss_eur'])} | {fmt(a['profit_factor_r'])} | {fmt(100 * a['max_drawdown_fraction'], 1)} | {fmt(100 * a['any_position_fraction'], 1)} |")
     L += ["", "## By partition (mean net R, trades / episodes)", "",
