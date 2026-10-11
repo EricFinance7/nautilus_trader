@@ -23,13 +23,18 @@ import pandas as pd
 OFFSETS_NS = {"open": 1_000_000_000, "first": 20_000_000_000, "second": 40_000_000_000, "close": 59_000_000_000}
 
 
+def ts_ns(series: pd.Series) -> np.ndarray:
+    """Unit-explicit nanoseconds since epoch (pandas 3 may hold microsecond datetimes; never rely on astype(int64))."""
+    return series.dt.as_unit("ns").astype("int64").to_numpy()
+
+
 def quote_arrays(df: pd.DataFrame, pip: float, precision: int, spread_multiplier: float = 1.0,
                  slippage_pips: float = 0.0):
     """df: normalized minute rows (columns per minute_dataset.COLS). Returns (ts_ns, bid, ask) numpy arrays, 4 per
     valid minute, sorted by time."""
     d = df[df["valid"]]
     n = len(d)
-    ts = d["ts"].astype("int64").to_numpy()
+    ts = ts_ns(d["ts"])
     bo, bh, bl, bc = (d[f"bid_{k}"].to_numpy() for k in ("open", "high", "low", "close"))
     ao, ah, al, ac = (d[f"ask_{k}"].to_numpy() for k in ("open", "high", "low", "close"))
     mo, mh, ml = (bo + ao) / 2, (bh + ah) / 2, (bl + al) / 2

@@ -74,7 +74,7 @@ def build_pair(root: Path, pair: str, start: dt.date, end: dt.date):
 def content_hash(df: pd.DataFrame) -> str:
     """Deterministic content hash independent of parquet encoding."""
     h = hashlib.sha256()
-    h.update(df["ts"].astype("int64").to_numpy().tobytes())
+    h.update(df["ts"].dt.as_unit("ns").astype("int64").to_numpy().tobytes())
     for c in COLS[1:]:
         h.update(df[c].to_numpy().tobytes())
     return h.hexdigest()
@@ -96,7 +96,7 @@ def qc_pair(df: pd.DataFrame, pair: str, missing_days: list, start: dt.date, end
     ts = df["ts"]
     res["timestamps"] = {
         "tz": str(ts.dt.tz), "duplicates": int(ts.duplicated().sum()), "monotonic_increasing": bool(ts.is_monotonic_increasing),
-        "not_minute_aligned": int(((ts.astype("int64") // 10**9) % 60 != 0).sum()),
+        "not_minute_aligned": int(((ts.dt.as_unit("ns").astype("int64") // 10**9) % 60 != 0).sum()),
     }
     res["crossed_quotes"] = {f: int((df[f"bid_{f}"] > df[f"ask_{f}"]).sum()) for f in ("open", "high", "low", "close")}
     inv = {}

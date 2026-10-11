@@ -31,10 +31,10 @@ def money_value(m) -> float:
 
 
 class FastConfig(StrategyConfig):
-    def __init__(self, *, family: str, family_spec: dict, harness: dict, scenario: str, journal_path=None, mode: str = "governed", **_):
+    def __init__(self, *, family: str, family_spec: dict, harness: dict, scenario: str, journal_path=None, mode: str = "governed", model_factory=None, **_):
         super().__init__()
         self.family, self.family_spec, self.harness = family, family_spec, harness
-        self.scenario, self.journal_path, self.mode = scenario, journal_path, mode
+        self.scenario, self.journal_path, self.mode, self.model_factory = scenario, journal_path, mode, model_factory
 
 
 class FastStrategy(Strategy):
@@ -43,7 +43,7 @@ class FastStrategy(Strategy):
         h = config.harness
         cap, self.sc = h["capital_and_risk"], h["costs"]["scenarios"][config.scenario]
         self.cap = cap
-        self.model = MODELS[config.family](config.family_spec)
+        self.model = (config.model_factory or MODELS[config.family])(config.family_spec)
         self.family = config.family
         self.pairs = list(h["universe"])
         tfs = set(self.model.tfs) | {1, 5, 15}
@@ -180,7 +180,9 @@ class FastStrategy(Strategy):
                 self._reject(why or "SIZE", it, stop_distance=it.stop_distance)
                 return
             price = (bid + ask) / 2.0
-            cost = expected_round_trip_cost_eur(units, price, ask - bid, self.sc["slippage_pips_market"] * pip,
+            # `ask - bid` already contains the scenario's spread widening AND the market slippage (both are baked into
+            # the quote stream), so no separate slippage term is added here (it would double count).
+            cost = expected_round_trip_cost_eur(units, price, ask - bid, 0.0,
                                                 self.sc["commission_rate_per_side"], fx)
             allowed, frac = cost_gate(cost, risk_eur)
             if not allowed:

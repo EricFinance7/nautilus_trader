@@ -56,28 +56,29 @@ def build_engine(harness: dict, scenario: str, tag: int):
 
 
 def run_arm(family: str, scenario: str, minute_dir: Path, start: str, end: str, tag: int = 1, pairs=None,
-            journal_path=None, harness=None, mode="governed") -> dict:
+            journal_path=None, harness=None, mode="governed", frames=None, model_factory=None, spec=None) -> dict:
     """Run one strategy arm. `start`/`end` are ISO UTC timestamps (end exclusive)."""
     harness = harness or S.HARNESS
     pairs = list(pairs or harness["universe"])
     sc = harness["costs"]["scenarios"][scenario]
     fam_key = "F07" if family == "F07R" else family
-    spec = S.family_spec(fam_key)
+    spec = spec or S.family_spec(fam_key)
     t0 = time.time()
     engine = build_engine(harness, scenario, tag)
     t_start, t_end = iso_to_ns(start), iso_to_ns(end)
 
     per_pair = {}
     for p in pairs:
-        df = load_minutes(minute_dir, p)
-        df = df[(df["ts"].astype("int64") >= t_start) & (df["ts"].astype("int64") < t_end)]
+        df = frames[p] if frames is not None else load_minutes(minute_dir, p)
+        _t = Q.ts_ns(df["ts"])
+        df = df[(_t >= t_start) & (_t < t_end)]
         ts, b, a = Q.quote_arrays(df, I.PIP[p], I.PRICE_PRECISION[p], sc["spread_multiplier"], sc["slippage_pips_market"])
         inst = I.make_instrument(p)
         engine.add_instrument(inst)
         per_pair[p] = (inst, ts, b, a)
 
     strat = FastStrategy(FastConfig(family=family, family_spec=spec, harness=harness, scenario=scenario,
-                                    journal_path=journal_path, mode=mode))
+                                    journal_path=journal_path, mode=mode, model_factory=model_factory))
     engine.add_strategy(strat)
 
     all_weeks = sorted({int(w) for p in pairs for w in np.unique((per_pair[p][1] - SAT_OFFSET_NS) // WEEK_NS)})
