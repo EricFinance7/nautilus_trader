@@ -10,6 +10,8 @@ Start with `reports/FINAL_REPORT.md`. Then:
 | `reports/FINAL_REPORT.md` | Results, evidence classification of every strategy, limitations, GitHub status |
 | `results/EVIDENCE_TABLE.md`, `results/evidence_summary.json` | The common-methodology evidence tables and all numbers behind them |
 | `reports/DATA_REPORT.md` | What data was acquired and every quality check |
+| `results/fidelity.json`, `results/tick_check.json` | Candle-synthesized vs real-tick execution comparison (4 development days) and tick-vs-native candle cross-check |
+| `results/reserved_forward/` | Supplementary single pass over the reserved forward period (information only) |
 | `reports/BROKER_REPORT.md` | Regulated FX broker comparison and selection |
 | `reports/PROSPECTIVE_READINESS.md` | Virtual-trading readiness and the exact missing dependency |
 | `reports/COST_AND_RISK_ASSUMPTIONS.md` | Capital model, costs, execution timing, and their provenance |

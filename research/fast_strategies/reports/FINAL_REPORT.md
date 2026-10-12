@@ -18,7 +18,7 @@ answer for all of them today. I did not tune anything to change this, and I did 
 | Pairs | EURUSD, GBPUSD, USDJPY, USDCHF, AUDUSD, USDCAD, NZDUSD (all seven) |
 | Coverage | **2026-04-01 to 2026-10-09 (192 days)**, native 1-minute BID and ASK candles, 2,310 of 2,310 files acquired, 0 failed |
 | Candle counts | 237,600 rows per pair (1,663,200 total), of which about 197,100 to 197,600 per pair are valid in-session minutes (1,381,497 in total). Zero-volume minutes (about 900 to 1,430 per pair in session) are kept flagged, never replayed or filled |
-| Tick counts | Tick tier is a **limited sample only** (a 3-day development window for the fidelity check): see "Tick fidelity" below. Full-period ticks were not acquired |
+| Tick counts | **Sample only: 2,027,235 real ticks** (all seven pairs, 2026-04-14 to 2026-04-17, a development window; 28 pair-days, 658 hourly files of which 7 were empty hours). Full-period ticks were not acquired. Tick QC: 0 duplicates, 0 crossed or locked quotes, 0 non-positive prices, timestamps non-decreasing on every day. Candles rebuilt from the ticks equal the native candles in all but 0 to 4 of about 5,540 minutes per pair |
 | Missing-data limits | No missing days in any pair. Longest in-session gap is 5 to 19 minutes depending on pair. Zero crossed quotes, zero OHLC-invariant violations, zero negative spreads, dataset rebuild hash identical on every pair. No valid minutes outside the session. Saturdays are not downloaded (market closed) |
 | Median spread at the open (pips) | EURUSD 0.3, USDJPY 0.4, GBPUSD 0.7, USDCHF 0.8, AUDUSD 0.9, NZDUSD 1.0, USDCAD 1.1 |
 | Location | `E:\Tradingdata` (outside git). Only QC JSON and small result files are in the repository |
@@ -75,6 +75,8 @@ Run once after the main results were committed, for information only, no reclass
 
 Candle-synthesized quotes are an approximation of the intraminute path (four quotes per minute). The documented cost/fill assumptions are in `reports/COST_AND_RISK_ASSUMPTIONS.md`.
 
+**Tick fidelity check** (`results/fidelity.json`; four development days, every arm run once on candle-synthesized quotes and once on the 2.03 M real ticks, base costs, 0.5 s latency): matched trades differ by a mean of 0.06 to 0.23 pip at entry and 0.09 to 0.85 pip at exit; 94% to 100% of matched trades exit for the same reason; mean net R differs by at most 0.09 (median across arms about 0.01), and the candle simulation was slightly **more optimistic** than the tick simulation in all 7 arms that traded (by EUR 1 to 6 per arm on these four days; F03 -19.7 vs -21.6, F07 -37.6 vs -43.1, F02 -41.0 vs -46.9). Not every trade matches (for example F07R 37 of 49 tick trades, F02 57 of 70) because small price-path differences change which signals trigger, so this is evidence that the approximation is close, not that it is exact. The sample is too small (12 to 114 trades per arm) to correct the main results, and F04 had no trades in it. The direction of the bias (candle slightly flattering) means the negative conclusions are, if anything, a little understated.
+
 ## BROKERS
 
 Full report with evidence tags: `reports/BROKER_REPORT.md` (raw research with URLs: `reports/appendix/`). No earlier cTrader/Kraken/Coinbase evaluation exists in this fork, the engine repository or other sessions, so nothing was reused.
@@ -99,7 +101,7 @@ The two brokers are statistically tied (difference 0.05); the ranking is not a r
 | Branch | `research/fast-strategies-and-fx-broker-v1` (not merged; default branch untouched) |
 | Commit SHA | see the final line of this report's footer in the chat reply (the SHA of the commit containing this file cannot be written inside itself) |
 | Tests | 92 passed, 0 failed (`python -m unittest discover -s tests -t .`, with `TIE_MINUTE_DIR` set so the restart-recovery integration test runs) |
-| Remaining blockers | Forward quote feed; independent SQL Risk Gate integration; broker demo setup (manual); full-period tick data (only a 3-day sample) |
+| Remaining blockers | Forward quote feed; independent SQL Risk Gate integration; broker demo setup (manual); full-period tick data (only a 4-day sample) |
 
 ## Reproduce
 

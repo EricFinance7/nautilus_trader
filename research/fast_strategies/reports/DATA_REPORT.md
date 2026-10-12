@@ -12,7 +12,7 @@ Window requested: 2026-04-01 to 2026-10-09 (Saturdays are not acquired: the mark
 ## Acquisition result
 
 - Candle files: {"OK": 2365}; 21.9 MB compressed on disk.
-- Tick files: {"OK": 10}; 0.2 MB compressed on disk.
+- Tick files: {"EMPTY": 7, "OK": 661}; 8.8 MB compressed on disk.
 
 ## Coverage and quality checks (per pair)
 
@@ -47,3 +47,122 @@ Window requested: 2026-04-01 to 2026-10-09 (Saturdays are not acquired: the mark
 - **Duplicate ticks / chronological order**: see the tick section (ticks were acquired only for the weeks listed there).
 - **Spread calculation**: spread is derived (ask - bid), never stored as raw; zero negative spreads in candle values.
 - **Deterministic construction**: building the dataset twice from the same raw files yields the same content hash for every pair.
+
+## Tick tier (fidelity check)
+
+```json
+{
+  "EURUSD": {
+    "vs_native": {
+      "minutes_compared": 5551,
+      "minutes_only_in_ticks": 0,
+      "minutes_only_in_native": 192006,
+      "bid_open_mismatch_minutes": 0,
+      "bid_high_mismatch_minutes": 0,
+      "bid_low_mismatch_minutes": 1,
+      "bid_close_mismatch_minutes": 1,
+      "ask_open_mismatch_minutes": 0,
+      "ask_high_mismatch_minutes": 0,
+      "ask_low_mismatch_minutes": 0,
+      "ask_close_mismatch_minutes": 1,
+      "max_abs_diff": 5.0000000000105516e-05
+    }
+  },
+  "GBPUSD": {
+    "vs_native": {
+      "minutes_compared": 5536,
+      "minutes_only_in_ticks": 0,
+      "minutes_only_in_native": 191984,
+      "bid_open_mismatch_minutes": 0,
+      "bid_high_mismatch_minutes": 0,
+      "bid_low_mismatch_minutes": 0,
+      "bid_close_mismatch_minutes": 0,
+      "ask_open_mismatch_minutes": 0,
+      "ask_high_mismatch_minutes": 0,
+      "ask_low_mismatch_minutes": 0,
+      "ask_close_mismatch_minutes": 0,
+      "max_abs_diff": 0.0
+    }
+  },
+  "USDJPY": {
+    "vs_native": {
+      "minutes_compared": 5549,
+      "minutes_only_in_ticks": 0,
+      "minutes_only_in_native": 192088,
+      "bid_open_mismatch_minutes": 0,
+      "bid_high_mismatch_minutes": 1,
+      "bid_low_mismatch_minutes": 0,
+      "bid_close_mismatch_minutes": 1,
+      "ask_open_mismatch_minutes": 0,
+      "ask_high_mismatch_minutes": 0,
+      "ask_low_mismatch_minutes": 0,
+      "ask_close_mismatch_minutes": 1,
+      "max_abs_diff": 0.01099999999999568
+    }
+  },
+  "USDCHF": {
+    "vs_native": {
+      "minutes_compared": 5536,
+      "minutes_only_in_ticks": 0,
+      "minutes_only_in_native": 191702,
+      "bid_open_mismatch_minutes": 0,
+      "bid_high_mismatch_minutes": 1,
+      "bid_low_mismatch_minutes": 0,
+      "bid_close_mismatch_minutes": 1,
+      "ask_open_mismatch_minutes": 0,
+      "ask_high_mismatch_minutes": 1,
+      "ask_low_mismatch_minutes": 0,
+      "ask_close_mismatch_minutes": 1,
+      "max_abs_diff": 4.0000000000040004e-05
+    }
+  },
+  "AUDUSD": {
+    "vs_native": {
+      "minutes_compared": 5547,
+      "minutes_only_in_ticks": 0,
+      "minutes_only_in_native": 191757,
+      "bid_open_mismatch_minutes": 0,
+      "bid_high_mismatch_minutes": 0,
+      "bid_low_mismatch_minutes": 1,
+      "bid_close_mismatch_minutes": 1,
+      "ask_open_mismatch_minutes": 0,
+      "ask_high_mismatch_minutes": 0,
+      "ask_low_mismatch_minutes": 1,
+      "ask_close_mismatch_minutes": 1,
+      "max_abs_diff": 0.00015999999999993797
+    }
+  },
+  "USDCAD": {
+    "vs_native": {
+      "minutes_compared": 5546,
+      "minutes_only_in_ticks": 0,
+      "minutes_only_in_native": 191587,
+      "bid_open_mismatch_minutes": 0,
+      "bid_high_mismatch_minutes": 0,
+      "bid_low_mismatch_minutes": 0,
+      "bid_close_mismatch_minutes": 1,
+      "ask_open_mismatch_minutes": 0,
+      "ask_high_mismatch_minutes": 0,
+      "ask_low_mismatch_minutes": 0,
+      "ask_close_mismatch_minutes": 1,
+      "max_abs_diff": 1.0000000000065512e-05
+    }
+  },
+  "NZDUSD": {
+    "vs_native": {
+      "minutes_compared": 5535,
+      "minutes_only_in_ticks": 0,
+      "minutes_only_in_native": 191573,
+      "bid_open_mismatch_minutes": 0,
+      "bid_high_mismatch_minutes": 0,
+      "bid_low_mismatch_minutes": 1,
+      "bid_close_mismatch_minutes": 1,
+      "ask_open_mismatch_minutes": 0,
+      "ask_high_mismatch_minutes": 0,
+      "ask_low_mismatch_minutes": 1,
+      "ask_close_mismatch_minutes": 1,
+      "max_abs_diff": 7.999999999996898e-05
+    }
+  }
+}
+```

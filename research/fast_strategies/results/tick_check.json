@@ -1,0 +1,114 @@
+{
+ "EURUSD": {
+  "vs_native": {
+   "minutes_compared": 5551,
+   "minutes_only_in_ticks": 0,
+   "minutes_only_in_native": 192006,
+   "bid_open_mismatch_minutes": 0,
+   "bid_high_mismatch_minutes": 0,
+   "bid_low_mismatch_minutes": 1,
+   "bid_close_mismatch_minutes": 1,
+   "ask_open_mismatch_minutes": 0,
+   "ask_high_mismatch_minutes": 0,
+   "ask_low_mismatch_minutes": 0,
+   "ask_close_mismatch_minutes": 1,
+   "max_abs_diff": 5.0000000000105516e-05
+  }
+ },
+ "GBPUSD": {
+  "vs_native": {
+   "minutes_compared": 5536,
+   "minutes_only_in_ticks": 0,
+   "minutes_only_in_native": 191984,
+   "bid_open_mismatch_minutes": 0,
+   "bid_high_mismatch_minutes": 0,
+   "bid_low_mismatch_minutes": 0,
+   "bid_close_mismatch_minutes": 0,
+   "ask_open_mismatch_minutes": 0,
+   "ask_high_mismatch_minutes": 0,
+   "ask_low_mismatch_minutes": 0,
+   "ask_close_mismatch_minutes": 0,
+   "max_abs_diff": 0.0
+  }
+ },
+ "USDJPY": {
+  "vs_native": {
+   "minutes_compared": 5549,
+   "minutes_only_in_ticks": 0,
+   "minutes_only_in_native": 192088,
+   "bid_open_mismatch_minutes": 0,
+   "bid_high_mismatch_minutes": 1,
+   "bid_low_mismatch_minutes": 0,
+   "bid_close_mismatch_minutes": 1,
+   "ask_open_mismatch_minutes": 0,
+   "ask_high_mismatch_minutes": 0,
+   "ask_low_mismatch_minutes": 0,
+   "ask_close_mismatch_minutes": 1,
+   "max_abs_diff": 0.01099999999999568
+  }
+ },
+ "USDCHF": {
+  "vs_native": {
+   "minutes_compared": 5536,
+   "minutes_only_in_ticks": 0,
+   "minutes_only_in_native": 191702,
+   "bid_open_mismatch_minutes": 0,
+   "bid_high_mismatch_minutes": 1,
+   "bid_low_mismatch_minutes": 0,
+   "bid_close_mismatch_minutes": 1,
+   "ask_open_mismatch_minutes": 0,
+   "ask_high_mismatch_minutes": 1,
+   "ask_low_mismatch_minutes": 0,
+   "ask_close_mismatch_minutes": 1,
+   "max_abs_diff": 4.0000000000040004e-05
+  }
+ },
+ "AUDUSD": {
+  "vs_native": {
+   "minutes_compared": 5547,
+   "minutes_only_in_ticks": 0,
+   "minutes_only_in_native": 191757,
+   "bid_open_mismatch_minutes": 0,
+   "bid_high_mismatch_minutes": 0,
+   "bid_low_mismatch_minutes": 1,
+   "bid_close_mismatch_minutes": 1,
+   "ask_open_mismatch_minutes": 0,
+   "ask_high_mismatch_minutes": 0,
+   "ask_low_mismatch_minutes": 1,
+   "ask_close_mismatch_minutes": 1,
+   "max_abs_diff": 0.00015999999999993797
+  }
+ },
+ "USDCAD": {
+  "vs_native": {
+   "minutes_compared": 5546,
+   "minutes_only_in_ticks": 0,
+   "minutes_only_in_native": 191587,
+   "bid_open_mismatch_minutes": 0,
+   "bid_high_mismatch_minutes": 0,
+   "bid_low_mismatch_minutes": 0,
+   "bid_close_mismatch_minutes": 1,
+   "ask_open_mismatch_minutes": 0,
+   "ask_high_mismatch_minutes": 0,
+   "ask_low_mismatch_minutes": 0,
+   "ask_close_mismatch_minutes": 1,
+   "max_abs_diff": 1.0000000000065512e-05
+  }
+ },
+ "NZDUSD": {
+  "vs_native": {
+   "minutes_compared": 5535,
+   "minutes_only_in_ticks": 0,
+   "minutes_only_in_native": 191573,
+   "bid_open_mismatch_minutes": 0,
+   "bid_high_mismatch_minutes": 0,
+   "bid_low_mismatch_minutes": 1,
+   "bid_close_mismatch_minutes": 1,
+   "ask_open_mismatch_minutes": 0,
+   "ask_high_mismatch_minutes": 0,
+   "ask_low_mismatch_minutes": 1,
+   "ask_close_mismatch_minutes": 1,
+   "max_abs_diff": 7.999999999996898e-05
+  }
+ }
+}
